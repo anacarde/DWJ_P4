@@ -1,0 +1,20 @@
+{
+    "name": "francois/p4",
+    "description": "Concevoir un framework PHP POO MVC",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "anacarde",
+            "email": "lazare.monin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "zendframework/zend-diactoros": "1.8.x-dev"
+    },
+    "autoload" : {
+        "psr-4": {
+            "App\\": "src"
+        }
+    }
+}
