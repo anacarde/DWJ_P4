@@ -1,26 +1,10 @@
 <?php
 
-require_once "vendor/autoload.php";
+// $r = new ReflectionMethod($request, 'withAttribute');
 
-use App\router\Router;
+/* $router = new Router($_GET['url']);
 
-$router = new Router($_GET['url']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$router->get("salsa"); */
 
 // use Zend\Diactoros\ServerRequestFactory;
 // use Zend\Diactoros\Response\HtmlResponse;
@@ -38,6 +22,3 @@ $router = new Router($_GET['url']);
 // $emitter = new SapiEmitter();
 
 // $emitter->emit($response);
-
-
-
