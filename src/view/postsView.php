@@ -3,7 +3,7 @@
 <head>
 	<title> Le blog de Jean Forteroche </title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="css/postsStyle.css" />
+	<link rel="stylesheet" href="src/view/css/postsStyle.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 </head>
 <body id="billets_body">
@@ -41,10 +41,14 @@
 		</div>
 		<nav id="chapters_list_section">
 			<ul>
-				<li> <a href=""> Chapitre 1 </a> </li>
-				<li> <a href=""> Chapitre 2 </a> </li>
-				<li> <a href=""> Chapitre 3 </a> </li>
-				<li> <a href=""> Chapitre 4 </a> </li>
+				<?php 
+				foreach ($this->chapters as $chapter) 
+				{
+				?>
+				<li> <a href=""> <?= $chapter->getTitle() ?> </a> </li>
+				<?php
+				}
+				?>
 			</ul>
 		</nav>
 	</section>
