@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\controller;
+namespace Src\Controller;
 
 use Src\model\ChaptersManager;
 
@@ -18,7 +18,6 @@ class Controller
     public function showChapters()
     {
         $this->chapters = $this->dbManager->getChapters();
-        var_dump($this->chapters);
         require ('src/view/postsView.php');
     }
 

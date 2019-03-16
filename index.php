@@ -2,36 +2,32 @@
 
 require_once "vendor/autoload.php";
 
-use App\router\Router;
+use App\Router\Router;
 use App\Request;
-use Src\model\Manager;
-use Src\model\ChaptersManager;
-use Src\controller\Controller;
+use Src\Model\Manager;
+use Src\Model\ChaptersManager;
+use Src\Controller\Controller;
 
 $request = new Request();
 
-// echo ($request->getUri());
-
-$dbconnect = Manager::dbConnect();
+// echo ($request->getUri() . "<br/>");
 
 $router = new Router($request);
 
-$chaptersManager = new ChaptersManager($dbconnect);
+$router->loadYaml(__DIR__ . "/config/routing.yml");
 
-$controller = (new Controller($chaptersManager))->showChapters();
+try {
+    $route = $router->getRouteByRequest();
 
+    echo "<pre>";
+    var_dump($route);
+    echo "</pre>";
 
+    $route->call();
 
-
-
-
-
-
-
-
-
-
-
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}
 
 
 
@@ -45,3 +41,14 @@ $controller = (new Controller($chaptersManager))->showChapters();
 
 
 
+
+
+
+
+/*$chaptersManager = new ChaptersManager($dbconnect);
+
+$controller = (new Controller($chaptersManager))->showChapters();*/
+
+// echo ($request->getUri());
+
+// $dbconnect = Manager::dbConnect();

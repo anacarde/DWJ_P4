@@ -1,279 +1,279 @@
 html
 {
-	font-family: cursive;
+    font-family: cursive;
 }
 
 
 #billet_body
 {
-	width: 90%;
-	margin: auto;
+    width: 90%;
+    margin: auto;
 }
 
 #header_banner
 {
-	position: relative;
-	width: 100%;
-	height: 30vh;	
+    position: relative;
+    width: 100%;
+    height: 30vh;   
 }
 
 #header_banner_image
 {
-	position: absolute;
-	width: inherit;
-	height: inherit;	
-	background: url('../images/alaska_banner.jpg') no-repeat center scroll;
-	background-size: cover;
-	background-color: #423b91;
-	border: 1px solid black;
-	opacity: 0.5;
+    position: absolute;
+    width: inherit;
+    height: inherit;    
+    background: url('../images/alaska_banner.jpg') no-repeat center scroll;
+    background-size: cover;
+    background-color: #423b91;
+    border: 1px solid black;
+    opacity: 0.5;
 }
 
 #header_banner_title
 {
-	position: absolute;
-	width: inherit;
-	height: inherit;
-	display: flex;
-	justify-content: center;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
   align-items: center;
 }
 
 #header_banner_title > h1
 {
-	font-family: 'Lobster';
-	display: inline;
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 10px;
-	padding: 20px 80px;
+    font-family: 'Lobster';
+    display: inline;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 20px 80px;
 }
 
 #header_banner_author
 {
-	position: absolute;
-	font-size: 1.3em;
-	font-weight: bold;
-	bottom: 5px;
-	right: 5px;
-	border-radius: 10px;
-	padding: 0px 5px;
+    position: absolute;
+    font-size: 1.3em;
+    font-weight: bold;
+    bottom: 5px;
+    right: 5px;
+    border-radius: 10px;
+    padding: 0px 5px;
 }
 
 #reading_intro
 {
-	position: relative;
-	text-align: center;
-	margin: 5px;
+    position: relative;
+    text-align: center;
+    margin: 5px;
 }
 
 #reading_intro > hr
 {
-	position: absolute;
-	width: 100%;
-	margin: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	z-index: -1;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
 }
 
 #reading_intro > h2
 {
-	display: inline;
-	background-color: white;
-	padding: 0px 20px;
-	
+    display: inline;
+    background-color: white;
+    padding: 0px 20px;
+    
 }
 
 #chapters_section
 {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 #arrows_and_title
 {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .arrow
 {
-	font-size: 2em;
-	font-weight: bold;
-	border-radius: 50%;
-	padding: 10px 30px;
-	background-color: rgba(255, 255, 255, 0.3);
-	cursor: pointer;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 10px 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
 }
 
 .arrow:hover
 {
-	background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 #chapter_reading
 {
-	font-size: 1.2em;
-	box-sizing: border-box;
-	border: 1px solid black;
-	background-color: #edc795;
-	width: 84%;
-	padding: 20px;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: #edc795;
+    width: 84%;
+    padding: 20px;
 }
 
 #billet_title
 {
-	font-style: italic;
+    font-style: italic;
 }
 
 #chapters_list_section
 {
-	background: url("../images/chapters_wallpaper.jpg") no-repeat center;
-	background-size: cover;
-	width: 15%;
-	font-style: italic;
+    background: url("../images/chapters_wallpaper.jpg") no-repeat center;
+    background-size: cover;
+    width: 15%;
+    font-style: italic;
 }
 
 #chapters_list_section > ul
 {
-	list-style-type: none;
-	text-decoration: none;
-	padding: 0;
-	font-size: 1.5em;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 0;
+    font-size: 1.5em;
 }
 
 #chapters_list_section > ul li
 {
-	padding: 10px;
+    padding: 10px;
 }
 
 #chapters_list_section a
 {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 #chapters_list_section a:hover
 {
-	color: white;
+    color: white;
 }
 
 #comments_intro
 {
-	position: relative;
-	text-align: center;
-	margin: 5px;
+    position: relative;
+    text-align: center;
+    margin: 5px;
 }
 
 #comments_intro > hr
 {
-	position: absolute;
-	width: 100%;
-	margin: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	z-index: -1;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
 }
 
 #comments_intro > h2
 {
-	display: inline;
-	background-color: white;
-	padding: 0px 20px;
+    display: inline;
+    background-color: white;
+    padding: 0px 20px;
 }
 
 #comments_section form
 {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	background-color: #88aded;
-	border: 1px solid black;
-	padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #88aded;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 #comments_section form #pseudo_div
 {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
 }
 
 #comments_section form #pseudo
 {
-	width: 140px;
-	height: 30px;
+    width: 140px;
+    height: 30px;
 }
 
 #comments_section form #comment_div
 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #comments_section form #comment
 {
-	width: 50vw;
-	padding: 5px;
-	font-family: cursive;
+    width: 50vw;
+    padding: 5px;
+    font-family: cursive;
 }
 
 #comments_section label
 {
-	padding: 5px;
+    padding: 5px;
 }
 
 #comments_section .input
 {
-	border: 0;
-	font-family: cursive;
+    border: 0;
+    font-family: cursive;
 }
 
 #comments_section #submit
 {
-	font-family: cursive;
-	font-size: 1.1em;
-	background-color: white;
-	padding: 5px;
-	border-radius: 10px;
+    font-family: cursive;
+    font-size: 1.1em;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 #comments_section #submit:hover
 {
-	background-color: #e5dfd7;
-	cursor: pointer;
+    background-color: #e5dfd7;
+    cursor: pointer;
 }
 
 #comments_section #comments
 {
-	padding: 5px;
+    padding: 5px;
 }
 
 #comments_section .date
 {
-	font-size: 0.7em;
+    font-size: 0.7em;
 }
 
 #comments_pages
 {
-	text-align: center;
-	margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 #comments_pages a
 {
-	font-size: 1.1em;
-	padding: 5px;
-	text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px;
+    text-decoration: none;
 }
 
 #footer_banner
 {
-	background-color: #c9c3c3;
-	border: 1px solid black;
-	padding: 5px;
+    background-color: #c9c3c3;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 

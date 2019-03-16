@@ -7,127 +7,127 @@ html
 
 #admin_body
 {
-	background-color: #f9e57c;
+    background-color: #f9e57c;
 }
 
 #admin_welcome
 {
-  text-align: center;	
+  text-align: center;   
 }
 
 #onglets_admin
 {
-	display: flex;
-	justify-content: space-around;
-	align-items: flex-start;
-	margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 50px;
 }
 
 .button_admin
 {
-	font-size: 1.1em;
-	cursor: pointer;
-	font-family: cursive;
-	background-color: #bc9a4f;
-	padding: 5px;
-	border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: cursive;
+    background-color: #bc9a4f;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .button_admin.set_css
 {
-	z-index: 10;
-	background-color: #f5f7a0;
-	padding-bottom: 30px;
-	border-bottom: 0;
+    z-index: 10;
+    background-color: #f5f7a0;
+    padding-bottom: 30px;
+    border-bottom: 0;
 }
 
 .table_admin
 {
-	background-color: #f5f7a0;
-	transform: translatey(-5px);
-	width: 95%;
-	margin: auto;
-	margin-bottom: 50px;
-	border: outset white;
+    background-color: #f5f7a0;
+    transform: translatey(-5px);
+    width: 95%;
+    margin: auto;
+    margin-bottom: 50px;
+    border: outset white;
 }
 
 .hide
 {
-	display: none;
+    display: none;
 }
 
 #add_chapter_form
 {
-	padding: 10px;
+    padding: 10px;
 }
 
 #chap_nb_div
 {
-	 display: flex;
-	 justify-content: center;
-	 align-items: center;
-	 margin: 40px 0 40px 0; 
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 40px 0 40px 0; 
 }
 
 .form_label
 {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .form_label input
 {
-	font-family: cursive;
-	text-align: center;
-	border: 1px solid #e7ea96;
+    font-family: cursive;
+    text-align: center;
+    border: 1px solid #e7ea96;
 }
 
 #nb_input
 {
-	width: 30px;
-	margin-right: 50px;
+    width: 30px;
+    margin-right: 50px;
 }
 
 #title_input
 {
-	width: 30vw;
-	height: 30px;
+    width: 30vw;
+    height: 30px;
 }
 
 #content_label
 {
-	display: block;
-	text-align: center;
-	font-style: italic;
-	margin-top: 20px;
+    display: block;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
 }
 
 #chapter_editor
 {
-	height: 800px;
-	background-color: blue;
+    height: 800px;
+    background-color: blue;
 }
 
 #send_btn
 {
-	display: block;
+    display: block;
   margin: 20px auto 20px auto;
-	font-size: 1.1em;
-	padding: 7px;
-	border-radius: 8px;
-	cursor: pointer;
+    font-size: 1.1em;
+    padding: 7px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 #send_btn:hover
 {
-	background-color: #e89747;
-	box-shadow: 0 0 10px 10px #e89747;
+    background-color: #e89747;
+    box-shadow: 0 0 10px 10px #e89747;
 }
 
 #send_btn:active
 {
-	background-color: #ff9d00;
-	box-shadow: none;
-	color: white;
+    background-color: #ff9d00;
+    box-shadow: none;
+    color: white;
 }
 
 #chapters_table
@@ -140,46 +140,46 @@ html
 
 table
 {
-	text-align: center;
-	border-spacing: 10px;
+    text-align: center;
+    border-spacing: 10px;
 }
 
 tr, td
 {
   border: 1px solid black;
-	
+    
 }
 
 th
 {
-	font-size: 1.1em;
+    font-size: 1.1em;
 }
 
 td
 {
-	padding: 5px;
-	background-color: white;
+    padding: 5px;
+    background-color: white;
 }
 
 
 td.action
 {
   background-color: #f5f7a0;
-	border: 0;
+    border: 0;
 }
 
 td.action button
 {
-	font-family: cursive;
-	cursor: pointer;
-	padding: 5px 10px;
-	border-radius: 5px;
+    font-family: cursive;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 td.action button:hover
 {
   color: gray;
-	box-shadow: 0 0 5px 5px #c1b189;
+    box-shadow: 0 0 5px 5px #c1b189;
 }
 
 td.modif button

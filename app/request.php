@@ -29,7 +29,7 @@ class Request
         return $this->get;
     }
 
-    public function getFilest()
+    public function getFiles()
     {
         return $_COOKIE;
     }
