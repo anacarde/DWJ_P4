@@ -3,7 +3,7 @@
 <head>
     <title> Le blog de Jean Forteroche </title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="src/view/css/postsStyle.css" />
+    <link rel="stylesheet" href="/src/View/css/postsStyle.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 </head>
 <body id="billets_body">
@@ -23,29 +23,22 @@
     </div>
     <section id="chapters_section">
         <div id="chapter_reading">
-            <div id="arrows_and_title">
-                <span id="left_arrow" class="arrow"> &lt; </span>
-                <h2 id="billet_title"> titre 1 </h2>
-                <span id="right_arrow" class="arrow"> &gt; </span>
-            </div>
+            <h2 id="billet_title"> <?= $chapterContent->getTitle(); ?> </h2>
             <p id="chapter">
-
-
-            Novo denique perniciosoque exemplo idem Gallus ausus est inire flagitium grave, quod Romae cum ultimo dedecore temptasse aliquando dicitur Gallienus, et adhibitis paucis clam ferro succinctis vesperi per tabernas palabatur et conpita quaeritando Graeco sermone, cuius erat inpendio gnarus, quid de Caesare quisque sentiret. et haec confidenter agebat in urbe ubi pernoctantium luminum claritudo dierum solet imitari fulgorem. postremo agnitus saepe iamque, si prodisset, conspicuum se fore contemplans, non nisi luce palam egrediens ad agenda quae putabat seria cernebatur. et haec quidem medullitus multis gementibus agebantur.
-
-            Hanc regionem praestitutis celebritati diebus invadere parans dux ante edictus per solitudines Aboraeque amnis herbidas ripas, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
-
-            Quapropter a natura mihi videtur potius quam ab indigentia orta amicitia, applicatione magis animi cum quodam sensu amandi quam cogitatione quantum illa res utilitatis esset habitura. Quod quidem quale sit, etiam in bestiis quibusdam animadverti potest, quae ex se natos ita amant ad quoddam tempus et ab eis ita amantur ut facile earum sensus appareat. Quod in homine multo est evidentius, primum ex ea caritate quae est inter natos et parentes, quae dirimi nisi detestabili scelere non potest; deinde cum similis sensus exstitit amoris, si aliquem nacti sumus cuius cum moribus et natura congruamus, quod in eo quasi lumen aliquod probitatis et virtutis perspicere videamur.
- 
+                <?= $chapterContent->getContent(); ?>
             </p>
+            <button id="chapter_top"> Haut du chapitre </span>
         </div>
         <nav id="chapters_list_section">
             <ul>
                 <?php 
-                foreach ($this->chapters as $chapter) 
+                foreach ($chaptersList as $chapterTitle) 
                 {
                 ?>
-                <li> <a href=""> <?= $chapter->getTitle() ?> </a> </li>
+                <li> <a href="<?= $chapterTitle->getId() ?>">
+                    <?= $chapterTitle->getChapterNumber(); ?>
+                    <?= $chapterTitle->getTitle(); ?> 
+                </a> </li>
                 <?php
                 }
                 ?>
@@ -70,9 +63,9 @@
         </form>
         <div id="comments">
             <h4> Ezechiel <em class="date"> Le 5 Janvier 2012 à 18h </em> </h4> 
-            <p> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            <p> commentaire n°1 </p>
             <h4> Mohamed <em class="date"> Le 5 Janvier 2012 à 18h </em>  </h4> 
-            <p> bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb </p>
+            <p> commentaire n°2 </p>
         </div>
         <div id="comments_pages">
             <a href=""> 1 </a>
@@ -87,5 +80,6 @@
             <p id="contact_mail"> <a href=""> Nom@exemple.org </a> </p>
         </div>
     </footer>
+    <script src="/src/view/js/postsJs.js"></script>
 </body>
 </html>

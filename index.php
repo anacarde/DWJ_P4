@@ -10,6 +10,8 @@ use Src\Controller\Controller;
 
 $request = new Request();
 
+var_dump($request->getUri());
+return;
 // echo ($request->getUri() . "<br/>");
 
 $router = new Router($request);
@@ -19,11 +21,11 @@ $router->loadYaml(__DIR__ . "/config/routing.yml");
 try {
     $route = $router->getRouteByRequest();
 
-    echo "<pre>";
+/*    echo "<pre>";
     var_dump($route);
-    echo "</pre>";
+    echo "</pre>";*/
 
-    $route->call();
+    $route->call($request);
 
 } catch (\Exception $e) {
     echo $e->getMessage();

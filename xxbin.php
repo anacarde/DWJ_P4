@@ -1,24 +1,35 @@
+index.php?page=<?= $chapterTitle->getId ?>
+<?= $chapterTitle->getId ?>
+
+<?php
+    echo "c'est bon";
+    echo "<br/>";
+?>
+
+
+
 <?php
 
-// $r = new ReflectionMethod($request, 'withAttribute');
-
-/* $router = new Router($_GET['url']);
-
-$router->get("salsa"); */
-
-// use Zend\Diactoros\ServerRequestFactory;
-// use Zend\Diactoros\Response\HtmlResponse;
-// use Zend\Diactoros\Response\RedirectResponse;
-// use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
-
-// $request = ServerRequestFactory::fromGlobals();
-
-// $response = new HtmlResponse('<h1> Hello world ! </h1>');
-
-// var_dump($response->getBody()->getContents());
-
-// echo $response->getBody()->getContents();
-
-// $emitter = new SapiEmitter();
-
-// $emitter->emit($response);
+/*        var_dump($this->args);
+        echo "<br/>";
+        var_dump($this->defaults);
+        echo "<br/>";*/
+        $defaultsArgs = array_keys($this->defaults);
+        // var_dump($defaultsArgs);
+        // echo "<br/>";
+        foreach($this->args as $key => &$value) {
+            // var_dump($key);
+            // echo "<br/>";
+            $index = array_search($key, $defaultsArgs);
+            // var_dump($index);
+            // echo "<br/>";
+            // $value = $this->defaults[$defaultsArgs[$index]];
+          /*  var_dump($value);
+            echo "<br/>";
+            return;*/
+            if ($index !== FALSE && $value === "") {
+                $value = $this->defaults[$defaultsArgs[$index]];
+                // var_dump($value);
+                // echo "<br/>";
+                return;
+            }

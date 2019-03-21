@@ -1,30 +1,30 @@
 show:
   path: /show/:id
-  parameters: {id: '[\d]+'}
-  controller: Controller\DefaultController
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
   action: showAction
 
 add:
   path: /add
   parameters: {}
-  controller: Controller\DefaultController
+  controller: \Src\Controller\DefaultController
   action: addAction
 
 update:
   path: /update/:id
-  parameters: {id: '[\d]+'}
-  controller: Controller\DefaultController
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
   action: updateAction
 
 delete:
   path: /delete/:id
-  parameters: {id: '[\d]+'}
-  controller: Controller\DefaultController
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
   action: deleteAction
 
 index:
   path: /:page
-  parameters: {page: '[\d]*'}
+  parameters: {page: '?<page>[\d]*'}
   defaults: {page: 1}
-  controller: Controller\DefaultController
+  controller: \Src\Controller\DefaultController
   action: indexAction

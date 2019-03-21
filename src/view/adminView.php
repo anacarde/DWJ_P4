@@ -3,14 +3,14 @@
 <head>
     <title> Le blog de Jean Forteroche - espace administrateur </title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/adminStyle.css" />
+    <link rel="stylesheet" href="/src/View/css/adminStyle.css" />
     <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=wmpba1qv3ow0lxpqb3udwiw8kxn9h8lqarl3tyx33nzo16xb"></script> 
     <script>
       tinymce.init({
         selector: '#chapter_editor',
         height: 800,
         language: 'fr_FR',
-        language_url: 'http://localhost/P4/src/view/js/tinymceLang_fr.js',
+        language_url: '/src/View/js/tinymceLang_fr.js',
         body_id: 'chapter_editor'
       });
   </script>

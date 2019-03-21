@@ -2,6 +2,8 @@
 
 namespace App\Router;
 
+use App\Request;
+
 class Route
 {
     private $name;
@@ -18,7 +20,6 @@ class Route
         $this->controller = $controller;
         $this->action = $action;
         $this->defaults = $defaults;
-        // echo $this->path;
     }
 
     public function match($requestUri)
@@ -27,17 +28,16 @@ class Route
 
         $path = str_replace("/", "\/", $path);
 
-        if (!preg_match_all("/^$path$/", $requestUri, $matches)) {
+        if (!preg_match_all("/^$path$/", $requestUri, $matches, PREG_PATTERN_ORDER)) {
             return false;
         }
 
-        $this->args = array_slice($matches, 1);
-        $defaultsArgs = array_keys($this->defaults);
-        foreach($this->args as $key => &$value) {
-            $index = array_search($key, $defaultsArgs); 
-            if ($index !== FALSE && $value === "") {
-                $value = $this->defaults[$defaultsArgs[$index]];
-            }
+        $this->args = array_slice($matches, 1); 
+
+        foreach ($this->args as $key => $value) {
+            if (array_key_exists($key, $this->defaults) && empty($this->args[$key][0])) {
+                $this->args[$key] = $this->defaults[$key];
+            }             
         }
         return true;
     }
@@ -50,11 +50,11 @@ class Route
         return "([^/]+)";
     }
 
-    public function call(){
+    public function call(Request $request){
 
         $controller = $this->controller;
 
-        $controller = new $controller;
+        $controller = new $controller($request);
 
         return call_user_func_array([$controller, $this->action], $this->args);
     }

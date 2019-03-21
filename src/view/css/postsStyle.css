@@ -22,7 +22,7 @@ html
     position: absolute;
     width: inherit;
     height: inherit;    
-    background: url('../images/alaska_banner.jpg') no-repeat center scroll;
+    background: url('/src/View/images/alaska_banner.jpg') no-repeat center;
     background-size: cover;
     background-color: #423b91;
     border: 1px solid black;
@@ -90,28 +90,6 @@ html
     justify-content: space-between;
 }
 
-#arrows_and_title
-{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.arrow
-{
-    font-size: 2em;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 10px 30px;
-    background-color: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-}
-
-.arrow:hover
-{
-    background-color: rgba(255, 255, 255, 0.7);
-}
-
 #chapter_reading
 {
     font-size: 1.2em;
@@ -119,17 +97,33 @@ html
     border: 1px solid black;
     background-color: #edc795;
     width: 84%;
+    height: 100vh;
     padding: 20px;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-color: #846011 #bc8a19;
+    scrollbar-width: thin;
 }
 
 #billet_title
 {
+    text-align: center;
     font-style: italic;
+}
+
+#chapter_top
+{
+    cursor: pointer;
+    background-color: white;
+    font-family: cursive;
+    float: right;
+    margin-bottom: 20px;
+    
 }
 
 #chapters_list_section
 {
-    background: url("../images/chapters_wallpaper.jpg") no-repeat center;
+    background: url("/src/View/images/chapters_wallpaper.jpg") no-repeat center;
     background-size: cover;
     width: 15%;
     font-style: italic;

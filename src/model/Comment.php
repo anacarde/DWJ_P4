@@ -2,12 +2,11 @@
 
 namespace Src\Model;
 
-class Chapter {
+class Comments {
 
     protected $id,
-              $chapter_number,
+              $comment_chapter,
               $author,
-              $title,
               $content,
               $date_added,
               $date_modified;
@@ -24,7 +23,7 @@ class Chapter {
     {
         foreach ($data as $key => $value)
         {
-            $method = 'set' .  ucfirst($key);
+            $method = 'set' . ucfirst($key);
 
             if (is_callable([$this, $method]))
             {
@@ -38,67 +37,44 @@ class Chapter {
         $this->id = (int) $id;
     }
 
-    public function setChapterNumber($chapterNumber)
+    public function setCommentChapter($commentChapter) 
     {
-        $this->chapter_number = (int) $chapter_number; 
+        $this->comment_chapter = (int) $comment_chapter;
     }
 
     public function setAuthor($author)
     {
-
         $this->author = (string) $author;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = (string) $title; 
     }
 
     public function setContent($content)
     {
-
         $this->content = (string) $content;
-
     }
 
     public function setDateAdd($dateAdd)
     {
-
         $this->date_added = $date_added;
-        
     }
 
     public function setDateModif($dateModif)
     {
-
         $this->date_modified = $date_modified;
-        
     }
-
 
     public function getId()
     {
         return $this->id;
     }
 
+    public function getCommentChapter()
+    {
+        return $this->comment_chapter;
+    }
+
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    public function getChapterNumber()
-    {
-        return $this->chapter_number;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function getContent()
-    {
-        return $this->content;
     }
 
     public function getDateAdd()
