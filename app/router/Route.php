@@ -24,6 +24,7 @@ class Route
 
     public function match($requestUri)
     {
+
         $path = preg_replace_callback("/:(\w+)/", [$this, "parameterMatch"], $this->path);
 
         $path = str_replace("/", "\/", $path);
@@ -37,7 +38,9 @@ class Route
         foreach ($this->args as $key => $value) {
             if (array_key_exists($key, $this->defaults) && empty($this->args[$key][0])) {
                 $this->args[$key] = $this->defaults[$key];
-            }             
+            } else {
+                $this->args[$key] = $this->args[$key][0];
+            }        
         }
         return true;
     }
@@ -55,6 +58,11 @@ class Route
         $controller = $this->controller;
 
         $controller = new $controller($request);
+
+        // echo "<pre>";
+        // var_dump($this->args);
+        // echo "</pre>";
+        // return;
 
         return call_user_func_array([$controller, $this->action], $this->args);
     }

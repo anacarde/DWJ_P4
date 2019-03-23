@@ -2,7 +2,7 @@
 
 namespace Src\Model;
 
-class Comments {
+class Comment {
 
     protected $id,
               $comment_chapter,
@@ -75,6 +75,11 @@ class Comments {
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
     }
 
     public function getDateAdd()

@@ -10,10 +10,6 @@ use Src\Controller\Controller;
 
 $request = new Request();
 
-var_dump($request->getUri());
-return;
-// echo ($request->getUri() . "<br/>");
-
 $router = new Router($request);
 
 $router->loadYaml(__DIR__ . "/config/routing.yml");

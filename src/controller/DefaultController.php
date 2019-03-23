@@ -2,7 +2,8 @@
 
 namespace Src\Controller;
 
-use Src\Model\ChaptersManager;
+use Src\Manager\ChapterManager;
+use Src\Manager\CommentManager;
 
 class DefaultController
 {
@@ -13,12 +14,14 @@ class DefaultController
         $this->request = $request;
     }
 
-    public function indexAction($page = 1)
+    public function indexAction($page)
     {
-        $chaptersList = (new ChaptersManager())->getChaptersList();
-        $chapterContent = (new ChaptersManager())->getChapterContent($page);
+        $chapterManager = new ChapterManager;
+        $chaptersList = $chapterManager->getChaptersList();
+        $chapterContent = $chapterManager->getChapterContent($page);
+        $commentManager = new CommentManager;
+        $chapterComments = $commentManager->getComments($page);
         require ("src/View/postsView.php");
-        return;
     }
 
     public function showAction()

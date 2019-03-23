@@ -62,10 +62,15 @@
             <input type="submit" id="submit" value="envoyer" />
         </form>
         <div id="comments">
-            <h4> Ezechiel <em class="date"> Le 5 Janvier 2012 à 18h </em> </h4> 
-            <p> commentaire n°1 </p>
-            <h4> Mohamed <em class="date"> Le 5 Janvier 2012 à 18h </em>  </h4> 
-            <p> commentaire n°2 </p>
+            <?php
+            foreach($chapterComments as $key => $comment) 
+            {
+            ?>
+                <h4> <?= $comment->getAuthor() ?> <em class="date"> <?= $comment->getDateAdd() ?> </em> </h4> 
+                <p> <?= $comment->getContent() ?> </p>
+            <?php
+            }
+            ?>
         </div>
         <div id="comments_pages">
             <a href=""> 1 </a>
