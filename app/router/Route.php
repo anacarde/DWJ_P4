@@ -9,7 +9,7 @@ class Route
     private $name;
     private $path;
     private $parameters;
-    private $args;
+    private $args = [];
     private $defaults;
 
     public function __construct($name, $path, array $parameters, $controller, $action, $defaults = [])
@@ -29,19 +29,22 @@ class Route
 
         $path = str_replace("/", "\/", $path);
 
-        if (!preg_match_all("/^$path$/", $requestUri, $matches, PREG_PATTERN_ORDER)) {
+        if (!preg_match_all("/^$path/i", $requestUri, $matches, PREG_PATTERN_ORDER)) {
             return false;
         }
 
         $this->args = array_slice($matches, 1); 
 
-        foreach ($this->args as $key => $value) {
-            if (array_key_exists($key, $this->defaults) && empty($this->args[$key][0])) {
-                $this->args[$key] = $this->defaults[$key];
-            } else {
-                $this->args[$key] = $this->args[$key][0];
-            }        
+        if (isset($this->defaults)) {
+            foreach ($this->args as $key => $value) {
+                if (array_key_exists($key, $this->defaults) && empty($this->args[$key][0])) {
+                    $this->args[$key] = $this->defaults[$key];
+                } else {
+                    $this->args[$key] = $this->args[$key][0];
+                }        
+            }    
         }
+
         return true;
     }
 
@@ -57,14 +60,14 @@ class Route
 
         $controller = $this->controller;
 
-        $controller = new $controller($request);
+        $controller = new $controller($request, $this->args);
 
-        // echo "<pre>";
-        // var_dump($this->args);
-        // echo "</pre>";
-        // return;
+/*        echo "<pre>";
+        var_dump($this->args);
+        echo "</pre>";
+        return;*/
 
-        return call_user_func_array([$controller, $this->action], $this->args);
+        return call_user_func([$controller, $this->action]);
     }
 
     public function getName()

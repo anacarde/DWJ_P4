@@ -63,8 +63,7 @@
         </form>
         <div id="comments">
             <?php
-            foreach($chapterComments as $key => $comment) 
-            {
+            foreach($chapterComments as $key => $comment) {
             ?>
                 <h4> <?= $comment->getAuthor() ?> <em class="date"> <?= $comment->getDateAdd() ?> </em> </h4> 
                 <p> <?= $comment->getContent() ?> </p>
@@ -73,10 +72,13 @@
             ?>
         </div>
         <div id="comments_pages">
-            <a href=""> 1 </a>
-            <a href=""> 2 </a>
-            <a href=""> 3 </a>
-            <a href=""> 4 </a>
+            <?php
+            for ( $i=1 ; $i<=ceil($comments_nb/5) ; $i++) {
+            ?>
+                <a href="<?= $chapterContent->getId()."?commentsPage=$i" ?>"> <?= $i ?> </a>
+            <?php
+            }
+            ?>
         </div>
     </section>
     <footer id="footer_banner">

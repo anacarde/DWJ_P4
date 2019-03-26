@@ -5,27 +5,42 @@ index:
   controller: \Src\Controller\DefaultController
   action: indexAction
 
-show:
-  path: /show/:id
-  parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
-  action: showAction
 
-add:
-  path: /add
-  parameters: {}
-  controller: \Src\Controller\DefaultController
-  action: addAction
 
-update:
-  path: /update/:id
-  parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
-  action: updateAction
 
-delete:
-  path: /delete/:id
-  parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
-  action: deleteAction
+
+# commentsPage:
+#   path: /:page/:commentsPage
+#   parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
+#   controller: \Src\Controller\DefaultController
+#   action: commentsPageAction
+
+
+
+
+
+
+# show:
+#   path: /show/:id
+#   parameters: {id: '?<id>[\d]+'}
+#   controller: \Src\Controller\DefaultController
+#   action: showAction
+
+# add:
+#   path: /add
+#   parameters: {}
+#   controller: \Src\Controller\DefaultController
+#   action: addAction
+
+# update:
+#   path: /update/:id
+#   parameters: {id: '?<id>[\d]+'}
+#   controller: \Src\Controller\DefaultController
+#   action: updateAction
+
+# delete:
+#   path: /delete/:id
+#   parameters: {id: '?<id>[\d]+'}
+#   controller: \Src\Controller\DefaultController
+#   action: deleteAction
 

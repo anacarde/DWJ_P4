@@ -22,7 +22,7 @@ html
     position: absolute;
     width: inherit;
     height: inherit;    
-    background: url('/src/View/images/alaska_banner.jpg') no-repeat center;
+    /*background: url('/src/View/images/alaska_banner.jpg') no-repeat center;*/
     background-size: cover;
     background-color: #423b91;
     border: 1px solid black;
@@ -123,7 +123,7 @@ html
 
 #chapters_list_section
 {
-    background: url("/src/View/images/chapters_wallpaper.jpg") no-repeat center;
+    /*background: url("/src/View/images/chapters_wallpaper.jpg") no-repeat center;*/
     background-size: cover;
     width: 15%;
     font-style: italic;
