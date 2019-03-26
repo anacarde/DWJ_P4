@@ -5,15 +5,12 @@ index:
   controller: \Src\Controller\DefaultController
   action: indexAction
 
-
-
-
-
-# commentsPage:
-#   path: /:page/:commentsPage
-#   parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
-#   controller: \Src\Controller\DefaultController
-#   action: commentsPageAction
+commentsPage:
+  path: /:page/:commentsPage
+  parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
+  defaults: {page: 1, commentsPage: 1}
+  controller: \Src\Controller\DefaultController
+  action: commentsAction
 
 
 

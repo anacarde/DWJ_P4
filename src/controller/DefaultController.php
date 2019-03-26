@@ -24,21 +24,25 @@ class DefaultController
             $chapterManager = new ChapterManager;
             $chaptersList = $chapterManager->getChaptersList();
             $chapterContent = $chapterManager->getChapterContent($page);
-            $commentManager = new CommentManager;
-            $comments_nb = $commentManager->countComments($page);
-            if (isset($this->request->getGet()["commentsPage"])){
-                $commentsPage = $this->request->getGet()["commentsPage"];
-                $chapterComments = $commentManager->getComments($page, $commentsPage);
-                // var_dump($chapterComments);
-                // return;
-            } else {
-                $chapterComments = $commentManager->getComments($page);
-            }
-
-            require ("src/View/postsView.php");
+            require ("src/View/views/visitorView.php");
         } else {
             throw new \Exception("Argument manquant");
         }
+    }
+
+    public function commentsAction()
+    {
+        if (isset($this->args['page']) && isset($this->args['commentsPage']) ) {
+            $page = $this->args['page'];
+            $commentsPage = $this->args['commentsPage'];
+            $commentManager = new CommentManager;
+            $comments_nb = $commentManager->countComments($page);
+            $chapterComments = $commentManager->getComments($page, $commentsPage);
+            require ("src/View/views/commentsView.php");
+        } else {
+            throw new \Exception("Argument(s) manquant(s)");
+        }
+
     }
 
 /*    public function commentsPageAction()

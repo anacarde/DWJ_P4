@@ -8,7 +8,7 @@ class CommentManager extends Manager
 
     public function __construct()
     {
-        $this->db = new \PDO('mysql:host=localhost;dbname=test;charset=utf8','root','');
+        $this->db = Manager::dbConnect();
     }
 
     public function countComments($page)
@@ -21,7 +21,7 @@ class CommentManager extends Manager
         return (int) $commentsNb['comments_nb'];
     }
 
-    public function getComments($page, $commentsPage = 1)
+    public function getComments($page, $commentsPage)
     {
         $db = $this->db;
         $req = $db->prepare('SELECT id, comment_chapter, author, content,  DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added, DATE_FORMAT(date_modified, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_modified FROM comments_jf WHERE comment_chapter = :page ORDER BY id DESC LIMIT '. ((int)$commentsPage-1)*5 .', 5');

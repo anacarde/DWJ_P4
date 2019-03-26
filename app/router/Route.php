@@ -29,7 +29,7 @@ class Route
 
         $path = str_replace("/", "\/", $path);
 
-        if (!preg_match_all("/^$path/i", $requestUri, $matches, PREG_PATTERN_ORDER)) {
+        if (!preg_match_all("/^$path/i", $requestUri, $matches)) {
             return false;
         }
 
@@ -61,11 +61,6 @@ class Route
         $controller = $this->controller;
 
         $controller = new $controller($request, $this->args);
-
-/*        echo "<pre>";
-        var_dump($this->args);
-        echo "</pre>";
-        return;*/
 
         return call_user_func([$controller, $this->action]);
     }
