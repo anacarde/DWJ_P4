@@ -7,13 +7,13 @@ chapterTop.addEventListener("click", function(){
     })
 });
 
-console.log("coco");
-
 function GetComments() {
 
     // console.log('lala');
 
     var self = this;
+
+    var chpNb = document.getElementById("chapter_number").textContent;
 
     this.ajaxGet = function(url, callback) {
         var req = new XMLHttpRequest();
@@ -32,12 +32,27 @@ function GetComments() {
     }
 
     this.callback = function(response) {
-        console.log(response);
-        document.getElementById('comments_container').innerHTML = response;  
+        document.getElementById('comments').innerHTML = response;
+        // console.log(response);
+    }
+
+    this.callbackInit = function(response) {
+        document.getElementById('comments').innerHTML = response;
+
+        var cmPgLinks = document.getElementsByClassName("com_page_nb");
+
+        for (var i = 0 ; i < cmPgLinks.length ; i++) {
+
+            var url = "/" + chpNb + "/" + cmPgLinks[i].textContent.trim();
+
+            cmPgLinks[i].addEventListener("click", self.ajaxGet.bind(this, url, self.callback));
+        }
     }
 
     this.init = function() {
-        this.ajaxGet("/1/1", this.callback);
+        var initUrl = "/" + chpNb + "/1";
+        // console.log(initUrl);
+        this.ajaxGet(initUrl, this.callbackInit);
     }
 };
 

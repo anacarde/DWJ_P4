@@ -22,7 +22,9 @@ class DefaultController
         if (isset($this->args['page'])) {
             $page = $this->args['page'];
             $chapterManager = new ChapterManager;
+            $commentManager = new CommentManager;
             $chaptersList = $chapterManager->getChaptersList();
+            $comments_nb = $commentManager->countComments($page);
             $chapterContent = $chapterManager->getChapterContent($page);
             require ("src/View/views/visitorView.php");
         } else {
@@ -35,8 +37,10 @@ class DefaultController
         if (isset($this->args['page']) && isset($this->args['commentsPage']) ) {
             $page = $this->args['page'];
             $commentsPage = $this->args['commentsPage'];
+            // var_dump($this->args['page']);
+            // var_dump($this->args['commentsPage']);
             $commentManager = new CommentManager;
-            $comments_nb = $commentManager->countComments($page);
+            // $comments_nb = $commentManager->countComments($page);
             $chapterComments = $commentManager->getComments($page, $commentsPage);
             require ("src/View/views/commentsView.php");
         } else {
