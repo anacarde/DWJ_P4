@@ -26,7 +26,7 @@ class DefaultController
             $chaptersList = $chapterManager->getChaptersList();
             $comments_nb = $commentManager->countComments($page);
             $chapterContent = $chapterManager->getChapterContent($page);
-            require ("src/View/views/visitorView.php");
+            require ("../src/View/visitorView.php");
         } else {
             throw new \Exception("Argument manquant");
         }
@@ -42,11 +42,15 @@ class DefaultController
             $commentManager = new CommentManager;
             // $comments_nb = $commentManager->countComments($page);
             $chapterComments = $commentManager->getComments($page, $commentsPage);
-            require ("src/View/views/commentsView.php");
+            require ("../src/View/commentsView.php");
         } else {
             throw new \Exception("Argument(s) manquant(s)");
         }
+    }
 
+    public function adminAction()
+    {
+        require("../src/View/adminView.php");
     }
 
 /*    public function commentsPageAction()

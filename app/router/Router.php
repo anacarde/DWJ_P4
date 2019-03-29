@@ -43,7 +43,8 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route->match($this->request->getUri())) {
-                 return $route;
+                // var_dump("zut");
+                return $route;
             }
         }
         throw new RouterException("Cette route n'existe pas !");

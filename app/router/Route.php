@@ -29,21 +29,22 @@ class Route
 
         $path = str_replace("/", "\/", $path);
 
-        if (!preg_match_all("/^$path/i", $requestUri, $matches)) {
+        if (!preg_match_all("/^$path$/i", $requestUri, $matches)) {
+            // var_dump("ici coco");
             return false;
         }
 
-        $this->args = array_slice($matches, 1); 
+        // var_dump("la coco");
 
-        if (isset($this->defaults)) {
-            foreach ($this->args as $key => $value) {
-                if (array_key_exists($key, $this->defaults) && empty($this->args[$key][0])) {
-                    $this->args[$key] = $this->defaults[$key];
-                } else {
-                    $this->args[$key] = $this->args[$key][0];
-                }        
-            }    
-        }
+        $this->args = array_slice($matches, 1);
+
+        foreach ($this->args as $key => $value) {
+            if (isset($this->defaults) && array_key_exists($key, $this->defaults) && empty($this->args[$key][0])) {
+                $this->args[$key] = $this->defaults[$key];
+            } else {
+                $this->args[$key] = $this->args[$key][0];
+            }        
+        }    
 
         return true;
     }

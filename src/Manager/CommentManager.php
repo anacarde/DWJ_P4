@@ -2,6 +2,8 @@
 
 namespace Src\Manager;
 
+use App\Manager;
+
 class CommentManager extends Manager
 {
     protected $db;
@@ -23,6 +25,7 @@ class CommentManager extends Manager
 
     public function getComments($page, $commentsPage)
     {
+        // var_dump($commentsPage);
         $db = $this->db;
         $req = $db->prepare('SELECT id, comment_chapter, author, content,  DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added, DATE_FORMAT(date_modified, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_modified FROM comments_jf WHERE comment_chapter = :page ORDER BY id DESC LIMIT '. ((int)$commentsPage-1)*5 .', 5');
         // var_dump($req);

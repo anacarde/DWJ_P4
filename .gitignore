@@ -2,4 +2,5 @@ vendor
 .htaccess
 composer.lock
 xxbin.php
-test
+test.php
+salut.txt

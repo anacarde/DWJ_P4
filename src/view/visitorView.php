@@ -3,7 +3,7 @@
 <head>
     <title> Le blog de Jean Forteroche </title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/src/View/css/visitorStyle.css" />
+    <link rel="stylesheet" href="/css/visitorStyle.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 </head>
 <body id="billets_body">
@@ -23,7 +23,10 @@
     </div>
     <section id="chapters_section">
         <div id="chapter_reading">
-            <h2 id="billet_title"> <?= $chapterContent->getTitle(); ?> </h2>
+            <h2 id="billet_title"> 
+                <span id="chapter_number"><?= $chapterContent->getChapterNumber(); ?></span>.
+                <span> <?= $chapterContent->getTitle(); ?> </span> 
+            </h2>
             <p id="chapter">
                 <?= $chapterContent->getContent(); ?>
             </p>
@@ -50,6 +53,7 @@
         <h2> Commentaires </h2>
     </div>
     <section id="comments_section">
+        <h4> Vous avez aimé ce chapitre ? Laissez-moi un commentaire :</h4>
         <form action="" method="post">
             <div id="pseudo_div">
                 <label for="pseudo" id="pseudo_label"> Pseudo </label> 
@@ -61,15 +65,26 @@
             </div>
             <input type="submit" id="submit" value="envoyer" />
         </form>
-        <div id="comments_container">
+        <h4> Liste des commentaires du chapitre : </h4>
+        <div id="comments">
+        </div>
+        <div id="comments_pages">
+            <?php
+            for ( $i=1 ; $i<=ceil($comments_nb/5) ; $i++) {
+            ?>
+                <button class="com_page_nb"> <?=$i?> </button>
+            <?php
+            }
+            ?>
         </div>
     </section>
     <footer id="footer_banner">
         <div id="footer_contact">
             <h3> Me contacter : </h3>
             <p id="contact_mail"> <a href=""> Nom@exemple.org </a> </p>
+            <a id="admin_access" href="/admin"> </a>
         </div>
     </footer>
-    <script src="/src/view/js/visitorJs.js"></script>
+    <script src="/js/visitorJs.js"></script>
 </body>
 </html>
