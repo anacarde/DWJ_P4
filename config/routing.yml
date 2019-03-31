@@ -9,13 +9,19 @@ commentsPage:
   path: /:page/:commentsPage
   parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
   controller: \Src\Controller\DefaultController
-  action: commentsAction
+  action: pageCommentsAction
 
 admin:
   path: /admin
   parameters: {}
   controller: \Src\Controller\DefaultController
   action: adminAction
+
+add:
+  path: /add
+  parameters: {}
+  controller: \Src\Controller\DefaultController
+  action: addAction
 
 
 
@@ -27,11 +33,7 @@ admin:
 #   controller: \Src\Controller\DefaultController
 #   action: showAction
 
-# add:
-#   path: /add
-#   parameters: {}
-#   controller: \Src\Controller\DefaultController
-#   action: addAction
+
 
 # update:
 #   path: /update/:id

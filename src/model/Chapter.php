@@ -17,6 +17,8 @@ class Chapter {
         if (!empty($data))
         {
             $this->hydrate($data);
+/*            var_dump($data);
+            return;*/
         }
     }
 
@@ -40,7 +42,7 @@ class Chapter {
 
     public function setChapterNumber($chapterNumber)
     {
-        $this->chapter_number = (int) $chapter_number; 
+        $this->chapter_number = (int) $chapterNumber; 
     }
 
     public function setAuthor($author)

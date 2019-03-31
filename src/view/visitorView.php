@@ -24,18 +24,18 @@
     <section id="chapters_section">
         <div id="chapter_reading">
             <h2 id="billet_title"> 
-                <span id="chapter_number"><?= $chapterContent->getChapterNumber(); ?></span>.
-                <span> <?= $chapterContent->getTitle(); ?> </span> 
+                <span id="chapter_number"><?= $this->chapterContent->getChapterNumber(); ?></span>.
+                <span> <?= $this->chapterContent->getTitle(); ?> </span> 
             </h2>
             <p id="chapter">
-                <?= $chapterContent->getContent(); ?>
+                <?= $this->chapterContent->getContent(); ?>
             </p>
             <button id="chapter_top"> Haut du chapitre </span>
         </div>
         <nav id="chapters_list_section">
             <ul>
                 <?php 
-                foreach ($chaptersList as $chapterTitle) 
+                foreach ($this->chaptersList as $chapterTitle) 
                 {
                 ?>
                 <li> <a href="<?= $chapterTitle->getId() ?>">
@@ -70,7 +70,7 @@
         </div>
         <div id="comments_pages">
             <?php
-            for ( $i=1 ; $i<=ceil($comments_nb/5) ; $i++) {
+            for ( $i=1 ; $i<=ceil($this->comments_nb/5) ; $i++) {
             ?>
                 <button class="com_page_nb"> <?=$i?> </button>
             <?php

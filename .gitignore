@@ -4,3 +4,4 @@ composer.lock
 xxbin.php
 test.php
 salut.txt
+.htpasswd

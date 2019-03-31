@@ -23,7 +23,7 @@ class CommentManager extends Manager
         return (int) $commentsNb['comments_nb'];
     }
 
-    public function getComments($page, $commentsPage)
+    public function getPageComments($page, $commentsPage)
     {
         // var_dump($commentsPage);
         $db = $this->db;
@@ -34,6 +34,17 @@ class CommentManager extends Manager
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Comment');
         $comments = $req->fetchAll();
         // var_dump($comments);
+        return $comments;
+    }
+
+    public function getCommentsList()
+    {
+        $db = $this->db;
+        $req = $db->query('SELECT id, comment_chapter, author, content, date_added FROM comments_jf ORDER BY date_added DESC');
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Comment');
+        $comments = $req->fetchAll();
+/*        var_dump($comments);
+        return;*/
         return $comments;
     }
 }

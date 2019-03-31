@@ -1,74 +1,88 @@
-var body = document.getElementById("admin_body");
+function AdminEvents() {
 
-var addChapterButton = document.getElementById('add_chapter_button');
-var chaptersButton = document.getElementById('chapters_list_button');
-var commentsButton = document.getElementById('comments_button');
+    var self = this;
 
-var addChapterDiv = document.getElementById('add_chapter_form');
-var chaptersTable = document.getElementById('chapters_table');
-var commentsTable = document.getElementById('comments_table');
+    this.body = document.getElementById("admin_body");
+    this.addChapterButton = document.getElementById('add_chapter_button');
+    this.chaptersButton = document.getElementById('chapters_list_button');
+    this.commentsButton = document.getElementById('comments_button');
 
-var addChapButtChecked = false; 
-var chapButtChecked = false;
-var comButtChecked = false;
+    this.addChapterDiv = document.getElementById('add_chapter_form');
+    this.chaptersTable = document.getElementById('chapters_table');
+    this.commentsTable = document.getElementById('comments_table');
 
-addChapterButton.addEventListener('click', function() {
-    addChapterButton.classList.add("set_css");
-    chaptersButton.classList.remove("set_css");
-    commentsButton.classList.remove("set_css");
-    addChapterDiv.classList.remove("hide");
-    chaptersTable.classList.add("hide");
-    commentsTable.classList.add("hide");
-    addChapButtChecked = true; 
-    chapButtChecked = false;
-    comButtChecked = false;
+    this.addChapButtChecked = false; 
+    this.chapButtChecked = false;
+    this.comButtChecked = false;
 
-});
+    this.displayEvents = function() {
 
-chaptersButton.addEventListener('click', function() {
-    addChapterButton.classList.remove("set_css");
-    chaptersButton.classList.add("set_css");
-    commentsButton.classList.remove("set_css");
-    addChapterDiv.classList.add("hide");
-    chaptersTable.classList.remove("hide");
-    commentsTable.classList.add("hide");
-    addChapButtChecked = false; 
-    chapButtChecked = true;
-    comButtChecked = false;
-});
+        this.addChapterButton.addEventListener('click', function() {
+            self.addChapterButton.classList.add("set_css");
+            self.chaptersButton.classList.remove("set_css");
+            self.commentsButton.classList.remove("set_css");
+            self.addChapterDiv.classList.remove("hide");
+            self.chaptersTable.classList.add("hide");
+            self.commentsTable.classList.add("hide");
+            self.addChapButtChecked = true; 
+            self.chapButtChecked = false;
+            self.comButtChecked = false;
 
-commentsButton.addEventListener('click', function() {
-    addChapterButton.classList.remove("set_css");
-    chaptersButton.classList.remove("set_css");
-    commentsButton.classList.add("set_css");
-    addChapterDiv.classList.add("hide");
-    chaptersTable.classList.add("hide");
-    commentsTable.classList.remove("hide");
-    addChapButtChecked = false; 
-    chapButtChecked = false;
-    comButtChecked = true;
-});
+        });
 
-window.addEventListener('keydown', function(e){
-    if(e.keyCode == 27) {
-        if(addChapButtChecked == true){
-            addChapterButton.classList.remove("set_css");
-            addChapterDiv.classList.add("hide");
-            addChapButtChecked = false; 
-            return;
-        }
-        if(chapButtChecked == true){
-            chaptersButton.classList.remove("set_css");
-            chaptersTable.classList.add("hide");
-            chapButtChecked = false;
-            return;
-        }
-        if(comButtChecked == true){
-            commentsButton.classList.remove("set_css");
-            commentsTable.classList.add("hide");
-            comButtChecked = false;
-            return;
-        }
+        this.chaptersButton.addEventListener('click', function() {
+            self.addChapterButton.classList.remove("set_css");
+            self.chaptersButton.classList.add("set_css");
+            self.commentsButton.classList.remove("set_css");
+            self.addChapterDiv.classList.add("hide");
+            self.chaptersTable.classList.remove("hide");
+            self.commentsTable.classList.add("hide");
+            self.addChapButtChecked = false; 
+            self.chapButtChecked = true;
+            self.comButtChecked = false;
+        });
+
+        this.commentsButton.addEventListener('click', function() {
+            self.addChapterButton.classList.remove("set_css");
+            self.chaptersButton.classList.remove("set_css");
+            self.commentsButton.classList.add("set_css");
+            self.addChapterDiv.classList.add("hide");
+            self.chaptersTable.classList.add("hide");
+            self.commentsTable.classList.remove("hide");
+            self.addChapButtChecked = false; 
+            self.chapButtChecked = false;
+            self.comButtChecked = true;
+        });
+
+        window.addEventListener('keydown', function(e){
+            if(e.keyCode == 27) {
+                if(self.addChapButtChecked == true){
+                    self.addChapterButton.classList.remove("set_css");
+                    self.addChapterDiv.classList.add("hide");
+                    self.addChapButtChecked = false; 
+                    return;
+                }
+                if(self.chapButtChecked == true){
+                    self.chaptersButton.classList.remove("set_css");
+                    self.chaptersTable.classList.add("hide");
+                    self.chapButtChecked = false;
+                    return;
+                }
+                if(self.comButtChecked == true){
+                    self.commentsButton.classList.remove("set_css");
+                    self.commentsTable.classList.add("hide");
+                    self.comButtChecked = false;
+                    return;
+                }
+            }
+        });
     }
 
-});
+    this.init = function() {
+        this.displayEvents();
+    }
+}
+
+var adminJs = new AdminEvents();
+
+adminJs.init();

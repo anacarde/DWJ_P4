@@ -10,8 +10,7 @@ use Src\Controller\Controller;
 
 $request = new Request();
 
-// var_dump($request->getUri());
-// return;
+
 
 $router = new Router($request);
 
@@ -20,9 +19,6 @@ $router->loadYaml(__DIR__."/../config/routing.yml");
 try {
     $route = $router->getRouteByRequest();
 
-/*    echo "<pre>";
-    var_dump($route);
-    echo "</pre>";*/
 
     $route->call($request);
 
@@ -32,24 +28,3 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*$chaptersManager = new ChaptersManager($dbconnect);
-
-$controller = (new Controller($chaptersManager))->showChapters();*/
-
-// echo ($request->getUri());
-
-// $dbconnect = Manager::dbConnect();
