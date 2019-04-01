@@ -41,7 +41,7 @@ html
     border-bottom: 0;
 }
 
-.table_admin
+.admin_div
 {
     background-color: #f5f7a0;
     transform: translatey(-5px);
@@ -49,6 +49,22 @@ html
     margin: auto;
     margin-bottom: 50px;
     border: outset white;
+    padding: 10px;
+    
+}
+
+.close_cross
+{
+    background-color: rgba(255, 0, 0, 0.2);
+    font-size: 1.3em;
+    cursor: pointer;
+    float: right;
+    width: 50px;
+    height: 30px;
+}
+
+.table_admin
+{
 }
 
 .hide
@@ -57,8 +73,7 @@ html
 }
 
 #add_chapter_form
-{
-    padding: 10px;
+{    
 }
 
 #chap_nb_div
@@ -104,7 +119,6 @@ html
 #chapter_editor
 {
     height: 800px;
-    background-color: blue;
 }
 
 #send_btn
@@ -141,7 +155,6 @@ html
 table
 {
     text-align: center;
-    border-spacing: 10px;
 }
 
 tr, td
