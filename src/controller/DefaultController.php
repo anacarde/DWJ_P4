@@ -72,6 +72,16 @@ class DefaultController extends Controller
         $this->redirect("/admin");
     }
 
+/*    public function updateAction()
+    {
+        if (isset($this->args['id'])) {
+            // var_dump($this->args['id']);
+            
+        } else {
+             throw new \Exception("Argument manquant");
+        }
+    }*/
+
 /*    public function commentsPageAction()
     {
         if (isset($this->args['page']) && isset($this->args['commentsPage'])) {

@@ -23,6 +23,12 @@ add:
   controller: \Src\Controller\DefaultController
   action: addAction
 
+update:
+  path: /update/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: updateAction
+
 
 
 
@@ -35,11 +41,7 @@ add:
 
 
 
-# update:
-#   path: /update/:id
-#   parameters: {id: '?<id>[\d]+'}
-#   controller: \Src\Controller\DefaultController
-#   action: updateAction
+
 
 # delete:
 #   path: /delete/:id

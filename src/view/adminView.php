@@ -22,20 +22,22 @@
         <button id="chapters_list_button" class="button_admin"> Gérer mes chapitres </button>
         <button id="comments_button" class="button_admin"> Gérer mes commentaires </button>
     </div>
-    <form id="add_chapter_form" class="admin_div hide"  action="/add" method="post">
+    <div id="add_chapter_div" class="admin_div hide">
         <button class="close_cross"> X </button>
-        <div id="chap_nb_div">
-            <label for="nb_input" class="form_label"> Numéro du chapitre : 
-                <input type="text" id="nb_input" name="ChapterNumber" />
-            </label> 
-            <label for="title_input" class="form_label"> Titre du chapitre : 
-                <input type="text" id="title_input" name="Title" />
-            </label> 
-        </div>
-        <label for="chapter_editor" id="content_label" class="form_label"> Entrez le contenu de votre chapitre  </label>
-        <textarea id="chapter_editor" name="Content"></textarea>
-        <input type="submit" id="send_btn" value="Envoi de mon chapitre" />
-    </form>
+        <form id="add_chapter_form" action="/add" method="post">
+            <div id="chap_nb_div">
+                <label for="nb_input" class="form_label"> Numéro du chapitre : 
+                    <input type="text" id="nb_input" name="ChapterNumber" />
+                </label> 
+                <label for="title_input" class="form_label"> Titre du chapitre : 
+                    <input type="text" id="title_input" name="Title" />
+                </label> 
+            </div>
+            <label for="chapter_editor" id="content_label" class="form_label"> Entrez le contenu de votre chapitre </label>
+            <textarea id="chapter_editor" name="Content"></textarea>
+            <input type="submit" id="send_btn" value="Envoi de mon chapitre" />
+        </form>
+    </div>
     <div id="chapters_list_div" class="admin_div hide">
         <button class="close_cross"> X </button>
         <br/>
@@ -56,27 +58,14 @@
                 <td> <?= $chapter->getTitle() ?> </td>
                 <td> <?= $chapter->getDateAdd() ?> </td>
                 <td> <?= $chapter->getDateModif() ?> </td>
-                <td class="action modif"> <button> Modifier </button> </td>
-                <td class="action supp"> <button> Supprimer </button> </td>
+                <td class="action modif"> <a href="/update/<?=$chapter->getId()?>" class="chap_modif"> Modifier </a> </td>
+                <td class="action supp"> <a href="" class="chap_supp"> Supprimer </a> </td>
             </tr>
             <?php
             }
             ?>
         </table>
     </div>
-<!--<form id="modif_chapter_form" class="hide" action="/update" method="post">
-        <div id="chap_nb_div">
-            <label for="nb_input" class="form_label"> Numéro du chapitre : 
-                <input type="text" id="nb_input" name="ChapterNumber" />
-            </label> 
-            <label for="title_input" class="form_label"> Titre du chapitre : 
-                <input type="text" id="title_input" name="Title" />
-            </label> 
-        </div>
-        <label for="chapter_editor" id="content_label" class="form_label"> Contenu  </label>
-        <textarea id="chapter_editor" name="Content"></textarea>
-        <input type="submit" id="send_btn" value="Envoi de mon chapitre" />
-    </form> -->
     <div id="comments_list_div" class="admin_div hide">
         <button class="close_cross"> X </button>
         <br/>
@@ -97,8 +86,8 @@
                 <td> <?= $comment->getDateAdd(); ?>  </td>
                 <td> <?= $comment->getAuthor(); ?>  </td>
                 <td> <?= $comment->getContent(); ?>  </td>
-                <td class="action modif"> <button> Modifier </button></td>
-                <td class="action supp"> <button> Supprimer </button> </td>
+                <td class="action modif com_modif "> <a href="" class="com_modif"> Modifier </a></td>
+                <td class="action supp com_sup"> <a href="" class="com_sup"> Supprimer </a> </td>
             </tr>
             <?php
             }

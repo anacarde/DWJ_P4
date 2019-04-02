@@ -41,6 +41,11 @@ html
     border-bottom: 0;
 }
 
+.button_admin:disabled
+{
+    cursor: auto;
+}
+
 .admin_div
 {
     background-color: #f5f7a0;
@@ -124,7 +129,7 @@ html
 #send_btn
 {
     display: block;
-  margin: 20px auto 20px auto;
+    margin: 20px auto 20px auto;
     font-size: 1.1em;
     padding: 7px;
     border-radius: 8px;
@@ -135,13 +140,6 @@ html
 {
     background-color: #e89747;
     box-shadow: 0 0 10px 10px #e89747;
-}
-
-#send_btn:active
-{
-    background-color: #ff9d00;
-    box-shadow: none;
-    color: white;
 }
 
 #chapters_table
@@ -181,26 +179,28 @@ td.action
     border: 0;
 }
 
-td.action button
+td.action a
 {
+    color: black;
+    text-decoration: none;
     font-family: cursive;
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
 }
 
-td.action button:hover
+td.action a:hover
 {
-  color: gray;
+    color: gray;
     box-shadow: 0 0 5px 5px #c1b189;
 }
 
-td.modif button
+td.modif a
 {
   background-color: #aef995;
 }
 
-td.supp button
+td.supp a
 {
  background-color: #ff9b9b;
 }
