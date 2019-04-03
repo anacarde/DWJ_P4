@@ -12,7 +12,7 @@ html
 
 #admin_welcome
 {
-  text-align: center;   
+  text-align: center;
 }
 
 #onglets_admin
@@ -179,28 +179,26 @@ td.action
     border: 0;
 }
 
-td.action a
+td.action button
 {
-    color: black;
-    text-decoration: none;
     font-family: cursive;
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
 }
 
-td.action a:hover
+td.action button:hover
 {
     color: gray;
     box-shadow: 0 0 5px 5px #c1b189;
 }
 
-td.modif a
+td.modif button
 {
   background-color: #aef995;
 }
 
-td.supp a
+td.supp button
 {
  background-color: #ff9b9b;
 }

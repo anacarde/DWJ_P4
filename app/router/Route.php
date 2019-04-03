@@ -30,6 +30,8 @@ class Route
         $path = str_replace("/", "\/", $path);
 
         if (!preg_match_all("/^$path$/i", $requestUri, $matches)) {
+/*            var_dump($path);
+            var_dump($requestUri);*/
             return false;
         }
 

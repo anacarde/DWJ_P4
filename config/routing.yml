@@ -30,8 +30,8 @@ add:
   action: addAction
 
 update:
-  path: /update/:id
-  parameters: {id: '?<id>[\d]+'}
+  path: /update/:chapter
+  parameters: {chapter: '?<chapter>[\d]+'}
   controller: \Src\Controller\DefaultController
   action: updateAction
 

@@ -9,6 +9,7 @@ function AdminEvents() {
     this.commentsButton = document.getElementById('comments_button');
 
     this.closeCross = document.getElementsByClassName('close_cross');
+    this.chapId = document.getElementsByClassName('chap_id');
     this.chapNumb = document.getElementsByClassName('chap_numb');
     this.chapTitle = document.getElementsByClassName('chap_title');
     this.chapModif = document.getElementsByClassName('chap_modif');
@@ -18,6 +19,7 @@ function AdminEvents() {
     this.chapterEditor  = document.getElementById("chapter_editor");
     this.chaptersTable = document.getElementById('chapters_list_div');
     this.commentsTable = document.getElementById('comments_list_div');
+    this.idInput = document.getElementById('id_input');
     this.nbInput = document.getElementById('nb_input');
     this.titleInput = document.getElementById('title_input');
 
@@ -45,13 +47,15 @@ function AdminEvents() {
         tinymce.activeEditor.setContent(response);
     }
 
-    this.addFormContent = function(chapNumb, chapTitle) {
+    this.addFormContent = function(chapId, chapNumb, chapTitle) {
+        self.idInput.value = chapId;
         self.nbInput.value = chapNumb;
         self.titleInput.value = chapTitle;
         self.addChapterButton.setAttribute("disabled", "");
         self.commentsButton.setAttribute("disabled", "");
         document.getElementById("content_label").textContent = "Modifiez le contenu de votre chapitre";
         document.getElementById("send_btn").value = "Modification de mon chapitre";
+        self.addChapterForm.setAttribute("action", "/update/" + chapId);
         self.addChapterDiv.classList.remove("hide");
         self.chaptersTable.classList.add("hide");
         self.addChapButtChecked = true;
@@ -59,21 +63,22 @@ function AdminEvents() {
     }
 
     this.removeFormContent = function() {
+        self.idInput.value = "";
         self.nbInput.value = "";
         self.titleInput.value = "";
         tinymce.activeEditor.setContent("");
         document.getElementById("content_label").textContent = "Entrez le contenu de votre chapitre";
         document.getElementById("send_btn").value = "Envoi de mon chapitre";
+        self.addChapterForm.setAttribute("action", "/add");
         self.addChapterButton.removeAttribute("disabled");
         self.commentsButton.removeAttribute("disabled");
         self.chaptersTable.classList.remove("hide");
         self.chapButtChecked = true; 
     }
 
-    this.displayModifEditor = function(chapNumb, chapTitle) {
-        // console.log(chapNumb);
+    this.displayModifEditor = function(chapId, chapNumb, chapTitle) {
         self.ajaxGet('/admin/form/' + chapNumb, self.returnEditor);
-        this.addFormContent(chapNumb, chapTitle);
+        this.addFormContent(chapId, chapNumb, chapTitle);
     
     }
 
@@ -143,7 +148,9 @@ function AdminEvents() {
         });
 
         for (var i = 0 ; i < this.chapModif.length ; i++) {
-            this.chapModif[i].addEventListener("click", this.displayModifEditor.bind(this, this.chapNumb[i].textContent.trim(), this.chapTitle[i].textContent.trim()));
+            console.log(this.chapTitle[i].textContent.trim());
+            console.log(this.chapTitle[i].textContent.trim());
+            this.chapModif[i].addEventListener("click", this.displayModifEditor.bind(this, this.chapId[i].textContent.trim(), this.chapNumb[i].textContent.trim(), this.chapTitle[i].textContent.trim()))
         };
 
         for (var i = 0 ; i < this.closeCross.length ; i++) {

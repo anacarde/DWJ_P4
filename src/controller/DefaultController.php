@@ -28,7 +28,6 @@ class DefaultController extends Controller
             $this->chaptersList = $this->chapterManager->getChaptersList();
             $this->comments_nb = $this->commentManager->countComments($this->page);
             $this->chapterContent = $this->chapterManager->getChapterContent($this->page);
-            // require ("../src/View/visitorView.php");
             $this->view("../src/View/visitorView.php");
         } else {
             throw new \Exception("Argument manquant");
@@ -40,10 +39,7 @@ class DefaultController extends Controller
         if (isset($this->args['page']) && isset($this->args['commentsPage']) ) {
             $this->page = $this->args['page'];
             $this->commentsPage = $this->args['commentsPage'];
-            // var_dump($this->args['page']);
-            // var_dump($this->args['commentsPage']);
             $this->commentManager = new CommentManager;
-            // $comments_nb = $commentManager->countComments($page);
             $this->chapterComments = $this->commentManager->getPageComments($this->page, $this->commentsPage);
             $this->view("../src/View/commentsView.php");
         } else {
@@ -57,15 +53,6 @@ class DefaultController extends Controller
         $this->commentManager = new CommentManager;
         $this->chaptersList = $this->chapterManager->getChaptersList();
         $this->commentsList = $this->commentManager->getCommentsList();
-/*        var_dump($this->commentManager);
-        var_dump($this->commentsList);
-        return;*/
-
-        // var_dump($this->request->getGet());
-        // return;
-/*        if (isset($this->request->geGet())) {
-
-        }*/
         $this->view("../src/View/adminView.php");
     }
 
@@ -90,50 +77,19 @@ class DefaultController extends Controller
         }
     }
 
-/*    public function updateAction()
-    {
-        if (isset($this->args['id'])) {
-            // var_dump($this->args['id']);
-            
-        } else {
-             throw new \Exception("Argument manquant");
-        }
-    }*/
-
-/*    public function commentsPageAction()
-    {
-        if (isset($this->args['page']) && isset($this->args['commentsPage'])) {
-            $page = $this->args['page'];
-            $commentsPage = $this->args['commentsPage'];
-            $chapterManager = new ChapterManager;
-            $chaptersList = $chapterManager->getChaptersList();
-            $chapterContent = $chapterManager->getChapterContent($page);
-            $commentManager = new CommentManager;
-            $chapterComments = $commentManager->getComments($page, $commentsPage);
-
-
-        } else {
-            throw new \Exception("Un ou plusieurs arguments se trouvent manquants");
-        }
-    }*/
-
-/*    public function showAction()
-    {
-
-    }
-
-    public function addAction()
-    {
-
-    }
-
     public function updateAction()
     {
-
+        if (isset($this->args['chapter'])) {
+            $this->chapter = $this->args['chapter'];
+            $this->post = $this->request->getPost();
+            $this->chapter = new Chapter($this->post);
+            $this->chapterManager = new ChapterManager;
+            $this->chapterManager->updateChapter($this->chapter);
+/*            var_dump("c'est bon");
+            return;*/
+            $this->redirect("/admin");
+        } else {
+            throw new \Exception("Argument manquant");
+        }
     }
-
-    public function deleteAction()
-    {
-
-    }*/
 }
