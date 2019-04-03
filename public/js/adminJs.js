@@ -9,21 +9,47 @@ function AdminEvents() {
     this.commentsButton = document.getElementById('comments_button');
 
     this.closeCross = document.getElementsByClassName('close_cross');
+    this.chapNumb = document.getElementsByClassName('chap_numb');
+    this.chapTitle = document.getElementsByClassName('chap_title');
     this.chapModif = document.getElementsByClassName('chap_modif');
 
     this.addChapterDiv = document.getElementById('add_chapter_div');
     this.addChapterForm = document.getElementById("add_chapter_form");
+    this.chapterEditor  = document.getElementById("chapter_editor");
     this.chaptersTable = document.getElementById('chapters_list_div');
     this.commentsTable = document.getElementById('comments_list_div');
+    this.nbInput = document.getElementById('nb_input');
+    this.titleInput = document.getElementById('title_input');
 
     this.addChapButtChecked = false; 
     this.chapButtChecked = false;
     this.comButtChecked = false;
 
-    this.displayModifEditor = function() {
+    this.ajaxGet = function(url, callback) {
+        var req = new XMLHttpRequest();
+        req.open("GET", url);
+        req.addEventListener("load", function() {
+            if (req.status >= 200 && req.status < 400) {
+               callback(req.responseText);
+            } else {
+               console.error(req.status + " " + req.statusText + " " + url);
+            }
+        });
+        req.addEventListener("error", function() {
+            console.error("Erreur réseau avec l'URL " + url);
+        });
+        req.send(null);
+    }
+
+    this.returnEditor = function(response) {
+        tinymce.activeEditor.setContent(response);
+    }
+
+    this.addFormContent = function(chapNumb, chapTitle) {
+        self.nbInput.value = chapNumb;
+        self.titleInput.value = chapTitle;
         self.addChapterButton.setAttribute("disabled", "");
         self.commentsButton.setAttribute("disabled", "");
-        // self.addChapterForm.setAttribute("action", "/update");
         document.getElementById("content_label").textContent = "Modifiez le contenu de votre chapitre";
         document.getElementById("send_btn").value = "Modification de mon chapitre";
         self.addChapterDiv.classList.remove("hide");
@@ -32,19 +58,32 @@ function AdminEvents() {
         self.chapButtChecked = false;
     }
 
+    this.removeFormContent = function() {
+        self.nbInput.value = "";
+        self.titleInput.value = "";
+        tinymce.activeEditor.setContent("");
+        document.getElementById("content_label").textContent = "Entrez le contenu de votre chapitre";
+        document.getElementById("send_btn").value = "Envoi de mon chapitre";
+        self.addChapterButton.removeAttribute("disabled");
+        self.commentsButton.removeAttribute("disabled");
+        self.chaptersTable.classList.remove("hide");
+        self.chapButtChecked = true; 
+    }
+
+    this.displayModifEditor = function(chapNumb, chapTitle) {
+        // console.log(chapNumb);
+        self.ajaxGet('/admin/form/' + chapNumb, self.returnEditor);
+        this.addFormContent(chapNumb, chapTitle);
+    
+    }
+
     this.closeAdminDivFn = function() {
 
         if(self.addChapButtChecked == true){
             self.addChapterDiv.classList.add("hide");
             self.addChapButtChecked = false;
             if (!self.addChapterButton.classList.contains("set_css")) {
-                document.getElementById("content_label").textContent = "Entrez le contenu de votre chapitre";
-                document.getElementById("send_btn").value = "Envoi de mon chapitre";
-                self.addChapterButton.removeAttribute("disabled");
-                self.commentsButton.removeAttribute("disabled");
-                // self.addChapterForm.setAttribute("action", "/add");
-                self.chaptersTable.classList.remove("hide");
-                self.chapButtChecked = true;
+                self.removeFormContent();
             } else {
                 self.addChapterButton.classList.remove("set_css");
             }
@@ -104,7 +143,7 @@ function AdminEvents() {
         });
 
         for (var i = 0 ; i < this.chapModif.length ; i++) {
-            this.chapModif[i].addEventListener("click", this.displayModifEditor);
+            this.chapModif[i].addEventListener("click", this.displayModifEditor.bind(this, this.chapNumb[i].textContent.trim(), this.chapTitle[i].textContent.trim()));
         };
 
         for (var i = 0 ; i < this.closeCross.length ; i++) {

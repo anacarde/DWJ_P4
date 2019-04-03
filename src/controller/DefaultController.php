@@ -60,6 +60,12 @@ class DefaultController extends Controller
 /*        var_dump($this->commentManager);
         var_dump($this->commentsList);
         return;*/
+
+        // var_dump($this->request->getGet());
+        // return;
+/*        if (isset($this->request->geGet())) {
+
+        }*/
         $this->view("../src/View/adminView.php");
     }
 
@@ -70,6 +76,18 @@ class DefaultController extends Controller
         $this->chapterManager = new ChapterManager;
         $this->chapterManager->addChapter($this->chapter);
         $this->redirect("/admin");
+    }
+
+    public function showChapterContentAction()
+    {
+        if (isset($this->args['chapter'])) {
+            $this->chapter = $this->args['chapter'];
+            $this->chapterManager = new ChapterManager;
+            $this->chapterContent = $this->chapterManager->getChapterContent($this->chapter);
+            echo $this->chapterContent->getContent();
+        } else {
+            throw new \Exception("Argument manquant");
+        }
     }
 
 /*    public function updateAction()

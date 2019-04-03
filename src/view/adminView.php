@@ -11,7 +11,7 @@
         height: 800,
         language: 'fr_FR',
         language_url: '/js/tinymceLang_fr.js',
-        body_id: 'chapter_editor'
+        body_id: 'chapter_editor',
       });
   </script>
 </head>
@@ -23,6 +23,7 @@
         <button id="comments_button" class="button_admin"> Gérer mes commentaires </button>
     </div>
     <div id="add_chapter_div" class="admin_div hide">
+        <!-- Here is editor -->
         <button class="close_cross"> X </button>
         <form id="add_chapter_form" action="/add" method="post">
             <div id="chap_nb_div">
@@ -54,11 +55,11 @@
             {
             ?>
             <tr>
-                <td> <?= $chapter->getChapterNumber() ?> </td>
-                <td> <?= $chapter->getTitle() ?> </td>
+                <td class="chap_numb"> <?= $chapter->getChapterNumber() ?> </td>
+                <td class="chap_title"> <?= $chapter->getTitle() ?> </td>
                 <td> <?= $chapter->getDateAdd() ?> </td>
                 <td> <?= $chapter->getDateModif() ?> </td>
-                <td class="action modif"> <a href="/update/<?=$chapter->getId()?>" class="chap_modif"> Modifier </a> </td>
+                <td class="action modif"> <button class="chap_modif"> Modifier </button> </td>
                 <td class="action supp"> <a href="" class="chap_supp"> Supprimer </a> </td>
             </tr>
             <?php

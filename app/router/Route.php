@@ -30,11 +30,8 @@ class Route
         $path = str_replace("/", "\/", $path);
 
         if (!preg_match_all("/^$path$/i", $requestUri, $matches)) {
-            // var_dump("ici coco");
             return false;
         }
-
-        // var_dump("la coco");
 
         $this->args = array_slice($matches, 1);
 

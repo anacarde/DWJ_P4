@@ -1,7 +1,5 @@
 <?php
-/*
-*
-*/
+
 namespace App\Router;
 
 use App\Request;
@@ -18,7 +16,6 @@ class Router
     public function __construct($request)
     {
         $this->request = $request;
-        // var_dump($this->request->geturi());
     }
 
     public function loadYaml($file)
@@ -43,7 +40,6 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route->match($this->request->getUri())) {
-                // var_dump("zut");
                 return $route;
             }
         }

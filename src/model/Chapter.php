@@ -17,8 +17,6 @@ class Chapter {
         if (!empty($data))
         {
             $this->hydrate($data);
-/*            var_dump($data);
-            return;*/
         }
     }
 

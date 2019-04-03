@@ -17,6 +17,12 @@ admin:
   controller: \Src\Controller\DefaultController
   action: adminAction
 
+formChapterSelect:
+  path: /admin/form/:chapter
+  parameters: {chapter: '?<chapter>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: showChapterContentAction
+
 add:
   path: /add
   parameters: {}

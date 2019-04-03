@@ -39,6 +39,8 @@ class ChapterManager extends Manager
         $req->bindValue(':content', $chapter->getContent());
         $req->execute();
     }
+
+    
 }
 
 
