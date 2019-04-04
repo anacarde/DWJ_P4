@@ -31,6 +31,9 @@ class Chapter {
                 $this->$method($value);
             }
         }
+
+        // var_dump($data);
+        // return;
     }
 
     public function setId($id)
@@ -51,13 +54,17 @@ class Chapter {
 
     public function setTitle($title)
     {
-        $this->title = (string) $title; 
+        $this->title = (string) $title;
     }
 
     public function setContent($content)
     {
 
         $this->content = (string) $content;
+/*        var_dump($content);
+        var_dump("cloche");
+        var_dump($this->content);
+        return;*/
 
     }
 
@@ -98,6 +105,8 @@ class Chapter {
 
     public function getContent()
     {
+/*        var_dump($this->content);
+        return;*/
         return $this->content;
     }
 

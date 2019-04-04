@@ -67,10 +67,10 @@ class DefaultController extends Controller
 
     public function showChapterContentAction()
     {
-        if (isset($this->args['chapter'])) {
-            $this->chapter = $this->args['chapter'];
+        if (isset($this->args['id'])) {
+            $this->id = $this->args['id'];
             $this->chapterManager = new ChapterManager;
-            $this->chapterContent = $this->chapterManager->getChapterContent($this->chapter);
+            $this->chapterContent = $this->chapterManager->getChapterContent($this->id);
             echo $this->chapterContent->getContent();
         } else {
             throw new \Exception("Argument manquant");
@@ -79,17 +79,27 @@ class DefaultController extends Controller
 
     public function updateAction()
     {
-        if (isset($this->args['chapter'])) {
-            $this->chapter = $this->args['chapter'];
+        if (isset($this->args['id'])) {
             $this->post = $this->request->getPost();
             $this->chapter = new Chapter($this->post);
             $this->chapterManager = new ChapterManager;
             $this->chapterManager->updateChapter($this->chapter);
-/*            var_dump("c'est bon");
-            return;*/
             $this->redirect("/admin");
         } else {
             throw new \Exception("Argument manquant");
         }
     }
+
+    public function deleteAction()
+    {
+        if(isset($this->args['id'])) {
+            $this->id = $this->args['id'];
+            $this->chapterManager = new ChapterManager;
+            $this->chapterManager->deleteChapter($this->id);
+            $this->redirect("/admin");
+        } else {
+            throw new \Exception("Argument manquant");
+        }
+    }
+
 }

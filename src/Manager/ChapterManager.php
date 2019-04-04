@@ -22,10 +22,10 @@ class ChapterManager extends Manager
         return $chapters;
     }
 
-    public function getChapterContent($page)
+    public function getChapterContent($id)
     {
         $req = $this->db->prepare('SELECT id, chapter_number, title, content, date_added FROM billets_jf WHERE id = ?');
-        $req->execute(array($page));
+        $req->execute(array($id));
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Chapter');
         $rep = $req->fetch();
         return $rep;
@@ -47,6 +47,13 @@ class ChapterManager extends Manager
         $req->bindValue(':title', $chapter->getTitle());
         $req->bindValue(':content', $chapter->getContent());
         $req->bindValue(':id', $chapter->getId(),  \PDO::PARAM_INT);
+        $req->execute();
+    }
+
+    public function deleteChapter($id)
+    {
+        $req = $this->db->prepare('DELETE FROM billets_jf WHERE id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
         $req->execute();
     }
 }

@@ -13,6 +13,7 @@ function AdminEvents() {
     this.chapNumb = document.getElementsByClassName('chap_numb');
     this.chapTitle = document.getElementsByClassName('chap_title');
     this.chapModif = document.getElementsByClassName('chap_modif');
+    this.chapDelete = document.getElementsByClassName('chap_supp');
 
     this.addChapterDiv = document.getElementById('add_chapter_div');
     this.addChapterForm = document.getElementById("add_chapter_form");
@@ -77,9 +78,8 @@ function AdminEvents() {
     }
 
     this.displayModifEditor = function(chapId, chapNumb, chapTitle) {
-        self.ajaxGet('/admin/form/' + chapNumb, self.returnEditor);
+        self.ajaxGet('/admin/form/' + chapId, self.returnEditor);
         this.addFormContent(chapId, chapNumb, chapTitle);
-    
     }
 
     this.closeAdminDivFn = function() {
@@ -148,14 +148,12 @@ function AdminEvents() {
         });
 
         for (var i = 0 ; i < this.chapModif.length ; i++) {
-            console.log(this.chapTitle[i].textContent.trim());
-            console.log(this.chapTitle[i].textContent.trim());
             this.chapModif[i].addEventListener("click", this.displayModifEditor.bind(this, this.chapId[i].textContent.trim(), this.chapNumb[i].textContent.trim(), this.chapTitle[i].textContent.trim()))
         };
 
         for (var i = 0 ; i < this.closeCross.length ; i++) {
             this.closeCross[i].addEventListener("click", this.closeAdminDivFn);
-        }
+        };
 
         window.addEventListener('keydown', function(e){
             if(e.keyCode == 27) {

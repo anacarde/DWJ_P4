@@ -62,7 +62,7 @@
                 <td> <?= $chapter->getDateAdd() ?> </td>
                 <td> <?= $chapter->getDateModif() ?> </td>
                 <td class="action modif"> <button class="chap_modif"> Modifier </button> </td>
-                <td class="action supp"> <button href="" class="chap_supp"> Supprimer </button> </td>
+                <td class="action supp"> <a href="/delete/<?= $chapter->getId() ?>" class="chap_supp"> Supprimer </a> </td>
             </tr>
             <?php
             }
@@ -74,7 +74,7 @@
         <br/>
         <table id="comments_table" class="table_admin">
             <tr>
-                <th> Commentaires au chapitre n° </th>
+                <th> Chapitre </th>
                 <th> Date </th>
                 <th> Auteur </th>
                 <th> Contenu </th>
@@ -83,12 +83,13 @@
             <?php
             foreach($this->commentsList as $key => $comment)
             {
+
             ?>
             <tr>
                 <td> <?= $comment->getCommentChapter(); ?> </td>
                 <td> <?= $comment->getDateAdd(); ?>  </td>
                 <td> <?= $comment->getAuthor(); ?>  </td>
-                <td> <?= $comment->getContent(); ?>  </td>
+                <td> <?= strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>  </td>
                 <td class="action modif com_modif "> <button href="" class="com_modif"> Modifier </button></td>
                 <td class="action supp com_sup"> <button href="" class="com_sup"> Supprimer </button> </td>
             </tr>

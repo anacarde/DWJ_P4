@@ -18,8 +18,8 @@ admin:
   action: adminAction
 
 formChapterSelect:
-  path: /admin/form/:chapter
-  parameters: {chapter: '?<chapter>[\d]+'}
+  path: /admin/form/:id
+  parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\DefaultController
   action: showChapterContentAction
 
@@ -30,13 +30,16 @@ add:
   action: addAction
 
 update:
-  path: /update/:chapter
-  parameters: {chapter: '?<chapter>[\d]+'}
+  path: /update/:id
+  parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\DefaultController
   action: updateAction
 
-
-
+delete:
+  path: /delete/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: deleteAction
 
 
 # show:
