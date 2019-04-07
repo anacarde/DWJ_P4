@@ -15,6 +15,11 @@ function AdminEvents() {
     this.chapModif = document.getElementsByClassName('chap_modif');
     this.chapDelete = document.getElementsByClassName('chap_supp');
 
+    this.commentAuthor = document.getElementsByClassName('comment_author');
+    this.commentContent = document.getElementsByClassName('comment_content');
+    this.commentModif = document.getElementsByClassName('com_modif');
+    this.commentSupp = document.getElementsByClassName('com_modif');
+
     this.addChapterDiv = document.getElementById('add_chapter_div');
     this.addChapterForm = document.getElementById("add_chapter_form");
     this.chapterEditor  = document.getElementById("chapter_editor");
@@ -42,11 +47,31 @@ function AdminEvents() {
             console.error("Erreur réseau avec l'URL " + url);
         });
         req.send(null);
-    }
+    };
+
+/*    this.ajaxPost = function(url, param, callback) {
+        var req = new XMLHttpRequest();
+        var params = "" + param;
+        req.open("POST", url);
+        req.addEventListener("load", function() {
+            if (req.status >= 200 && req.status < 400) {
+               callback(req.responseText);
+            } else {
+               console.error(req.status + " " + req.statusText + " " + url);
+            }
+        });
+        req.addEventListener("error", function() {
+            console.error("Erreur réseau avec l'URL " + url);
+        });
+
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        req.send(param);
+    };*/
 
     this.returnEditor = function(response) {
         tinymce.activeEditor.setContent(response);
-    }
+    };
 
     this.addFormContent = function(chapId, chapNumb, chapTitle) {
         self.idInput.value = chapId;
@@ -61,7 +86,7 @@ function AdminEvents() {
         self.chaptersTable.classList.add("hide");
         self.addChapButtChecked = true;
         self.chapButtChecked = false;
-    }
+    };
 
     this.removeFormContent = function() {
         self.idInput.value = "";
@@ -75,12 +100,17 @@ function AdminEvents() {
         self.commentsButton.removeAttribute("disabled");
         self.chaptersTable.classList.remove("hide");
         self.chapButtChecked = true; 
-    }
+    };
 
     this.displayModifEditor = function(chapId, chapNumb, chapTitle) {
         self.ajaxGet('/admin/form/' + chapId, self.returnEditor);
         this.addFormContent(chapId, chapNumb, chapTitle);
-    }
+    };
+
+    this.commentModifArea = function(authorDiv, contentDiv) {
+        self.commentTable.replaceChild(authorDiv, );
+        self.commentTable.replaceChild(contentDiv, );
+    };
 
     this.closeAdminDivFn = function() {
 
@@ -106,7 +136,7 @@ function AdminEvents() {
             self.comButtChecked = false;
             return;
         }
-    }
+    };
 
     this.displayEvents = function() {
 
@@ -155,16 +185,20 @@ function AdminEvents() {
             this.closeCross[i].addEventListener("click", this.closeAdminDivFn);
         };
 
+        for (var i = 0 ; i < this.commentModif.length ; i++) {
+            this.commentModif[i].addEventListener("click", this.closeAdminDivFn.bind(this, this.commentAuthor[i], this.commentContent[i]));
+        }
+
         window.addEventListener('keydown', function(e){
             if(e.keyCode == 27) {
                 self.closeAdminDivFn();
             }
         });
-    }
+    };
 
     this.init = function() {
         this.displayEvents();
-    }
+    };
 }
 
 var adminJs = new AdminEvents();

@@ -88,15 +88,28 @@
             <tr>
                 <td> <?= $comment->getCommentChapter(); ?> </td>
                 <td> <?= $comment->getDateAdd(); ?>  </td>
-                <td> <?= $comment->getAuthor(); ?>  </td>
-                <td> <?= strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>  </td>
-                <td class="action modif com_modif "> <button href="" class="com_modif"> Modifier </button></td>
-                <td class="action supp com_sup"> <button href="" class="com_sup"> Supprimer </button> </td>
+                <td class="comment_author"> <?= $comment->getAuthor(); ?>  </td>
+                <td class="comment_content"> <?= strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>  </td>
+                <td class="action modif com_modif "> <button class="com_modif"> Modifier </button></td>
+                <td class="action supp com_sup"> <a href="" class="com_sup"> Supprimer </button> </a>
             </tr>
             <?php
             }
             ?>
         </table>
+    </div>
+    <div id="com_modif_background" hidden>
+        <div id="com_modif_div">
+            <button class="close_cross"> X </button>
+            <form id="com_modif_form" method="POST" action="/comment/update/:id">
+                <label for="com_auth_inp"> Auteur du commentaire: </label>
+                    <input type="text" name="id" hidden />
+                    <input type="text" id="com_auth_inp" class="com_input" name="author" />
+                <label for="com_cont_inp"> Contenu du commentaire: </label>
+                    <textarea id="com_cont_inp" class="com_input" name="content"></textarea>
+                <input type="submit" id="com_modif_sub" value="Valider les modifications" />
+            </form>
+        <div>
     </div>
     <script src="/js/adminJs.js"></script>
 </body>

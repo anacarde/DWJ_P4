@@ -48,7 +48,6 @@ class Chapter {
 
     public function setAuthor($author)
     {
-
         $this->author = (string) $author;
     }
 
@@ -71,17 +70,16 @@ class Chapter {
     public function setDateAdd($dateAdd)
     {
 
-        $this->date_added = $date_added;
+        $this->date_added = $dateAdd;
         
     }
 
     public function setDateModif($dateModif)
     {
 
-        $this->date_modified = $date_modified;
+        $this->date_modified = $dateModif;
         
     }
-
 
     public function getId()
     {
@@ -95,6 +93,8 @@ class Chapter {
 
     public function getChapterNumber()
     {
+/*        var_dump("salut");
+        return;*/
         return $this->chapter_number;
     }
 

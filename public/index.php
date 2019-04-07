@@ -13,6 +13,9 @@ $request = new Request();
 $router = new Router($request);
 
 $router->loadYaml(__DIR__."/../config/routing.yml");
+/*
+echo "salut";
+return;*/
 
 try {
     $route = $router->getRouteByRequest();

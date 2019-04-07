@@ -24,7 +24,7 @@
     <section id="chapters_section">
         <div id="chapter_reading">
             <h2 id="billet_title"> 
-                <span id="chapter_number"><?= $this->chapterContent->getChapterNumber(); ?></span>.
+                <span id="chapter_number"><?= $this->chapterContent->getChapterNumber(); ?></span>
                 <span> <?= $this->chapterContent->getTitle(); ?> </span> 
             </h2>
             <p id="chapter">
