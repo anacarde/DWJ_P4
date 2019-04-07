@@ -27,12 +27,12 @@
         <button class="close_cross"> X </button>
         <form id="add_chapter_form" action="/add" method="post">
             <div id="chap_nb_div">
-                <input type="text" id="id_input" name="Id" hidden/>
+                <input type="text" id="chap_id_input" name="Id" hidden/>
                 <label for="nb_input" class="form_label"> Numéro du chapitre : 
-                    <input type="text" id="nb_input" name="ChapterNumber" />
+                    <input type="text" id="chap_nb_input" name="ChapterNumber" />
                 </label> 
                 <label for="title_input" class="form_label"> Titre du chapitre : 
-                    <input type="text" id="title_input" name="Title" />
+                    <input type="text" id="chap_title_input" name="Title" />
                 </label> 
             </div>
             <label for="chapter_editor" id="content_label" class="form_label"> Entrez le contenu de votre chapitre </label>
@@ -56,8 +56,7 @@
             {
             ?>
             <tr>
-                <td class="chap_id" hidden> <?= $chapter->getId() ?> </td>
-                <td class="chap_numb"> <?= $chapter->getChapterNumber() ?> </td>
+                <td class="chap_numb" data-id="<?=$chapter->getId()?>"> <?= $chapter->getChapterNumber() ?> </td>
                 <td class="chap_title"> <?= $chapter->getTitle() ?> </td>
                 <td> <?= $chapter->getDateAdd() ?> </td>
                 <td> <?= $chapter->getDateModif() ?> </td>
@@ -88,22 +87,22 @@
             <tr>
                 <td> <?= $comment->getCommentChapter(); ?> </td>
                 <td> <?= $comment->getDateAdd(); ?>  </td>
-                <td class="comment_author"> <?= $comment->getAuthor(); ?>  </td>
+                <td class="comment_author" data-id="<?=$comment->getId();?>"> <?= $comment->getAuthor(); ?>  </td>
                 <td class="comment_content"> <?= strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>  </td>
-                <td class="action modif com_modif "> <button class="com_modif"> Modifier </button></td>
-                <td class="action supp com_sup"> <a href="" class="com_sup"> Supprimer </button> </a>
+                <td class="action modif"> <button class="com_modif"> Modifier </button></td>
+                <td class="action supp"> <a href="" class="com_sup"> Supprimer </button> </a>
             </tr>
             <?php
             }
             ?>
         </table>
     </div>
-    <div id="com_modif_background" hidden>
+    <div id="com_modif_back" hidden>
         <div id="com_modif_div">
             <button class="close_cross"> X </button>
-            <form id="com_modif_form" method="POST" action="/comment/update/:id">
+            <form id="com_modif_form" method="POST" action="">
                 <label for="com_auth_inp"> Auteur du commentaire: </label>
-                    <input type="text" name="id" hidden />
+                    <input type="text" id="com_id_inp" name="id" hidden />
                     <input type="text" id="com_auth_inp" class="com_input" name="author" />
                 <label for="com_cont_inp"> Contenu du commentaire: </label>
                     <textarea id="com_cont_inp" class="com_input" name="content"></textarea>

@@ -9,7 +9,7 @@ function AdminEvents() {
     this.commentsButton = document.getElementById('comments_button');
 
     this.closeCross = document.getElementsByClassName('close_cross');
-    this.chapId = document.getElementsByClassName('chap_id');
+    // this.chapId = document.getElementsByClassName('chap_id');
     this.chapNumb = document.getElementsByClassName('chap_numb');
     this.chapTitle = document.getElementsByClassName('chap_title');
     this.chapModif = document.getElementsByClassName('chap_modif');
@@ -18,16 +18,22 @@ function AdminEvents() {
     this.commentAuthor = document.getElementsByClassName('comment_author');
     this.commentContent = document.getElementsByClassName('comment_content');
     this.commentModif = document.getElementsByClassName('com_modif');
-    this.commentSupp = document.getElementsByClassName('com_modif');
+    this.commentSupp = document.getElementsByClassName('com_sup');
 
     this.addChapterDiv = document.getElementById('add_chapter_div');
     this.addChapterForm = document.getElementById("add_chapter_form");
     this.chapterEditor  = document.getElementById("chapter_editor");
+    this.commentFormDiv = document.getElementById('com_modif_back');
+    this.commentForm = document.getElementById('com_modif_form');
     this.chaptersTable = document.getElementById('chapters_list_div');
     this.commentsTable = document.getElementById('comments_list_div');
-    this.idInput = document.getElementById('id_input');
-    this.nbInput = document.getElementById('nb_input');
-    this.titleInput = document.getElementById('title_input');
+    
+    this.chapIdInp = document.getElementById('chap_id_input');
+    this.chapNpInp = document.getElementById('chap_nb_input');
+    this.chapTitInp = document.getElementById('chap_title_input');
+    this.comIdInp = document.getElementById('com_id_inp');
+    this.comAuthInp = document.getElementById('com_auth_inp');
+    this.comContInp = document.getElementById('com_cont_inp');
 
     this.addChapButtChecked = false; 
     this.chapButtChecked = false;
@@ -49,34 +55,13 @@ function AdminEvents() {
         req.send(null);
     };
 
-/*    this.ajaxPost = function(url, param, callback) {
-        var req = new XMLHttpRequest();
-        var params = "" + param;
-        req.open("POST", url);
-        req.addEventListener("load", function() {
-            if (req.status >= 200 && req.status < 400) {
-               callback(req.responseText);
-            } else {
-               console.error(req.status + " " + req.statusText + " " + url);
-            }
-        });
-        req.addEventListener("error", function() {
-            console.error("Erreur réseau avec l'URL " + url);
-        });
-
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        req.send(param);
-    };*/
-
     this.returnEditor = function(response) {
         tinymce.activeEditor.setContent(response);
     };
 
     this.addFormContent = function(chapId, chapNumb, chapTitle) {
-        self.idInput.value = chapId;
-        self.nbInput.value = chapNumb;
-        self.titleInput.value = chapTitle;
+        self.chapNpInp.value = chapNumb;
+        self.chapTitInp.value = chapTitle;
         self.addChapterButton.setAttribute("disabled", "");
         self.commentsButton.setAttribute("disabled", "");
         document.getElementById("content_label").textContent = "Modifiez le contenu de votre chapitre";
@@ -89,9 +74,8 @@ function AdminEvents() {
     };
 
     this.removeFormContent = function() {
-        self.idInput.value = "";
-        self.nbInput.value = "";
-        self.titleInput.value = "";
+        self.chapNpInp.value = "";
+        self.chapTitInp.value = "";
         tinymce.activeEditor.setContent("");
         document.getElementById("content_label").textContent = "Entrez le contenu de votre chapitre";
         document.getElementById("send_btn").value = "Envoi de mon chapitre";
@@ -102,14 +86,35 @@ function AdminEvents() {
         self.chapButtChecked = true; 
     };
 
-    this.displayModifEditor = function(chapId, chapNumb, chapTitle) {
+    this.displayModifEditor = function(chapNumb, chapTitle) {
+        // console.log(chapNumb);
+        var chapId = chapNumb.getAttribute("data-id");
+        var chapNumb = chapNumb.textContent.trim();
         self.ajaxGet('/admin/form/' + chapId, self.returnEditor);
-        this.addFormContent(chapId, chapNumb, chapTitle);
+        self.addFormContent(chapId, chapNumb, chapTitle);
     };
 
+    this.returnComData = function(response) {
+        var comData = JSON.parse(response);
+        self.comIdInp.value = comData.id;
+        self.comAuthInp.value = comData.author;
+        self.comContInp.textContent = comData.content;
+    }
+
+    this.removeCommentForm = function() {
+        self.comIdInp.value = "";
+        self.comAuthInp.value = "";
+        self.comContInp.textContent = "";
+        self.commentFormDiv.setAttribute("hidden", "");
+    }
+
+
     this.commentModifArea = function(authorDiv, contentDiv) {
-        self.commentTable.replaceChild(authorDiv, );
-        self.commentTable.replaceChild(contentDiv, );
+        var comId = authorDiv.getAttribute("data-id");
+        self.commentForm.setAttribute("action", "/admin/comment/update/" + comId);
+        // console.log(comId);
+        self.ajaxGet('/admin/comment/select/' + comId, self.returnComData);
+        self.commentFormDiv.removeAttribute("hidden");
     };
 
     this.closeAdminDivFn = function() {
@@ -119,9 +124,9 @@ function AdminEvents() {
             self.addChapButtChecked = false;
             if (!self.addChapterButton.classList.contains("set_css")) {
                 self.removeFormContent();
-            } else {
-                self.addChapterButton.classList.remove("set_css");
-            }
+                return;
+            }!
+            self.addChapterButton.classList.remove("set_css");
             return;
         }
         if(self.chapButtChecked == true){
@@ -131,6 +136,10 @@ function AdminEvents() {
             return;
         }
         if(self.comButtChecked == true){
+            if (!self.commentFormDiv.hasAttribute("hidden")) {
+                self.removeCommentForm();
+                return;
+            }
             self.commentsButton.classList.remove("set_css");
             self.commentsTable.classList.add("hide");
             self.comButtChecked = false;
@@ -178,7 +187,7 @@ function AdminEvents() {
         });
 
         for (var i = 0 ; i < this.chapModif.length ; i++) {
-            this.chapModif[i].addEventListener("click", this.displayModifEditor.bind(this, this.chapId[i].textContent.trim(), this.chapNumb[i].textContent.trim(), this.chapTitle[i].textContent.trim()))
+            this.chapModif[i].addEventListener("click", this.displayModifEditor.bind(this, this.chapNumb[i], this.chapTitle[i].textContent.trim()))
         };
 
         for (var i = 0 ; i < this.closeCross.length ; i++) {
@@ -186,7 +195,7 @@ function AdminEvents() {
         };
 
         for (var i = 0 ; i < this.commentModif.length ; i++) {
-            this.commentModif[i].addEventListener("click", this.closeAdminDivFn.bind(this, this.commentAuthor[i], this.commentContent[i]));
+            this.commentModif[i].addEventListener("click", this.commentModifArea.bind(this, this.commentAuthor[i], this.commentContent[i]));
         }
 
         window.addEventListener('keydown', function(e){

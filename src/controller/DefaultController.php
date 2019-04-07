@@ -3,6 +3,7 @@
 namespace Src\Controller;
 
 use Src\Model\Chapter;
+use Src\Model\Comment;
 use Src\Manager\ChapterManager;
 use Src\Manager\CommentManager;
 use App\Controller;
@@ -102,4 +103,27 @@ class DefaultController extends Controller
         }
     }
 
+    public function showCommentAction()
+    {
+        if(isset($this->args['id'])) {
+            $this->id = $this->args['id'];
+            $this->commentManager = new CommentManager;
+            $this->commentManager->getOneComment($this->id);
+        } else {
+            throw new \Exception("Argument manquant");
+        }        
+    }
+
+    public function updateCommentAction()
+    {
+        if(isset($this->args['id'])) {
+            $this->post = $this->request->getPost();
+            $this->comment = new Comment($this->post);
+            $this->commentManager = new CommentManager;
+            $this->commentManager->updateComment($this->comment);
+            $this->redirect("/admin");
+        } else {
+            throw new \Exception("Argument manquant");
+        }   
+    }
 }

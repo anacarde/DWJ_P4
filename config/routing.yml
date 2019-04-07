@@ -41,16 +41,24 @@ delete:
   controller: \Src\Controller\DefaultController
   action: deleteAction
 
+commentSelect:
+  path: /admin/comment/select/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: showCommentAction
+
+commentUpdate:
+  path: /admin/comment/update/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: updateCommentAction
+
 
 # show:
 #   path: /show/:id
 #   parameters: {id: '?<id>[\d]+'}
 #   controller: \Src\Controller\DefaultController
 #   action: showAction
-
-
-
-
 
 # delete:
 #   path: /delete/:id

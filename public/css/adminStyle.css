@@ -2,8 +2,12 @@
 
 html
 {
-  font-family: cursive;
-    overflow-y: scroll;
+    font-family: cursive;
+    overflow-y: scroll;   
+}
+
+#admin_body
+{ 
 }
 
 #admin_body
@@ -204,14 +208,14 @@ td.supp button
  background-color: #ff9b9b;
 }
 
-#com_modif_background
+#com_modif_back
 {
     z-index: 100;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 0;   
     background-color: rgba(0,0,0,0.2);
 }
 
