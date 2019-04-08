@@ -18,28 +18,28 @@ admin:
   action: adminAction
 
 formChapterSelect:
-  path: /admin/form/:id
+  path: /admin/chapter/select/:id
   parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\DefaultController
-  action: showChapterContentAction
+  action: showChapterAction
 
-add:
-  path: /add
+chapterAdd:
+  path: /admin/chapter/add
   parameters: {}
   controller: \Src\Controller\DefaultController
-  action: addAction
+  action: addChapterAction
 
-update:
-  path: /update/:id
+chapterUpdate:
+  path: /admin/chapter/update/:id
   parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\DefaultController
-  action: updateAction
+  action: updateChapterAction
 
-delete:
-  path: /delete/:id
+chapterDelete:
+  path: /admin/chapter/delete/:id
   parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\DefaultController
-  action: deleteAction
+  action: deleteChapterAction
 
 commentSelect:
   path: /admin/comment/select/:id
@@ -53,6 +53,11 @@ commentUpdate:
   controller: \Src\Controller\DefaultController
   action: updateCommentAction
 
+commentDelete:
+  path: /admin/comment/delete/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: deleteCommentAction
 
 # show:
 #   path: /show/:id

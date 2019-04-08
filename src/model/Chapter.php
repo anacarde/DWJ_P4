@@ -22,6 +22,8 @@ class Chapter {
 
     public function hydrate($data)
     {
+        // var_dump($data);
+        // return;
         foreach ($data as $key => $value)
         {
             $method = 'set' .  ucfirst($key);
@@ -38,7 +40,10 @@ class Chapter {
 
     public function setId($id)
     {
+        // var_dump($id);
         $this->id = (int) $id;
+        // var_dump($this->id);
+        return;
     }
 
     public function setChapterNumber($chapterNumber)

@@ -25,7 +25,7 @@
     <div id="add_chapter_div" class="admin_div hide">
         <!-- Here is editor -->
         <button class="close_cross"> X </button>
-        <form id="add_chapter_form" action="/add" method="post">
+        <form id="add_chapter_form" action="/admin/chapter/add" method="post">
             <div id="chap_nb_div">
                 <input type="text" id="chap_id_input" name="Id" hidden/>
                 <label for="nb_input" class="form_label"> Numéro du chapitre : 
@@ -61,7 +61,7 @@
                 <td> <?= $chapter->getDateAdd() ?> </td>
                 <td> <?= $chapter->getDateModif() ?> </td>
                 <td class="action modif"> <button class="chap_modif"> Modifier </button> </td>
-                <td class="action supp"> <a href="/delete/<?= $chapter->getId() ?>" class="chap_supp"> Supprimer </a> </td>
+                <td class="action supp"> <a href="/admin/chapter/delete/<?= $chapter->getId() ?>" class="chap_supp"> Supprimer </a> </td>
             </tr>
             <?php
             }
@@ -90,7 +90,7 @@
                 <td class="comment_author" data-id="<?=$comment->getId();?>"> <?= $comment->getAuthor(); ?>  </td>
                 <td class="comment_content"> <?= strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>  </td>
                 <td class="action modif"> <button class="com_modif"> Modifier </button></td>
-                <td class="action supp"> <a href="" class="com_sup"> Supprimer </button> </a>
+                <td class="action supp"> <a href="/admin/comment/delete/<?=$comment->getId()?>" class="com_sup"> Supprimer </button> </a>
             </tr>
             <?php
             }

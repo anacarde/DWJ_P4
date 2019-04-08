@@ -57,16 +57,7 @@ class DefaultController extends Controller
         $this->view("../src/View/adminView.php");
     }
 
-    public function addAction()
-    {
-        $this->post = $this->request->getPost();
-        $this->chapter = new Chapter($this->post);
-        $this->chapterManager = new ChapterManager;
-        $this->chapterManager->addChapter($this->chapter);
-        $this->redirect("/admin");
-    }
-
-    public function showChapterContentAction()
+    public function showChapterAction()
     {
         if (isset($this->args['id'])) {
             $this->id = $this->args['id'];
@@ -78,10 +69,21 @@ class DefaultController extends Controller
         }
     }
 
-    public function updateAction()
+    public function addChapterAction()
+    {
+        $this->post = $this->request->getPost();
+        $this->chapter = new Chapter($this->post);
+        $this->chapterManager = new ChapterManager;
+        $this->chapterManager->addChapter($this->chapter);
+        $this->redirect("/admin");
+    }
+
+    public function updateChapterAction()
     {
         if (isset($this->args['id'])) {
             $this->post = $this->request->getPost();
+/*            var_dump($this->post);
+            return;*/
             $this->chapter = new Chapter($this->post);
             $this->chapterManager = new ChapterManager;
             $this->chapterManager->updateChapter($this->chapter);
@@ -91,7 +93,7 @@ class DefaultController extends Controller
         }
     }
 
-    public function deleteAction()
+    public function deleteChapterAction()
     {
         if(isset($this->args['id'])) {
             $this->id = $this->args['id'];
@@ -125,5 +127,17 @@ class DefaultController extends Controller
         } else {
             throw new \Exception("Argument manquant");
         }   
+    }
+
+    public function deleteCommentAction()
+    {
+        if(isset($this->args['id'])) {
+            $this->id = $this->args['id'];
+            $this->commentManager = new CommentManager;
+            $this->commentManager->deleteComment($this->id);
+            $this->redirect("/admin");
+        } else {
+            throw new \Exception("Argument manquant");
+        }
     }
 }
