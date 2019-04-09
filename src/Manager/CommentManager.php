@@ -55,7 +55,6 @@ class CommentManager extends Manager
         $comData = $req->fetch(\PDO::FETCH_ASSOC);
         // var_dump($comment);
         echo json_encode($comData);
-        return;
     }
 
     public function updateComment(Comment $comment)

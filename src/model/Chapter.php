@@ -63,13 +63,7 @@ class Chapter {
 
     public function setContent($content)
     {
-
         $this->content = (string) $content;
-/*        var_dump($content);
-        var_dump("cloche");
-        var_dump($this->content);
-        return;*/
-
     }
 
     public function setDateAdd($dateAdd)
@@ -98,8 +92,6 @@ class Chapter {
 
     public function getChapterNumber()
     {
-/*        var_dump("salut");
-        return;*/
         return $this->chapter_number;
     }
 
@@ -110,8 +102,6 @@ class Chapter {
 
     public function getContent()
     {
-/*        var_dump($this->content);
-        return;*/
         return $this->content;
     }
 

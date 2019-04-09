@@ -1,0 +1,69 @@
+{% extends 'template/base.html.twig' %}
+
+{% block content %}
+    <div id="reading_intro">
+        <hr/>
+        <h2> Lecture </h2>
+    </div>
+    <section id="chapters_section">
+        <div id="chapter_reading">
+            <h2 id="billet_title"> 
+                <span id="chapter_number">{{ chapterContent.chapterNumber }}</span>.
+                <span> {{ chapterContent.title }} </span> 
+            </h2>
+            <p id="chapter">
+                {{ chapterContent.content }}
+            </p>
+            <button id="chapter_top"> Haut du chapitre </span>
+        </div>
+        <nav id="chapters_list_section">
+            <ul>
+                {% for chapterTitle in chaptersList %}
+
+                    <li>
+                        <a href="/{{chapterTitle.id}}">
+                            {{ chapterTitle.chapterNumber }}
+                            {{ chapterTitle.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </section>
+    <div id="comments_intro">
+        <hr/>
+        <h2> Commentaires </h2>
+    </div>
+    <section id="comments_section">
+        <h4> Vous avez aimé ce chapitre ? Laissez-moi un commentaire :</h4>
+        <form action="" method="post">
+            <div id="pseudo_div">
+                <label for="pseudo" id="pseudo_label"> Pseudo </label> 
+                <input type="text" id="pseudo" class="input" name="pseudo" />
+            </div>
+            <div id="comment_div">
+                <label for="comment" id="comment_label"> Message </label> 
+                <textarea id="comment" class="input" name="comment" rows="3"></textarea>
+            </div>
+            <input type="submit" id="submit" value="envoyer" />
+        </form>
+        <h4> Liste des commentaires du chapitre : </h4>
+        <div id="comments">
+        </div>
+        <div id="comments_pages">
+            {% for i in 1..topPagination if topPagination != 0 %}
+                <button class="com_page_nb"> {{ i }} </button>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+
+
+{#             <?php
+            for ( $i=1 ; $i<=ceil($this->comments_nb/5) ; $i++) {
+            ?>
+                
+            <?php
+            }
+            ?> #}

@@ -10,29 +10,18 @@ use App\Controller;
 
 class DefaultController extends Controller
 {
-    private $request;
-
-    private $args;
-    
-    public function __construct($request, $args)
-    {
-        $this->request = $request;
-        $this->args = $args;
-    }
-
     public function indexAction()
     {
-        if (isset($this->args['page'])) {
-            $this->page = $this->args['page'];
-            $this->chapterManager = new ChapterManager;
-            $this->commentManager = new CommentManager;
-            $this->chaptersList = $this->chapterManager->getChaptersList();
-            $this->comments_nb = $this->commentManager->countComments($this->page);
-            $this->chapterContent = $this->chapterManager->getChapterContent($this->page);
-            $this->view("../src/View/visitorView.php");
-        } else {
-            throw new \Exception("Argument manquant");
-        }
+/*        var_dump("salut");
+        return;*/
+
+        echo $this->view("visitorView.html.twig", [
+            // "build" => 1,
+            // "page" => $this->args['page'],
+            "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
+            "topPagination" => ceil($this->getManager(CommentManager::class)->countComments($this->args['page'])/5),
+            "chapterContent" => $this->getManager(ChapterManager::class)->getChapterContent($this->args['page'])
+        ]);
     }
 
     public function pageCommentsAction()

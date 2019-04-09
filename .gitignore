@@ -3,5 +3,6 @@ vendor
 composer.lock
 xxbin.php
 test.php
+test2.php
 salut.txt
 .htpasswd
