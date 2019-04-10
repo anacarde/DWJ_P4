@@ -9,7 +9,7 @@ commentsPage:
   path: /:page/:commentsPage
   parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
   controller: \Src\Controller\DefaultController
-  action: pageCommentsAction
+  action: getChapterCommentsAction
 
 admin:
   path: /admin

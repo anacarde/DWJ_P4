@@ -30,10 +30,13 @@ class CommentManager extends Manager
         // var_dump($req);
         $req->bindValue(':page', $page, \PDO::PARAM_INT);
         $req->execute();
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Comment');
-        $comments = $req->fetchAll();
+        // $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Comment');
+        $rep = $req->fetchAll(\PDO::FETCH_ASSOC);
         // var_dump($comments);
-        return $comments;
+        // return $comments;
+        echo json_encode($rep);
+        /*$comments = json_encode($rep);
+        return $comments;*/
     }
 
     public function getCommentsList()

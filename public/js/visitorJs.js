@@ -28,16 +28,23 @@ function GetComments() {
         req.addEventListener("error", function() {
             console.error("Erreur réseau avec l'URL " + url);
         });
+
+        // req.setRequestHeader("Content-type", "application/json");
+
         req.send(null);
     }
 
     this.callback = function(response) {
-        document.getElementById('comments').innerHTML = response;
         // console.log(response);
+        var comments = JSON.parse(response);
+        document.getElementById('comments').innerHTML = "";
+        for (var comment in comments) {
+            document.getElementById('comments').innerHTML += '<h4>' + comments[comment]['author'] + '<em class="date"> ' + comments[comment]['date_added'] + '</em> </h4> <p>'  + comments[comment]['content'] + '</p>';
+        }
     }
 
-    this.callbackInit = function(response) {
-        document.getElementById('comments').innerHTML = response;
+    this.initCommentPageEvents = function() {
+        // document.getElementById('comments').innerHTML = response;
 
         var cmPgLinks = document.getElementsByClassName("com_page_nb");
 
@@ -50,9 +57,12 @@ function GetComments() {
     }
 
     this.init = function() {
+
+        this.initCommentPageEvents();
+
         var initUrl = "/" + chpNb + "/1";
         // console.log(initUrl);
-        this.ajaxGet(initUrl, this.callbackInit);
+        this.ajaxGet(initUrl, this.callback);
     }
 };
 

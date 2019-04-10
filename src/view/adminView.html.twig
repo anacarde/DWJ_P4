@@ -1,0 +1,58 @@
+{% extends 'template/adminBase.html.twig' %}
+
+{% block dynamicContent %}
+    <div id="chapters_list_div" class="admin_div hide">
+        <button class="close_cross"> X </button>
+        <br/>
+        <table id="chapters_table" class="table_admin">
+            <tr>
+                <th> Chapitre n° </th>
+                <th> Titre </th>
+                <th> Date d'ajout </th>
+                <th> Dernière modification </th>
+                <th colspan="2"> Action </th>
+            </tr>
+            {% for chapter in chaptersList %}
+                <tr>
+                    <td class="chap_numb" data-id="{{ chapter.id }}"> {{ chapter.chapterNumber }} </td>
+                    <td class="chap_title"> {{ chapter.title }} </td>
+                    <td> {{ chapter.dateAdd }} </td>
+                    <td> {{ chapter.dateModif }} </td>
+                    <td class="action modif"> <button class="chap_modif"> Modifier </button> </td>
+                    <td class="action supp"> <a href="/admin/chapter/delete/{{ chapter.id }}" class="chap_supp"> Supprimer </a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="comments_list_div" class="admin_div hide">
+        <button class="close_cross"> X </button>
+        <br/>
+        <table id="comments_table" class="table_admin">
+            <tr>
+                <th> Chapitre </th>
+                <th> Date </th>
+                <th> Auteur </th>
+                <th> Contenu </th>
+                <th colspan="2"> Action </th>
+            </tr>
+            {% for comment in commentsList %}
+                <tr>
+                    <td> {{ comment.commentChapter }} </td>
+                    <td> {{ comment.dateAdd }}  </td>
+                    <td class="comment_author" data-id="{{ comment.id }}"> {{ comment.author }}  </td>
+                    <td class="comment_content">
+                        {{ comment.content|length < 100 ? comment.content : comment.content|slice(0,100) ~ ' ...' }} 
+                    </td>
+                    <td class="action modif"> <button class="com_modif"> Modifier </button></td>
+                    <td class="action supp"> <a href="/admin/comment/delete/<?=$comment->getId()?>" class="com_sup"> Supprimer </button> </a>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>    
+{% endblock %}
+
+{# <?= strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>
+ #}
+{# <?php 
+strlen($comment->getContent()) < 100 ? $comment->getContent() : substr($comment->getContent(), 0, 100) . "..."; ?>
+?> #}

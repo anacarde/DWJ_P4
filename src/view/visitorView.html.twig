@@ -1,10 +1,6 @@
-{% extends 'template/base.html.twig' %}
+{% extends 'template/visitorBase.html.twig' %}
 
-{% block content %}
-    <div id="reading_intro">
-        <hr/>
-        <h2> Lecture </h2>
-    </div>
+{% block dynamicContent %}
     <section id="chapters_section">
         <div id="chapter_reading">
             <h2 id="billet_title"> 
@@ -19,7 +15,6 @@
         <nav id="chapters_list_section">
             <ul>
                 {% for chapterTitle in chaptersList %}
-
                     <li>
                         <a href="/{{chapterTitle.id}}">
                             {{ chapterTitle.chapterNumber }}

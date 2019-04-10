@@ -1,0 +1,62 @@
+{% extends 'template/htmlBase.html.twig' %}
+
+{% block title %} Le blog de Jean Forteroche - espace administrateur {% endblock %}
+
+{% block styleSheet %}
+    <link rel="stylesheet" href="/css/adminStyle.css" />
+{% endblock %}
+
+{% block script %}
+    <script src="/js/adminJs.js"></script>
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=wmpba1qv3ow0lxpqb3udwiw8kxn9h8lqarl3tyx33nzo16xb"></script> 
+    <script>
+      tinymce.init({
+        selector: '#chapter_editor',
+        height: 800,
+        language: 'fr_FR',
+        language_url: '/js/tinymceLang_fr.js',
+        body_id: 'chapter_editor',
+      });
+    </script>
+{% endblock %}
+
+{% block staticContent %}
+    <h1 id="admin_welcome"> Blog de Jean Forteroche, espace administrateur </h1>
+    <div id="onglets_admin">
+        <button id="add_chapter_button" class="button_admin"> Ajouter un nouveau chapitre </button>
+        <button id="chapters_list_button" class="button_admin"> Gérer mes chapitres </button>
+        <button id="comments_button" class="button_admin"> Gérer mes commentaires </button>
+    </div>
+    <div id="add_chapter_div" class="admin_div hide">
+        <!-- Here is editor -->
+        <button class="close_cross"> X </button>
+        <form id="add_chapter_form" action="/admin/chapter/add" method="post">
+            <div id="chap_nb_div">
+                <input type="text" id="chap_id_input" name="Id" hidden/>
+                <label for="nb_input" class="form_label"> Numéro du chapitre : 
+                    <input type="text" id="chap_nb_input" name="ChapterNumber" />
+                </label> 
+                <label for="title_input" class="form_label"> Titre du chapitre : 
+                    <input type="text" id="chap_title_input" name="Title" />
+                </label> 
+            </div>
+            <label for="chapter_editor" id="content_label" class="form_label"> Entrez le contenu de votre chapitre </label>
+            <textarea id="chapter_editor" name="Content"></textarea>
+            <input type="submit" id="send_btn" value="Envoi de mon chapitre" />
+        </form>
+    </div>
+    {% block dynamicContent %} {% endblock %}
+    <div id="com_modif_back" hidden>
+        <div id="com_modif_div">
+            <button class="close_cross"> X </button>
+            <form id="com_modif_form" method="POST" action="">
+                <label for="com_auth_inp"> Auteur du commentaire: </label>
+                    <input type="text" id="com_id_inp" name="id" hidden />
+                    <input type="text" id="com_auth_inp" class="com_input" name="author" />
+                <label for="com_cont_inp"> Contenu du commentaire: </label>
+                    <textarea id="com_cont_inp" class="com_input" name="content"></textarea>
+                <input type="submit" id="com_modif_sub" value="Valider les modifications" />
+            </form>
+        <div>
+    </div>
+{% endblock %}

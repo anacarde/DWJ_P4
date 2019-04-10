@@ -3,8 +3,7 @@ html
     font-family: cursive;
 }
 
-
-#billets_body
+body
 {
     width: 90%;
     margin: auto;

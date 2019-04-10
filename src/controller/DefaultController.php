@@ -12,38 +12,38 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-/*        var_dump("salut");
-        return;*/
-
         echo $this->view("visitorView.html.twig", [
-            // "build" => 1,
-            // "page" => $this->args['page'],
             "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
             "topPagination" => ceil($this->getManager(CommentManager::class)->countComments($this->args['page'])/5),
             "chapterContent" => $this->getManager(ChapterManager::class)->getChapterContent($this->args['page'])
         ]);
     }
 
-    public function pageCommentsAction()
+    public function getChapterCommentsAction()
     {
-        if (isset($this->args['page']) && isset($this->args['commentsPage']) ) {
-            $this->page = $this->args['page'];
-            $this->commentsPage = $this->args['commentsPage'];
-            $this->commentManager = new CommentManager;
-            $this->chapterComments = $this->commentManager->getPageComments($this->page, $this->commentsPage);
-            $this->view("../src/View/commentsView.php");
-        } else {
-            throw new \Exception("Argument(s) manquant(s)");
-        }
+        $this->getManager(CommentManager::class)->getPageComments($this->args['page'], $this->args['commentsPage']);
     }
 
     public function adminAction()
     {
-        $this->chapterManager = new ChapterManager;
-        $this->commentManager = new CommentManager;
-        $this->chaptersList = $this->chapterManager->getChaptersList();
-        $this->commentsList = $this->commentManager->getCommentsList();
-        $this->view("../src/View/adminView.php");
+        // $this->chapterManager = new ChapterManager;
+        // $this->commentManager = new CommentManager;
+        // $this->commentsList = $this->commentManager->getCommentsList();
+        // require "../src/View/adminView.php";
+/*
+        $bidule = $this->getManager(ChapterManager::class)->getChaptersList();
+
+        foreach ($bidule as $key => $je) {
+            var_dump($je->getTitle());
+            echo "<br/>";
+        };
+        return;
+*/
+        echo $this->view("adminView.html.twig", [
+            "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
+            "commentsList" => $this->getManager(CommentManager::class)->getCommentsList(),
+            ""
+        ]);
     }
 
     public function showChapterAction()
