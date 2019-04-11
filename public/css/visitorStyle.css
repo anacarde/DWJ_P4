@@ -35,7 +35,7 @@ body
     height: inherit;
     display: flex;
     justify-content: center;
-  align-items: center;
+    align-items: center;
 }
 
 #header_banner_title > h1
@@ -98,7 +98,7 @@ body
     width: 84%;
     height: 100vh;
     padding: 20px;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     scrollbar-color: #846011 #bc8a19;
     scrollbar-width: thin;
@@ -175,7 +175,7 @@ body
     padding: 0px 20px;
 }
 
-#comments_section form
+#post_com_form
 {
     display: flex;
     justify-content: space-evenly;
@@ -185,7 +185,7 @@ body
     padding: 5px;
 }
 
-#comments_section form #pseudo_div
+#post_com_form #pseudo_div
 {
     display: flex;
     flex-direction: column;
@@ -193,20 +193,20 @@ body
     width: 10%;
 }
 
-#comments_section form #pseudo
+#post_com_form #pseudo
 {
     width: 140px;
     height: 30px;
 }
 
-#comments_section form #comment_div
+#post_com_form #comment_div
 {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#comments_section form #comment
+#post_com_form #comment
 {
     width: 50vw;
     padding: 5px;

@@ -4,7 +4,7 @@
     <section id="chapters_section">
         <div id="chapter_reading">
             <h2 id="billet_title"> 
-                <span id="chapter_number">{{ chapterContent.chapterNumber }}</span>.
+                <span id="chapter_number"> {{ chapterContent.chapterNumber }} </span>.
                 <span> {{ chapterContent.title }} </span> 
             </h2>
             <p id="chapter">
@@ -31,7 +31,7 @@
     </div>
     <section id="comments_section">
         <h4> Vous avez aimé ce chapitre ? Laissez-moi un commentaire :</h4>
-        <form action="" method="post">
+        <form id="post_com_form" action="/post" method="post">
             <div id="pseudo_div">
                 <label for="pseudo" id="pseudo_label"> Pseudo </label> 
                 <input type="text" id="pseudo" class="input" name="pseudo" />

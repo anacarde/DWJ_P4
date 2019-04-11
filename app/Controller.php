@@ -24,10 +24,10 @@ Class Controller
         $this->twig = new Environment($loader);
     }
 
-    protected function getManager($manager)
+    protected function getManager($manager, $request = null)
     {
         if (!isset(self::$managers[$manager])) {
-            self::$managers[$manager] = new $manager();
+            self::$managers[$manager] = new $manager($request);
         }
 
         return self::$managers[$manager];

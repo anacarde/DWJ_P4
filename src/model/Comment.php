@@ -39,7 +39,7 @@ class Comment {
 
     public function setCommentChapter($commentChapter) 
     {
-        $this->comment_chapter = (int) $comment_chapter;
+        $this->comment_chapter = (int) $commentChapter;
     }
 
     public function setAuthor($author)
@@ -54,12 +54,12 @@ class Comment {
 
     public function setDateAdd($dateAdd)
     {
-        $this->date_added = $date_added;
+        $this->date_added = $dateAdd;
     }
 
     public function setDateModif($dateModif)
     {
-        $this->date_modified = $date_modified;
+        $this->date_modified = $dateModif;
     }
 
     public function getId()

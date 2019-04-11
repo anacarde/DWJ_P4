@@ -14,7 +14,7 @@ class DefaultController extends Controller
     {
         echo $this->view("visitorView.html.twig", [
             "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
-            "topPagination" => ceil($this->getManager(CommentManager::class)->countComments($this->args['page'])/5),
+            "topPagination" => ceil($this->getManager(CommentManager::class)->countComments($this->args['page'])/10),
             "chapterContent" => $this->getManager(ChapterManager::class)->getChapterContent($this->args['page'])
         ]);
     }
@@ -24,21 +24,19 @@ class DefaultController extends Controller
         $this->getManager(CommentManager::class)->getPageComments($this->args['page'], $this->args['commentsPage']);
     }
 
+    public function postCommentAction()
+    {
+/*        var_dump("ici stop");
+        return;*/
+        $comment = $this->getManager(Comment::class, $this->request->getPost());
+        // var_dump($comment);
+        // return;
+        $this->getManager(CommentManager::class)->postComment($comment);
+        echo $this->getManager(CommentManager::class)->countComments($this->args['page']);
+    }
+
     public function adminAction()
     {
-        // $this->chapterManager = new ChapterManager;
-        // $this->commentManager = new CommentManager;
-        // $this->commentsList = $this->commentManager->getCommentsList();
-        // require "../src/View/adminView.php";
-/*
-        $bidule = $this->getManager(ChapterManager::class)->getChaptersList();
-
-        foreach ($bidule as $key => $je) {
-            var_dump($je->getTitle());
-            echo "<br/>";
-        };
-        return;
-*/
         echo $this->view("adminView.html.twig", [
             "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
             "commentsList" => $this->getManager(CommentManager::class)->getCommentsList(),
@@ -48,85 +46,46 @@ class DefaultController extends Controller
 
     public function showChapterAction()
     {
-        if (isset($this->args['id'])) {
-            $this->id = $this->args['id'];
-            $this->chapterManager = new ChapterManager;
-            $this->chapterContent = $this->chapterManager->getChapterContent($this->id);
-            echo $this->chapterContent->getContent();
-        } else {
-            throw new \Exception("Argument manquant");
-        }
+        echo $this->getManager(ChapterManager::class)->getChapterContent($this->args['id'])->getContent();
     }
 
     public function addChapterAction()
-    {
-        $this->post = $this->request->getPost();
-        $this->chapter = new Chapter($this->post);
-        $this->chapterManager = new ChapterManager;
-        $this->chapterManager->addChapter($this->chapter);
-        $this->redirect("/admin");
+    {    
+
+        $chapter = $this->getManager(Chapter::class, $this->request->getPost());
+        $this->getManager(ChapterManager::class)->addChapter($chapter);
+        $this->redirect("/admin");     
     }
 
     public function updateChapterAction()
     {
-        if (isset($this->args['id'])) {
-            $this->post = $this->request->getPost();
-/*            var_dump($this->post);
-            return;*/
-            $this->chapter = new Chapter($this->post);
-            $this->chapterManager = new ChapterManager;
-            $this->chapterManager->updateChapter($this->chapter);
-            $this->redirect("/admin");
-        } else {
-            throw new \Exception("Argument manquant");
-        }
+
+        $chapter = $this->getManager(Chapter::class, $this->request->getPost());
+        $this->getManager(ChapterManager::class)->updateChapter($chapter);
+        $this->redirect("/admin");
     }
 
     public function deleteChapterAction()
     {
-        if(isset($this->args['id'])) {
-            $this->id = $this->args['id'];
-            $this->chapterManager = new ChapterManager;
-            $this->chapterManager->deleteChapter($this->id);
-            $this->redirect("/admin");
-        } else {
-            throw new \Exception("Argument manquant");
-        }
+        $this->getManager(ChapterManager::class)->deleteChapter($this->args['id']);
+        $this->redirect("/admin");
     }
 
     public function showCommentAction()
     {
-        if(isset($this->args['id'])) {
-            $this->id = $this->args['id'];
-            $this->commentManager = new CommentManager;
-            $this->commentManager->getOneComment($this->id);
-        } else {
-            throw new \Exception("Argument manquant");
-        }        
+        $this->getManager(CommentManager::class)->getOneComment($this->args['id']);
     }
 
     public function updateCommentAction()
     {
-        if(isset($this->args['id'])) {
-            $this->post = $this->request->getPost();
-            $this->comment = new Comment($this->post);
-            $this->commentManager = new CommentManager;
-            $this->commentManager->updateComment($this->comment);
-            $this->redirect("/admin");
-        } else {
-            throw new \Exception("Argument manquant");
-        }   
+        $comment = $this->getManager(Comment::class, $this->request->getPost());
+        $this->getManager(CommentManager::class)->updateComment($comment);
+        $this->redirect("/admin");
     }
 
     public function deleteCommentAction()
     {
-        if(isset($this->args['id'])) {
-            $this->id = $this->args['id'];
-            $this->commentManager = new CommentManager;
-            $this->commentManager->deleteComment($this->id);
-            $this->redirect("/admin");
-        } else {
-            throw new \Exception("Argument manquant");
-        }
+        $this->getManager(CommentManager::class)->deleteComment($this->args['id']);
+        $this->redirect("/admin");
     }
 }

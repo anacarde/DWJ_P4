@@ -173,35 +173,49 @@ td
     background-color: white;
 }
 
-
 td.action
 {
-  background-color: #f5f7a0;
+    background-color: #f5f7a0;
     border: 0;
 }
 
-td.action button
+td.action .tb_butt
 {
+    box-sizing: border-box;
     font-family: cursive;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 0;
     border-radius: 5px;
 }
 
-td.action button:hover
+td.action .modif_butt
+{
+    background-color: #aef995;
+    padding: 5px 10px;
+}
+
+td.action .supp_butt
+{
+    background-color: #ff9b9b;
+}
+
+td.action .supp_butt a 
+{
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+td.action .tb_butt:hover
 {
     color: gray;
     box-shadow: 0 0 5px 5px #c1b189;
 }
 
-td.modif button
+td.action .tb_butt:hover a
 {
-  background-color: #aef995;
-}
-
-td.supp button
-{
- background-color: #ff9b9b;
+    color: gray;
 }
 
 #com_modif_back

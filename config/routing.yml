@@ -11,6 +11,12 @@ commentsPage:
   controller: \Src\Controller\DefaultController
   action: getChapterCommentsAction
 
+commentPost:
+  path: /post/:page
+  parameters: {page: '?<page>[\d]+'}
+  controller: \Src\Controller\DefaultController
+  action: postCommentAction
+
 admin:
   path: /admin
   parameters: {}
