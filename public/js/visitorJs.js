@@ -101,6 +101,8 @@ function GetComments() {
 
     this.callback = function(response) {
 
+        // console.log(response);
+
         var comments = JSON.parse(response);
 
         document.getElementById('comments').innerHTML = "";

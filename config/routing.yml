@@ -2,67 +2,67 @@ index:
   path: /:page
   parameters: {page: '?<page>[\d]*'}
   defaults: {page: 1}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\PageController
   action: indexAction
-
-commentsPage:
-  path: /:page/:commentsPage
-  parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
-  controller: \Src\Controller\DefaultController
-  action: getChapterCommentsAction
-
-commentPost:
-  path: /post/:page
-  parameters: {page: '?<page>[\d]+'}
-  controller: \Src\Controller\DefaultController
-  action: postCommentAction
 
 admin:
   path: /admin
   parameters: {}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\PageController
   action: adminAction
+
+commentsPage:
+  path: /:page/:commentsPage
+  parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
+  controller: \Src\Controller\CommentController
+  action: getChapterCommentsAction
 
 formChapterSelect:
   path: /admin/chapter/select/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\ChapterController
   action: showChapterAction
 
 chapterAdd:
   path: /admin/chapter/add
   parameters: {}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\ChapterController
   action: addChapterAction
 
 chapterUpdate:
   path: /admin/chapter/update/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\ChapterController
   action: updateChapterAction
 
 chapterDelete:
   path: /admin/chapter/delete/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\ChapterController
   action: deleteChapterAction
+
+commentPost:
+  path: /post/:page
+  parameters: {page: '?<page>[\d]+'}
+  controller: \Src\Controller\CommentController
+  action: postCommentAction
 
 commentSelect:
   path: /admin/comment/select/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\CommentController
   action: showCommentAction
 
 commentUpdate:
   path: /admin/comment/update/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\CommentController
   action: updateCommentAction
 
 commentDelete:
   path: /admin/comment/delete/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\Controller\DefaultController
+  controller: \Src\Controller\CommentController
   action: deleteCommentAction
 
 # show:

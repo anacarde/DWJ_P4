@@ -2,7 +2,8 @@
 
 namespace App\Router;
 
-use App\Request;
+use Zend\Diactoros\ServerRequest;
+// use App\Request;
 
 class Route
 {
@@ -56,7 +57,7 @@ class Route
         return "([^/]+)";
     }
 
-    public function call(Request $request){
+    public function call(ServerRequest $request){
 
         $controller = $this->controller;
 

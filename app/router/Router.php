@@ -2,7 +2,8 @@
 
 namespace App\Router;
 
-use App\Request;
+// use App\Request;
+// use Zend\Diactoros\ServerRequest;
 
 use Symfony\Component\Yaml\Yaml;
 
@@ -39,7 +40,12 @@ class Router
     public function getRouteByRequest()
     {
         foreach ($this->routes as $route) {
-            if ($route->match($this->request->getUri())) {
+            // var_dump($this->request->getUri()->getPath());
+            // var_dump($this->request->getRequestTarget());
+            // return;
+            // var_dump($this->request->getUri());
+            // return;
+            if ($route->match($this->request->getUri()->getPath())) {
                 return $route;
             }
         }
