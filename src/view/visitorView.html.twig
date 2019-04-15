@@ -46,8 +46,8 @@
         <div id="comments">
         </div>
         <div id="comments_pages">
-            {% for i in 1..topPagination if topPagination != 0 %}
-                <button class="com_page_nb"> {{ i }} </button>
+            {% for i in 0..topPagination %}
+                <button class="com_page_nb"> {{ i + 1 }} </button>
             {% endfor %}
         </div>
     </section>

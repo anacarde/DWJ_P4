@@ -27,8 +27,6 @@ function PostComment() {
     this.form = document.getElementById("post_com_form");
 
     this.ajaxPost = function(url, params, callback) {
-        console.log(params);
-        console.log(url);
         var req = new XMLHttpRequest();
         req.open("POST", url);
         req.addEventListener("load", function() {
@@ -53,11 +51,12 @@ function PostComment() {
         document.getElementById("comment").value = "";
 
         if (Number(response) % 10 === 1) {
+            var pagDiv = document.getElementById("comments_pages");
             var button = document.createElement("button");
             button.classList.add("com_page_nb");
-            button.textContent = String(Number(document.getElementById("comments_pages").lastElementChild.textContent.trim()) + 1);
+            button.textContent = String(Number(pagDiv.lastElementChild.textContent.trim()) + 1);
             button.addEventListener("click", getComments.ajaxGet.bind(this, "/" + chpNb + "/" + button.textContent, getComments.callback));
-            document.getElementById("comments_pages").appendChild(button);
+            pagDiv.appendChild(button);
         }
         getComments.ajaxGet("/" + chpNb + "/1", getComments.callback);
     }
