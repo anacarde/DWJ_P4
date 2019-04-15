@@ -3,12 +3,21 @@ function scrollBack() {
     var chapterDiv = document.getElementById('chapter_reading');
     var chapterTop = document.getElementById("chapter_top");
 
+/*    console.log(getComputedStyle(document.getElementById('chapter_reading')).overflowY);
+*/
+/*    console.log(chapterDiv.scrollHeight);
+    console.log(chapterDiv.clientHeight);
+*/
     chapterTop.addEventListener("click", function(){
         chapterDiv.scrollTo ({
             top: 0,
             behavior: "smooth"
         })
     });
+
+    if (chapterDiv.clientHeight < chapterDiv.scrollHeight) {
+        chapterTop.removeAttribute("hidden");
+    }
 }
 
 function PostComment() {
@@ -41,6 +50,8 @@ function PostComment() {
     this.callback = function(chpNb, response) {
         // console.log('salut');
         // console.log(response);
+        document.getElementById("comment").value = "";
+
         if (Number(response) % 10 === 1) {
             var button = document.createElement("button");
             button.classList.add("com_page_nb");
@@ -130,6 +141,3 @@ getComments.init();
 var postComment = new PostComment();
 
 postComment.init();
-
-
-console.log(getComputedStyle(document.getElementById('chapter_reading')).overflowY);

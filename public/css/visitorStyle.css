@@ -87,6 +87,7 @@ body
 {
     display: flex;
     justify-content: space-between;
+    height: 100vh;
 }
 
 #chapter_reading
@@ -94,9 +95,9 @@ body
     font-size: 1.2em;
     box-sizing: border-box;
     border: 1px solid black;
-    background-color: #edc795;
+    color: rgb(104, 104, 104);
+    background-color: white;
     width: 84%;
-    height: 100vh;
     padding: 20px;
     overflow: auto;
     overflow-x: hidden;
@@ -122,10 +123,11 @@ body
 
 #chapters_list_section
 {
-    background: url("/images/chapters_wallpaper.jpg") no-repeat center;
-    background-size: cover;
     width: 15%;
     font-style: italic;
+    overflow: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
 }
 
 #chapters_list_section > ul

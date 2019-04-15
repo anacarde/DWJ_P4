@@ -8,9 +8,9 @@
                 <span> {{ chapterContent.title }} </span> 
             </h2>
             <p id="chapter">
-                {{ chapterContent.content }}
+                {{ chapterContent.content|striptags }}
             </p>
-            <button id="chapter_top"> Haut du chapitre </span>
+            <button id="chapter_top" hidden> Haut du chapitre </span>
         </div>
         <nav id="chapters_list_section">
             <ul>
