@@ -38,22 +38,6 @@ function AdminEvents() {
     this.chapButtChecked = false;
     this.comButtChecked = false;
 
-    this.ajaxGet = function(url, callback) {
-        var req = new XMLHttpRequest();
-        req.open("GET", url);
-        req.addEventListener("load", function() {
-            if (req.status >= 200 && req.status < 400) {
-               callback(req.responseText);
-            } else {
-               console.error(req.status + " " + req.statusText + " " + url);
-            }
-        });
-        req.addEventListener("error", function() {
-            console.error("Erreur réseau avec l'URL " + url);
-        });
-        req.send(null);
-    };
-
     this.returnEditor = function(response) {
         tinymce.activeEditor.setContent(response);
     };
@@ -92,7 +76,7 @@ function AdminEvents() {
         var chapId = chapNumb.getAttribute("data-id");
         console.log(chapId);
         var chapNumb = chapNumb.textContent.trim();
-        self.ajaxGet('/admin/chapter/select/' + chapId, self.returnEditor);
+        Utils.ajaxGet('/admin/chapter/select/' + chapId, self.returnEditor);
         self.addFormContent(chapId, chapNumb, chapTitle);
     };
 
@@ -115,7 +99,7 @@ function AdminEvents() {
         var comId = authorDiv.getAttribute("data-id");
         self.commentForm.setAttribute("action", "/admin/comment/update/" + comId);
         // console.log(comId);
-        self.ajaxGet('/admin/comment/select/' + comId, self.returnComData);
+        Utils.ajaxGet('/admin/comment/select/' + comId, self.returnComData);
         self.commentFormDiv.removeAttribute("hidden");
     };
 

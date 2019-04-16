@@ -17,6 +17,7 @@ Class Controller
 
     public function __construct($request, $args)
     {
+        session_start();
         $this->request = $request;
         $this->args = $args;
 
@@ -31,6 +32,19 @@ Class Controller
         }
 
         return self::$managers[$manager];
+    }
+
+    protected function connexionManage() {
+        if (!isset($_SESSION['connexion'])) {
+            $_SESSION['connexion'] = TRUE;
+        }
+    }
+
+    protected function checkConnexion() {
+        if (null != $this->request->getQueryParams()) {
+            $_SESSION['connexion'] = null;
+        }
+        return isset($_SESSION['connexion']);
     }
 
     protected function view($view, $data = [])

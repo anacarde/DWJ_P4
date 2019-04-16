@@ -11,6 +11,12 @@ admin:
   controller: \Src\Controller\PageController
   action: adminAction
 
+passwordGet:
+  path: /adminConnexion
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\PageController
+  action: connexionAction
+
 commentsPage:
   path: /:page/:commentsPage
   parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}

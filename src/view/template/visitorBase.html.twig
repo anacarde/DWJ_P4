@@ -8,10 +8,12 @@
 {% endblock %}
 
 {% block script %}
+    <script src="/js/utils.js"></script>
     <script src="/js/visitorJs.js"></script>  
 {% endblock %}
 
 {% block staticContent %}
+    {% block connexion %} {% endblock %}
     <header id="header_banner">
         <div id="header_banner_image">
         </div>
@@ -31,7 +33,19 @@
         <div id="footer_contact">
             <h3> Me contacter : </h3>
             <p id="contact_mail"><a href=""> Nom@exemple.org </a></p>
-            <a id="admin_access" href="/admin"> </a>
+            <button id="admin_access"> </button>
         </div>
     </footer>
+    <div id="pass_form_back" hidden>
+        <div id="pass_form_div">
+            <button id="close_cross"> X </button>
+            <form id="pass_ask_form" method="POST" action="">
+                <h4> Authentification </h4>
+                <label for="pass_inp" id="pass_inp_lab"> Tapez votre mot de passe administrateur : </label>
+                    <input type="password" id="pass_inp" name="password" />
+                <input type="submit" id="pass_sub" value="Confirmer" />
+            </form>
+        <div>
+    </div>
+    
 {% endblock %}

@@ -16,11 +16,7 @@ class CommentController extends Controller
 
     public function postCommentAction()
     {
-/*        var_dump("ici stop");
-        return;*/
         $comment = $this->getManager(Comment::class, $this->request->getParsedBody());
-        // var_dump($comment);
-        // return;
         $this->getManager(CommentManager::class)->postComment($comment);
         echo $this->getManager(CommentManager::class)->countComments($this->args['page']);
     }

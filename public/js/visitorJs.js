@@ -1,23 +1,28 @@
-function scrollBack() {
 
-    var chapterDiv = document.getElementById('chapter_reading');
-    var chapterTop = document.getElementById("chapter_top");
 
-/*    console.log(getComputedStyle(document.getElementById('chapter_reading')).overflowY);
-*/
-/*    console.log(chapterDiv.scrollHeight);
-    console.log(chapterDiv.clientHeight);
-*/
-    chapterTop.addEventListener("click", function(){
-        chapterDiv.scrollTo ({
-            top: 0,
-            behavior: "smooth"
-        })
-    });
+function OtherFeatures() {
 
-    if (chapterDiv.clientHeight < chapterDiv.scrollHeight) {
-        chapterTop.removeAttribute("hidden");
+    this.scrollBack = function() {
+
+        var chapterDiv = document.getElementById('chapter_reading');
+        var chapterTop = document.getElementById("chapter_top");
+
+        chapterTop.addEventListener("click", function() {
+            chapterDiv.scrollTo ({
+                top: 0,
+                behavior: "smooth"
+            })
+        });
+
+        if (chapterDiv.clientHeight < chapterDiv.scrollHeight) {
+            chapterTop.removeAttribute("hidden");
+        }
     }
+
+    this.init = function() {
+        this.scrollBack();
+    }
+
 }
 
 function PostComment() {
@@ -25,25 +30,6 @@ function PostComment() {
     var self = this;
 
     this.form = document.getElementById("post_com_form");
-
-    this.ajaxPost = function(url, params, callback) {
-        var req = new XMLHttpRequest();
-        req.open("POST", url);
-        req.addEventListener("load", function() {
-            if (req.status >= 200 && req.status < 400) {
-               callback(req.responseText);
-            } else {
-               console.error(req.status + " " + req.statusText + " " + url);
-            }
-        });
-        req.addEventListener("error", function() {
-            console.error("Erreur réseau avec l'URL " + url);
-        });
-
-        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        req.send(params);
-    }
 
     this.callback = function(chpNb, response) {
         // console.log('salut');
@@ -55,10 +41,10 @@ function PostComment() {
             var button = document.createElement("button");
             button.classList.add("com_page_nb");
             button.textContent = String(Number(pagDiv.lastElementChild.textContent.trim()) + 1);
-            button.addEventListener("click", getComments.ajaxGet.bind(this, "/" + chpNb + "/" + button.textContent, getComments.callback));
+            button.addEventListener("click", Utils.ajaxGet.bind(this, "/" + chpNb + "/" + button.textContent, getComments.callback));
             pagDiv.appendChild(button);
         }
-        getComments.ajaxGet("/" + chpNb + "/1", getComments.callback);
+        Utils.ajaxGet("/" + chpNb + "/1", getComments.callback);
     }
 
     this.init = function() {
@@ -71,7 +57,7 @@ function PostComment() {
             var chpNb = document.getElementById("chapter_number").textContent.trim();
             var formParams = "commentChapter=" + chpNb + "&author=" + pseudo + "&content=" + comment;
 
-            self.ajaxPost("/post/" + chpNb , formParams, self.callback.bind(this, chpNb));
+            Utils.ajaxPost("/post/" + chpNb , formParams, self.callback.bind(this, chpNb));
         })
     }
 }
@@ -81,23 +67,6 @@ function GetComments() {
     var self = this;
 
     this.chpNb = document.getElementById("chapter_number").textContent.trim();
-
-    this.ajaxGet = function(url, callback) {
-        var req = new XMLHttpRequest();
-        req.open("GET", url);
-        req.addEventListener("load", function() {
-            if (req.status >= 200 && req.status < 400) {
-               callback(req.responseText);
-            } else {
-               console.error(req.status + " " + req.statusText + " " + url);
-            }
-        });
-        req.addEventListener("error", function() {
-            console.error("Erreur réseau avec l'URL " + url);
-        });
-
-        req.send(null);
-    }
 
     this.callback = function(response) {
 
@@ -119,7 +88,7 @@ function GetComments() {
 
             var url = "/" + this.chpNb + "/" + cmPgLinks[i].textContent.trim();
 
-            cmPgLinks[i].addEventListener("click", self.ajaxGet.bind(this, url, self.callback));
+            cmPgLinks[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.callback));
         }
     }
 
@@ -129,16 +98,92 @@ function GetComments() {
 
         var initUrl = "/" + this.chpNb + "/1";
 
-        this.ajaxGet(initUrl, this.callback);
+        Utils.ajaxGet(initUrl, this.callback);
     }
 };
 
-scrollBack();
+function AdminConnexion() {
+
+    var self = this;
+    var passInpLab = document.getElementById("pass_inp_lab");
+
+    this.switchLab = false;
+
+    this.closeForm = function() {
+
+        document.getElementById("pass_form_back").setAttribute("hidden","");
+    }
+
+    this.closeFormEvts = function() {
+        document.getElementById("close_cross").addEventListener('click', this.closeForm);
+
+        window.addEventListener('keydown', function(e){
+            if(e.keyCode == 27) {
+                self.closeForm();
+            }
+        })
+    }
+
+    this.openForm = function() {
+
+        document.getElementById("admin_access").addEventListener('click', function() {
+            document.getElementById("pass_form_back").removeAttribute("hidden","");
+        })
+    }
+
+    this.resetLabelOnFocus = function() {
+        document.getElementById('pass_inp').addEventListener("focus", function() {
+            // console.log('la');
+            if (self.switchLab) {
+                // console.log('ici');
+                passInpLab.textContent = "Tapez votre mot de passe administrateur :";
+                self.switchLab = false;
+            }
+        })
+    }
+
+    this.callback = function(response) {
+        passInpLab.textContent = response;
+        self.switchLab = true;
+        if (response.includes("Connexion")) {
+            window.location = "/admin";
+        }
+    }
+
+    this.connexionQuery = function(param) {
+        Utils.ajaxPost('/adminConnexion', param, self.callback);
+    }
+
+    this.connexionQueryEvt = function() {
+        document.getElementById("pass_ask_form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            var passInp = document.getElementById("pass_inp").value.trim();
+            if (passInp == "") {
+                passInpLab.textContent = "Le champ est vide !";
+                self.switchLab = true;
+                return;   
+            }
+            var param = 'passInp=' + passInp;
+            self.connexionQuery(param);
+        })
+    }
+
+    this.init = function() {
+        this.closeFormEvts();
+        this.openForm();
+        this.resetLabelOnFocus();
+        this.connexionQueryEvt();
+    }
+};
+
+var features = new OtherFeatures();
+features.init();
 
 var getComments = new GetComments();
-
 getComments.init();
 
 var postComment = new PostComment();
-
 postComment.init();
+
+var adminConnexion = new AdminConnexion();
+adminConnexion.init();
