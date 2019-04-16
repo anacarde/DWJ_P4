@@ -68,7 +68,11 @@ function GetComments() {
 
     this.chpNb = document.getElementById("chapter_number").textContent.trim();
 
-    this.callback = function(response) {
+    this.signCallback = function() {
+        console.log('c\'est bon !');
+    }
+
+    this.showCallback = function(response) {
 
         // console.log(response);
 
@@ -76,8 +80,18 @@ function GetComments() {
 
         document.getElementById('comments').innerHTML = "";
         for (var comment in comments) {
-            document.getElementById('comments').innerHTML += '<h4>' + comments[comment]['author'] + '<em class="date"> ' + comments[comment]['date_added'] + '</em> </h4> <p>'  + comments[comment]['content'] + '</p>';
+            document.getElementById('comments').innerHTML += '<h4>' + comments[comment]['author'] + '<em class="date"> ' + comments[comment]['date_added'] + '</em> </h4> <button data-id=\"' + comments[comment]['id'] + '\" class="com_sign"> signaler </button> <p>'  + comments[comment]['content'] + '</p>';
         }
+
+        var signButt = document.getElementsByClassName('com_sign');
+
+        for (var i = 0 ; i < signButt.length ; i++) {
+
+            var comId = signButt[i].getAttribute("data-id");
+            var url = "/signal/" + String(signButt[i].getAttribute("data-id").trim());
+
+            signButt[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.signCallback));
+        }    
     }
 
     this.initCommentPageEvents = function() {
@@ -88,7 +102,7 @@ function GetComments() {
 
             var url = "/" + this.chpNb + "/" + cmPgLinks[i].textContent.trim();
 
-            cmPgLinks[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.callback));
+            cmPgLinks[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.showCallback));
         }
     }
 
@@ -98,7 +112,7 @@ function GetComments() {
 
         var initUrl = "/" + this.chpNb + "/1";
 
-        Utils.ajaxGet(initUrl, this.callback);
+        Utils.ajaxGet(initUrl, this.showCallback);
     }
 };
 

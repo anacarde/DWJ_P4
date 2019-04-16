@@ -11,7 +11,12 @@ class CommentController extends Controller
 
     public function getChapterCommentsAction()
     {
-        $this->getManager(CommentManager::class)->getPageComments($this->args['page'], $this->args['commentsPage']);
+        echo json_encode($this->getManager(CommentManager::class)->getPageComments($this->args['page'], $this->args['commentsPage']));
+    }
+
+    public function signalCommentAction()
+    {
+        $this->getManager(CommentManager::class)->signalComment($this->args['id']);
     }
 
     public function postCommentAction()
@@ -23,7 +28,7 @@ class CommentController extends Controller
 
     public function showCommentAction()
     {
-        $this->getManager(CommentManager::class)->getOneComment($this->args['id']);
+        echo json_encode($this->getManager(CommentManager::class)->getOneComment($this->args['id']));
     }
 
     public function updateCommentAction()

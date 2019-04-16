@@ -43,6 +43,7 @@ Class Controller
     protected function checkConnexion() {
         if (null != $this->request->getQueryParams()) {
             $_SESSION['connexion'] = null;
+            $this->redirect('/');
         }
         return isset($_SESSION['connexion']);
     }

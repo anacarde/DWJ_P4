@@ -35,16 +35,23 @@ class CommentManager extends Manager
 
     public function getPageComments($page, $commentsPage)
     {
-        $req = $this->db->prepare('SELECT id, comment_chapter, author, content,  DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added, DATE_FORMAT(date_modified, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_modified FROM comments_jf WHERE comment_chapter = :page ORDER BY id DESC LIMIT '. ((int)$commentsPage-1)*10 .', 10');
+        $req = $this->db->prepare('SELECT id, comment_chapter, author, content, DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added, DATE_FORMAT(date_modified, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_modified FROM comments_jf WHERE comment_chapter = :page ORDER BY id DESC LIMIT '. ((int)$commentsPage-1)*10 .', 10');
         $req->bindValue(':page', $page, \PDO::PARAM_INT);
         $req->execute();
         $rep = $req->fetchAll(\PDO::FETCH_ASSOC);
-        echo json_encode($rep);
+        return $rep;
+    }
+
+    public function signalComment($id)
+    {
+        $req = $this->db->prepare('UPDATE comments_jf SET signaled = signaled + 1 WHERE id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
     }
 
     public function getCommentsList()
     {
-        $req = $this->db->query('SELECT id, comment_chapter, author, content, date_added FROM comments_jf ORDER BY date_added DESC');
+        $req = $this->db->query('SELECT id, comment_chapter, author, content, date_added FROM comments_jf ORDER BY signaled DESC, date_added DESC');
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Comment');
         $comments = $req->fetchAll();
         return $comments;
@@ -56,7 +63,7 @@ class CommentManager extends Manager
         $req->bindValue(":id", $id, \PDO::PARAM_INT);
         $req->execute();
         $comData = $req->fetch(\PDO::FETCH_ASSOC);
-        echo json_encode($comData);
+        return $comData;
     }
 
     public function updateComment(Comment $comment)

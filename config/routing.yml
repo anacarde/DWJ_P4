@@ -11,17 +11,11 @@ admin:
   controller: \Src\Controller\PageController
   action: adminAction
 
-passwordGet:
+adminConnection:
   path: /adminConnexion
   parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\PageController
   action: connexionAction
-
-commentsPage:
-  path: /:page/:commentsPage
-  parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
-  controller: \Src\Controller\CommentController
-  action: getChapterCommentsAction
 
 formChapterSelect:
   path: /admin/chapter/select/:id
@@ -47,6 +41,18 @@ chapterDelete:
   controller: \Src\Controller\ChapterController
   action: deleteChapterAction
 
+commentsPage:
+  path: /:page/:commentsPage
+  parameters: {page: '?<page>[\d]+', commentsPage: '?<commentsPage>[\d]+'}
+  controller: \Src\Controller\CommentController
+  action: getChapterCommentsAction
+
+commentSignal:
+  path: /signal/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\controller\commentController
+  action: signalCommentAction
+
 commentPost:
   path: /post/:page
   parameters: {page: '?<page>[\d]+'}
@@ -70,16 +76,3 @@ commentDelete:
   parameters: {id: '?<id>[\d]+'}
   controller: \Src\Controller\CommentController
   action: deleteCommentAction
-
-# show:
-#   path: /show/:id
-#   parameters: {id: '?<id>[\d]+'}
-#   controller: \Src\Controller\DefaultController
-#   action: showAction
-
-# delete:
-#   path: /delete/:id
-#   parameters: {id: '?<id>[\d]+'}
-#   controller: \Src\Controller\DefaultController
-#   action: deleteAction
-
