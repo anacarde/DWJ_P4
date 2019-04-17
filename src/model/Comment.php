@@ -9,7 +9,8 @@ class Comment {
               $author,
               $content,
               $date_added,
-              $date_modified;
+              $date_modified,
+              $signaled;
 
     public function __construct($data = [])
     {
@@ -35,6 +36,11 @@ class Comment {
     public function setId($id)
     {
         $this->id = (int) $id;
+    }
+
+    public function setSignaled($signaled)
+    {
+        $this->signaled = (int) $signaled;
     }
 
     public function setCommentChapter($commentChapter) 
@@ -65,6 +71,11 @@ class Comment {
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getSignaled()
+    {
+        return $this->signaled;
     }
 
     public function getCommentChapter()

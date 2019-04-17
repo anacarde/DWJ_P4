@@ -80,7 +80,7 @@ function GetComments() {
 
         document.getElementById('comments').innerHTML = "";
         for (var comment in comments) {
-            document.getElementById('comments').innerHTML += '<h4>' + comments[comment]['author'] + '<em class="date"> ' + comments[comment]['date_added'] + '</em> </h4> <button data-id=\"' + comments[comment]['id'] + '\" class="com_sign"> signaler </button> <p>'  + comments[comment]['content'] + '</p>';
+            document.getElementById('comments').innerHTML += '<div id=\"com_hea_div\"> <h4>' + comments[comment]['author'] + '</h4> <em class="date"> ' + comments[comment]['date_added'] + '</em> <button data-id=\"' + comments[comment]['id'] + '\" class="com_sign"> signaler </button> </div> <p>'  + comments[comment]['content'] + '</p>';
         }
 
         var signButt = document.getElementsByClassName('com_sign');

@@ -14,6 +14,11 @@ a
     text-decoration: none;
 }
 
+a, button
+{
+    cursor: pointer;
+}
+
 #con_div
 {
     position: fixed;
@@ -161,7 +166,6 @@ a
 
 #chapter_top
 {
-    cursor: pointer;
     background-color: white;
     font-family: cursive;
     float: right;
@@ -280,7 +284,6 @@ a
 #comments_section #submit:hover
 {
     background-color: #e5dfd7;
-    cursor: pointer;
 }
 
 #comments_section #comments
@@ -292,9 +295,27 @@ a
     height: 70vh;
 }
 
+#com_hea_div
+{
+    display: flex;
+    align-items: center;
+}
+
+#com_hea_div *
+{
+    margin-right: 10px;
+}
+
 #comments_section .date
 {
     font-size: 0.7em;
+}
+
+.com_sign
+{
+    background-color: white;
+    font-size: 0.7em;
+    padding: 1px;
 }
 
 #comments_pages
@@ -307,7 +328,6 @@ a
 {
     font-size: 1.1em;
     padding: 5px;
-    cursor: pointer;
 }
 
 #footer_banner
@@ -320,6 +340,7 @@ a
 
 #admin_access
 {
+    cursor: auto;
     float: right;
     background-color: white;
     height: 10px;
@@ -357,7 +378,6 @@ a
 #close_cross
 {   
     font-size: 1.3em;
-    cursor: pointer;
     float: right;
 }
 
@@ -380,7 +400,6 @@ a
 
 #pass_sub
 {
-    cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
 }

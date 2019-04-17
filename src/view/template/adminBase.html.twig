@@ -53,11 +53,19 @@
         <div id="com_modif_div">
             <button class="close_cross"> X </button>
             <form id="com_modif_form" method="POST" action="">
-                <label for="com_auth_inp"> Auteur du commentaire: </label>
-                    <input type="text" id="com_id_inp" name="id" hidden />
-                    <input type="text" id="com_auth_inp" class="com_input" name="author" />
-                <label for="com_cont_inp"> Contenu du commentaire: </label>
-                    <textarea id="com_cont_inp" class="com_input" name="content"></textarea>
+                <div id="top_inp_div">
+                    <div>
+                        <label for="com_sig_inp"> Signalement(s): </label>
+                        <input type="text" id="com_sig_inp" class="ent_data com_input" name="signaled" />
+                    </div>
+                    <div>
+                        <label for="com_auth_inp"> Auteur: </label>
+                        <input type="text" id="com_id_inp" name="id" hidden />
+                        <input type="text" id="com_auth_inp" class="ent_data  com_input " name="author" />
+                    </div>
+                </div>
+                <label for="com_cont_area"> Contenu: </label>
+                    <textarea id="com_cont_area" class="ent_data" name="content"></textarea>
                 <input type="submit" id="com_modif_sub" value="Valider les modifications" />
             </form>
         <div>

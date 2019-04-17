@@ -30,9 +30,10 @@ function AdminEvents() {
     this.chapIdInp = document.getElementById('chap_id_input');
     this.chapNbInp = document.getElementById('chap_nb_input');
     this.chapTitInp = document.getElementById('chap_title_input');
+    this.comSigInp = document.getElementById('com_sig_inp');
     this.comIdInp = document.getElementById('com_id_inp');
     this.comAuthInp = document.getElementById('com_auth_inp');
-    this.comContInp = document.getElementById('com_cont_inp');
+    this.comContArea = document.getElementById('com_cont_area');
 
     this.addChapButtChecked = false; 
     this.chapButtChecked = false;
@@ -82,15 +83,17 @@ function AdminEvents() {
 
     this.returnComData = function(response) {
         var comData = JSON.parse(response);
+        self.comSigInp.value = comData.signaled;
         self.comIdInp.value = comData.id;
         self.comAuthInp.value = comData.author;
-        self.comContInp.textContent = comData.content;
+        self.comContArea.textContent = comData.content;
     }
 
     this.removeCommentForm = function() {
+        self.comSigInp.value = "";
         self.comIdInp.value = "";
         self.comAuthInp.value = "";
-        self.comContInp.textContent = "";
+        self.comContArea.textContent = "";
         self.commentFormDiv.setAttribute("hidden", "");
     }
 
@@ -98,7 +101,6 @@ function AdminEvents() {
     this.commentModifArea = function(authorDiv, contentDiv) {
         var comId = authorDiv.getAttribute("data-id");
         self.commentForm.setAttribute("action", "/admin/comment/update/" + comId);
-        // console.log(comId);
         Utils.ajaxGet('/admin/comment/select/' + comId, self.returnComData);
         self.commentFormDiv.removeAttribute("hidden");
     };

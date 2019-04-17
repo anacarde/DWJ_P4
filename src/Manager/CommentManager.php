@@ -59,7 +59,7 @@ class CommentManager extends Manager
 
     public function getOneComment($id)
     {
-        $req = $this->db->prepare('SELECT id, author, content FROM comments_jf WHERE id= :id');
+        $req = $this->db->prepare('SELECT id, author, content, signaled FROM comments_jf WHERE id= :id');
         $req->bindValue(":id", $id, \PDO::PARAM_INT);
         $req->execute();
         $comData = $req->fetch(\PDO::FETCH_ASSOC);
@@ -68,11 +68,13 @@ class CommentManager extends Manager
 
     public function updateComment(Comment $comment)
     {
-        $req = $this->db->prepare('UPDATE comments_jf SET author = :author, content = :content WHERE id = :id');
-        $req->bindValue(":id", $comment->getId(), \PDO::PARAM_INT);
+        $req = $this->db->prepare('UPDATE comments_jf SET signaled = :signaled, author = :author, content = :content WHERE id = :id');
+        $req->bindValue(":signaled", $comment->getSignaled(), \PDO::PARAM_INT);
         $req->bindValue(":author", $comment->getAuthor());
         $req->bindValue(":content", $comment->getContent());
-        $req->execute();
+        $req->bindValue(":id", $comment->getId(), \PDO::PARAM_INT);
+        $rep = $req->execute();
+        return;
     }
 
     public function deleteComment($id)

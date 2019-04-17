@@ -263,7 +263,8 @@ td.action .tb_butt:hover a
     bottom: 0;
     left: 0;
     right: 0;
-    width: 35%;
+    width: 400px;
+    min-width: 400px;
     height: 50%;
     margin: auto;
     border: 1px solid black;
@@ -280,23 +281,40 @@ td.action .tb_butt:hover a
     align-items: center;
 }
 
+#top_inp_div
+{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: ;
+}
+
 #com_modif_form label
 {
 }
 
-#com_modif_form .com_input
+#com_modif_form .ent_data
 {
     background-color: rgb(252, 249, 184);
     padding: 5px;
 }
 
-#com_auth_inp
+#com_modif_form .com_input
 {
     height: 20px;
-    width: 60%;
 }
 
-#com_cont_inp
+#com_sig_inp
+{
+    width: 20px;
+}
+
+#com_auth_inp
+{
+    width: 120px;
+}
+
+#com_cont_area
 {
     width: 90%;
     height: 40%;
