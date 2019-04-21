@@ -3,6 +3,7 @@
 {% block title %} Le blog de Jean Forteroche - espace administrateur {% endblock %}
 
 {% block styleSheet %}
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/adminStyle.css" />
 {% endblock %}
 
@@ -22,7 +23,7 @@
     <script src="/js/adminJs.js"></script>
 {% endblock %}
 
-{% block staticContent %}
+{% block content %}
     <a href = "/" id="vis_link"> Revenir à l'espace visiteur </a>
     <h1 id="admin_welcome"> Blog de Jean Forteroche, espace administrateur </h1>
     <div id="onglets_admin">
@@ -68,6 +69,9 @@
                     <textarea id="com_cont_area" class="ent_data" name="content"></textarea>
                 <input type="submit" id="com_modif_sub" value="Valider les modifications" />
             </form>
-        <div>
+        </div>
+    </div>
+    <div id="conf_msg" class="hidden">
+        <p> <span id="obj_info"> </span> bien <span id="act_info"> </span> </p>
     </div>
 {% endblock %}

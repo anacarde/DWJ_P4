@@ -30,34 +30,38 @@ function PostComment() {
     var self = this;
 
     this.form = document.getElementById("post_com_form");
+    this.pseudo = document.getElementById("pseudo");
+    this.comment = document.getElementById("comment");
+    this.chpNb = document.getElementById("chapter_number").textContent.trim();
 
     this.callback = function(chpNb, response) {
-        // console.log('salut');
-        // console.log(response);
-        document.getElementById("comment").value = "";
+        self.comment.value = "";
 
         if (Number(response) % 10 === 1) {
             var pagDiv = document.getElementById("comments_pages");
             var button = document.createElement("button");
             button.classList.add("com_page_nb");
             button.textContent = String(Number(pagDiv.lastElementChild.textContent.trim()) + 1);
-            button.addEventListener("click", Utils.ajaxGet.bind(this, "/" + chpNb + "/" + button.textContent, getComments.callback));
+            button.addEventListener("click", Utils.ajaxGet.bind(this, "/" + self.chpNb + "/" + button.textContent, getComments.callback));
             pagDiv.appendChild(button);
         }
-        Utils.ajaxGet("/" + chpNb + "/1", getComments.callback);
+
+        Utils.ajaxGet("/" + self.chpNb + "/1", getComments.showCallback);
     }
 
     this.init = function() {
 
+        if (sessionStorage.getItem("pseudo")) {
+            this.pseudo.value = sessionStorage.getItem("pseudo");
+        }
+
         this.form.addEventListener("submit", function(e) {
             e.preventDefault();
+            sessionStorage.setItem("pseudo", pseudo);
 
-            var pseudo = document.getElementById("pseudo").value;
-            var comment = document.getElementById("comment").value;
-            var chpNb = document.getElementById("chapter_number").textContent.trim();
-            var formParams = "commentChapter=" + chpNb + "&author=" + pseudo + "&content=" + comment;
+            var formParams = "commentChapter=" + self.chpNb + "&author=" + self.pseudo.value + "&content=" + self.comment.value;
 
-            Utils.ajaxPost("/post/" + chpNb , formParams, self.callback.bind(this, chpNb));
+            Utils.ajaxPost("/post/" + self.chpNb , formParams, self.callback.bind(this, self.chpNb));
         })
     }
 }
@@ -68,13 +72,19 @@ function GetComments() {
 
     this.chpNb = document.getElementById("chapter_number").textContent.trim();
 
-    this.signCallback = function() {
-        console.log('c\'est bon !');
+    this.signCallback = function(signButt) {
+
+        var span = document.createElement('span');
+        span.classList.add('com_mark');
+        span.textContent = 'votre signalement a bien été pris en compte';
+        signButt.after(span);
+
+        setTimeout(function() {
+            span.remove();
+        }, 2000);
     }
 
     this.showCallback = function(response) {
-
-        // console.log(response);
 
         var comments = JSON.parse(response);
 
@@ -90,7 +100,7 @@ function GetComments() {
             var comId = signButt[i].getAttribute("data-id");
             var url = "/signal/" + String(signButt[i].getAttribute("data-id").trim());
 
-            signButt[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.signCallback));
+            signButt[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.signCallback.bind(this, signButt[i])));
         }    
     }
 

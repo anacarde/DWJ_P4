@@ -22,7 +22,7 @@ class CommentController extends Controller
     public function postCommentAction()
     {
         $comment = $this->getManager(Comment::class, $this->request->getParsedBody());
-        $this->getManager(CommentManager::class)->postComment($comment);
+        $this->getManager(CommentManager::class)->add($comment);
         echo $this->getManager(CommentManager::class)->countComments($this->args['page']);
     }
 
@@ -34,14 +34,14 @@ class CommentController extends Controller
     public function updateCommentAction()
     {
         $comment = $this->getManager(Comment::class, $this->request->getParsedBody());
-        $this->getManager(CommentManager::class)->updateComment($comment);
-        $this->redirect("/admin");
+        $this->getManager(CommentManager::class)->update($comment);
+        $this->redirect("/admin?action=comUpdate");
     }
 
     public function deleteCommentAction()
     {
-        $this->getManager(CommentManager::class)->deleteComment($this->args['id']);
-        $this->redirect("/admin");
+        $this->getManager(CommentManager::class)->delete($this->args['id']);
+        $this->redirect("/admin?action=comDelete");
     }
 
 }

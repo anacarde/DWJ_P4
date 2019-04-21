@@ -81,8 +81,14 @@ body
     margin: auto;
     margin-bottom: 50px;
     border: outset white;
-    padding: 10px;
-    
+    padding: 10px; 
+}
+
+#comments_list_div, #chapters_list_div
+{
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    max-height: 500px;
 }
 
 .close_cross
@@ -97,6 +103,8 @@ body
 
 .table_admin
 {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hide
@@ -104,14 +112,14 @@ body
     display: none;
 }
 
-#add_chapter_form
+#add_chapter_div
 {    
 }
 
 #chap_nb_div
 {
      display: flex;
-     justify-content: center;
+     justify-content: space-around;
      align-items: center;
      margin: 40px 0 40px 0; 
 }
@@ -124,17 +132,17 @@ body
 .form_label input
 {
     font-family: cursive;
-    text-align: center;
     border: 1px solid #e7ea96;
+    padding-left: 5px;
 }
 
-#nb_input
+#chap_nb_input
 {
     width: 30px;
     margin-right: 50px;
 }
 
-#title_input
+#chap_title_input
 {
     width: 30vw;
     height: 30px;
@@ -167,6 +175,10 @@ body
 {
     background-color: #e89747;
     box-shadow: 0 0 10px 10px #e89747;
+}
+
+#chapters_list_div
+{
 }
 
 #chapters_table
@@ -330,4 +342,42 @@ td.action .tb_butt:hover a
 #com_modif_sub:hover
 {
     background-color: rgb(186, 255, 130);
+}
+
+#conf_msg
+{
+    border: 1px solid black;
+    background-color: rgb(136, 206, 167);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 20%;
+    text-align: center;
+}
+
+#conf_msg.hidden
+{
+    display: none;
+}
+
+#conf_msg.chapter
+{
+    background-color: rgb(167, 211, 208);
+}
+
+#conf_msg.comment
+{
+    background-color: rgb(136, 206, 167);
+}
+
+#conf_msg p
+{
+    font-size: 1.3em;
 }

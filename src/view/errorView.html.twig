@@ -1,0 +1,13 @@
+{% extends 'template/htmlBase.html.twig'%}
+
+{% block title %} Page d'erreur {% endblock %}
+
+{% block styleSheet %} <link rel="stylesheet" href="/css/errorStyle.css" /> {% endblock %}
+
+
+{% block content %}
+    <div>
+        <h1> Une erreur est survenu, peut-être vous êtes-vous trompé quelque part ? </h1>
+        <p> <em> Intitulé de l'erreur : </em> {{ message }} </p>
+    </div>
+ {% endblock %}

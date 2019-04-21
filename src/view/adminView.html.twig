@@ -1,6 +1,7 @@
 {% extends 'template/adminBase.html.twig' %}
 
 {% block dynamicContent %}
+    <span id="param_data" data-param="{% for parameter in parameters %} {{ parameter }} {% endfor %}" hidden> </span>
     <div id="chapters_list_div" class="admin_div hide">
         <button class="close_cross"> X </button>
         <br/>

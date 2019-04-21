@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Manager
+abstract class Manager
 {
     public static $PDO = null;
 

@@ -25,7 +25,7 @@ class PageController extends Controller
         echo $this->view("adminView.html.twig", [
             "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
             "commentsList" => $this->getManager(CommentManager::class)->getCommentsList(),
-            ""
+            "parameters" => $this->request->getQueryParams()
         ]);
     }
 
@@ -38,5 +38,12 @@ class PageController extends Controller
             return;
         }
         echo "Connexion à votre espace en cours";
+    }
+
+    public function error()
+    {
+        echo $this->view("errorView.html.twig", [
+            "message" => $this->args,
+        ]);
     }
 }

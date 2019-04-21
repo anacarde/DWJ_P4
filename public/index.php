@@ -17,11 +17,9 @@ $router->loadYaml(__DIR__."/../config/routing.yml");
 try {
     $route = $router->getRouteByRequest();
 
-
     $route->call($request);
 
 } catch (\Exception $e) {
-    echo $e->getMessage();
 }
 
 

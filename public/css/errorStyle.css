@@ -1,0 +1,34 @@
+body
+{
+  background-color: #ffe5b2;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+div
+{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50vw;
+  height: 50vh;
+  border: 3px solid rgb(224, 217, 217);
+  padding: 10px;
+  
+}
+
+h1
+{
+  text-align: center;
+  background-color: aliceblue;
+}
+
+p
+{
+   font-size: 1.2em;
+}

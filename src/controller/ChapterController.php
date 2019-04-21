@@ -18,21 +18,21 @@ class ChapterController extends Controller
     {    
 
         $chapter = $this->getManager(Chapter::class, $this->request->getParsedBody());
-        $this->getManager(ChapterManager::class)->addChapter($chapter);
-        $this->redirect("/admin");     
+        $this->getManager(ChapterManager::class)->add($chapter);
+        $this->redirect("/admin?action=chaAdd");     
     }
 
     public function updateChapterAction()
     {
 
         $chapter = $this->getManager(Chapter::class, $this->request->getParsedBody());
-        $this->getManager(ChapterManager::class)->updateChapter($chapter);
-        $this->redirect("/admin");
+        $this->getManager(ChapterManager::class)->update($chapter);
+        $this->redirect("/admin?action=chaUpdate");
     }
 
     public function deleteChapterAction()
     {
-        $this->getManager(ChapterManager::class)->deleteChapter($this->args['id']);
-        $this->redirect("/admin");
+        $this->getManager(ChapterManager::class)->delete($this->args['id']);
+        $this->redirect("/admin?action=chaDelete");
     }
 }

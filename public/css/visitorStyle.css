@@ -318,6 +318,13 @@ a, button
     padding: 1px;
 }
 
+.com_mark
+{
+    color: red;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
 #comments_pages
 {
     text-align: center;
