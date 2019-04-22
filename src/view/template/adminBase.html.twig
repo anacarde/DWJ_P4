@@ -24,7 +24,10 @@
 {% endblock %}
 
 {% block content %}
-    <a href = "/" id="vis_link"> Revenir à l'espace visiteur </a>
+    <form action="/" method="POST">
+        <input type="hidden" name="adminStatus">
+        <input type="submit" id="vis_link" value="Revenir à l'espace visiteur" />
+    </form>
     <h1 id="admin_welcome"> Blog de Jean Forteroche, espace administrateur </h1>
     <div id="onglets_admin">
         <button id="add_chapter_button" class="button_admin"> Ajouter un nouveau chapitre </button>

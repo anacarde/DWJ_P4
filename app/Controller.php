@@ -34,18 +34,11 @@ Class Controller
         return self::$managers[$manager];
     }
 
-    protected function connexionManage() {
-        if (!isset($_SESSION['connexion'])) {
-            $_SESSION['connexion'] = TRUE;
-        }
-    }
-
     protected function checkConnexion() {
-        if (null != $this->request->getQueryParams()) {
-            $_SESSION['connexion'] = null;
-            $this->redirect('/');
+        if ($this->request->getParsedBody() != null)
+        {
+            echo $this->view('template/connectedBase.html.twig');
         }
-        return isset($_SESSION['connexion']);
     }
 
     protected function view($view, $data = [])

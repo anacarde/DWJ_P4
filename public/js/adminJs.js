@@ -196,7 +196,7 @@ function AdminEvents() {
     this.displayEvents = function() {
 
         if (this.paramData != "") {
-            console.log(this.paramData);
+            // console.log(this.paramData);
             this.setConfirmMsg();
         }
         console.log(this.paramData);

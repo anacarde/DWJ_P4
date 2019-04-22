@@ -12,16 +12,16 @@ class PageController extends Controller
     public function indexAction()
     {
         echo $this->view("visitorView.html.twig", [
-            "connexionStatus" => $this->checkConnexion(),
+            /*"connexionStatus" => $this->checkConnexion(),*/
             "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
             "topPagination" => floor($this->getManager(CommentManager::class)->countComments($this->args['page'])/10),
             "chapterContent" => $this->getManager(ChapterManager::class)->getChapterContent($this->args['page'])
         ]);
+        $this->checkConnexion();
     }
 
     public function adminAction()
     {
-        $this->connexionManage();
         echo $this->view("adminView.html.twig", [
             "chaptersList" => $this->getManager(ChapterManager::class)->getChaptersList(),
             "commentsList" => $this->getManager(CommentManager::class)->getCommentsList(),

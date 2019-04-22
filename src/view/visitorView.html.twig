@@ -1,17 +1,5 @@
 {% extends 'template/visitorBase.html.twig' %}
 
-{% block connexion %}
-    {% if connexionStatus == 1 %}
-        <div id="con_div">
-            <p id="con_info_p"> Vous êtes connecté en tant qu'administrateur </p>
-            <div id="con_opt_div">
-                <a href="/admin"> Revenir à l'espace administrateur </a>
-                <a href="/?deconnect"> Déconnexion </a>
-            </div>
-        </div>
-    {% endif %}
-{% endblock %}
-
 {% block dynamicContent %}
     <section id="chapters_section">
         <div id="chapter_reading">

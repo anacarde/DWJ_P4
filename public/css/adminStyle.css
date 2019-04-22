@@ -16,6 +16,7 @@ body
     position: relative;
     float: right;
     right: 10px;
+    top: 10px;
     display: inline-block;
     background-color: white;
     text-decoration: none;

@@ -17,6 +17,12 @@ adminConnection:
   controller: \Src\Controller\PageController
   action: connexionAction
 
+# indexAsAdmin:
+#   path: /indexAdmin
+#   parameters: {}
+#   controller: \Src\Controller\PageController
+#   action: viewBlogAsAdminAction
+
 formChapterSelect:
   path: /admin/chapter/select/:id
   parameters: {id: '?<id>[\d]+'}
