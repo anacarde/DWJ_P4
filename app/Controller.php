@@ -34,20 +34,30 @@ Class Controller
         return self::$managers[$manager];
     }
 
-    protected function checkConnexion() {
-        if ($this->request->getParsedBody() != null)
-        {
-            echo $this->view('template/connectedBase.html.twig');
-        }
-    }
-
     protected function view($view, $data = [])
     {
         return $this->twig->render($view, $data);
     }
 
+/*    protected function checkConnexion() {
+        if ($this->request->getParsedBody() != null)
+        {
+            echo $this->view('template/connectedBase.html.twig');
+        }
+    }*/
+
     protected function redirect($url)
     {
         return header('location:' . $url);
+    }
+
+    protected function checkConnexion()
+    {
+        return isset($_SESSION['connected']) ? TRUE : FALSE;
+    }
+
+    protected function checkAdminAction()
+    {
+        return $this->request->getQueryParams()['action'] ?? FALSE;
     }
 }

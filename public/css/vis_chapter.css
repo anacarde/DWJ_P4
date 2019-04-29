@@ -1,0 +1,196 @@
+
+
+
+    /* Chapter Section */
+
+
+
+#section_div
+{
+    background-color: white;
+    max-width: 1000px;
+    margin: auto;
+}
+
+#chap_section
+{
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+#chap_tit
+{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/*#chap_p
+{
+    line-height: 2em;
+    hyphens: auto;
+}
+
+#nex_cha_p
+{
+    text-align: right;
+}*/
+
+#nex_prev_chap_div
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+#nex_prev_chap_div a
+{
+    color: blue;
+}
+
+
+
+    /* Comments section */
+
+
+
+#com_div
+{
+    background-color: #fff2b2;
+    margin-top: 10px;
+    padding: 30px 30px 9rem 30px;
+    
+}
+
+#com_div h2
+{
+    
+}
+
+#com_lis_div
+{
+    background-color: white;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    height: 500px;
+    padding: 20px;
+}
+
+.com_hea_div
+{
+    display: flex;
+    align-items: center;
+}
+
+.com_hea_div *
+{
+    margin-right: 10px;
+}
+
+.com_hea_div .date
+{
+    font-size: 0.7em;
+}
+
+.com_sign
+{
+    background-color: white;
+    font-size: 0.7em;
+    padding: 1px;
+}
+
+.com_mark
+{
+    color: red;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+#com_pages
+{
+    text-align: center;
+}
+
+#com_pages button
+{
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+/* comment form */
+
+#post_com_div
+{
+}
+
+#post_com_div h4
+{
+
+}
+
+#post_com_form
+{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 400px;
+}
+
+#post_com_form label
+{
+    vertical-align: top;
+    display: inline-block;
+    width: 80px;
+}
+
+#post_com_form .input
+{
+    width: 300px;
+}
+
+.form_div
+{
+    margin-bottom: 10px;
+}
+
+#pseudo_div
+{
+    
+}
+
+#pseudo_div label
+{
+    
+} 
+
+#pseudo_div input
+{
+    height: 30px;
+} 
+
+#comment_div
+{
+    white-space: nowrap;
+}
+
+#comment_div label
+{
+    
+} 
+
+#comment_div textarea
+{
+   
+} 
+
+#sub_div
+{
+    text-align: center;
+}
+
+#sub_div input
+{
+}
+
+
+

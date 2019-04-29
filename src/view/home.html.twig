@@ -1,0 +1,34 @@
+{% extends 'template/visitorBase.html.twig' %}
+
+{% block stylesheet %} 
+    <link rel="stylesheet" href="/css/vis_home.css">
+{% endblock %}
+
+{% block script %}
+    <script src="/js/utils.js"></script>
+    {% if connected %}
+        <script src="/js/vis_disconnect.js"></script>
+    {% else %}
+        <script src="/js/vis_connexion.js"></script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="art_container">
+    <div id="self_pres">
+        <div id="img_pres">
+            <img src="/images/profil.jpg" alt="Photo de profil" />
+        </div>
+        <div id="tex_pres">
+            <h2> Qui je suis </h2>
+            <p> &emsp; Et prima post Osdroenam quam, ut dictum est, ab hac descriptione discrevimus, Commagena, nunc Euphratensis, clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris. Et interdum acciderat, ut siquid in penetrali secreto nullo citerioris vitae ministro praesente paterfamilias uxori susurrasset in aurem, velut Amphiarao referente aut Marcio, quondam vatibus inclitis, postridie disceret imperator. ideoque etiam parietes arcanorum soli conscii timebantur. Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam. Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.
+            </p>
+        </div>
+    </div>
+    <div id="rom_pres">
+        <h2> Mon nouveau roman: Billet simple pour l'Alaska </h2>
+        <p> &emsp; Et prima post Osdroenam quam, ut dictum est, ab hac descriptione discrevimus, Commagena, nunc Euphratensis, clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris. Et interdum acciderat, ut siquid in penetrali secreto nullo citerioris vitae ministro praesente paterfamilias uxori susurrasset in aurem, velut Amphiarao referente aut Marcio, quondam vatibus inclitis, postridie disceret imperator. 
+        </p>
+    </div>
+</div>
+{% endblock %}

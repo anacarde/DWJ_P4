@@ -1,9 +1,14 @@
 index:
-  path: /:page
-  parameters: {page: '?<page>[\d]*'}
-  defaults: {page: 1}
+  path: /
+  parameters: {}
   controller: \Src\Controller\PageController
   action: indexAction
+
+chapter:
+  path: /chapter/:id
+  parameters: {id: '?<id>[\d]+'}
+  controller: \Src\Controller\PageController
+  action: chapterAction
 
 admin:
   path: /admin
@@ -11,11 +16,18 @@ admin:
   controller: \Src\Controller\PageController
   action: adminAction
 
-adminConnection:
+adminConnexion:
   path: /adminConnexion
-  parameters: {id: '?<id>[\d]+'}
+  # parameters: {id: '?<id>[\d]+'}
+  parameters: {}
   controller: \Src\Controller\PageController
   action: connexionAction
+
+disconnect:
+  path: /disconnect
+  parameters: {}
+  controller: \Src\Controller\PageController
+  action: disconnectAction
 
 # indexAsAdmin:
 #   path: /indexAdmin

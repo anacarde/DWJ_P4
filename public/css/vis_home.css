@@ -1,0 +1,65 @@
+
+
+    /* Container */
+
+
+#art_container
+{
+    background-color: white;
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 10px 9rem 10px;
+    display: flex;
+}
+
+#self_pres
+{
+    margin: 0px 10px;
+    width: 60%;
+}
+
+#img_pres
+{
+    background-color: white;
+    float: left;
+    border: 1px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+#img_pres img
+{
+    padding: 20px;
+    height: 150px; 
+    width: auto;
+}
+
+#text_pres
+{
+
+}
+
+#text_pres h2
+{
+
+}
+
+#tex_pres p
+{
+    line-height: 1.8em;
+}
+
+#rom_pres
+{
+    background-color: #e6ffba;
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 40%;
+}
+
+#rom_pres p
+{
+    line-height: 1.8em;
+}

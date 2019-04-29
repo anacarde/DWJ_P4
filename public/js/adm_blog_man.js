@@ -1,14 +1,14 @@
-function AdminEvents() {
+function AdminManager() {
 
     var self = this;
 
     this.body = document.querySelector("body");
 
-    this.addChapterButton = document.getElementById('add_chapter_button');
-    this.chaptersButton = document.getElementById('chapters_list_button');
-    this.commentsButton = document.getElementById('comments_button');
+    this.addChapterButton = document.getElementById('chap_add');
+    this.chaptersButton = document.getElementById('chap_modif');
+    this.commentsButton = document.getElementById('com_modif');
 
-    this.closeCross = document.getElementsByClassName('close_cross');
+    this.closeCross = document.getElementsByClassName('close_p');
     this.chapNumb = document.getElementsByClassName('chap_numb');
     this.chapTitle = document.getElementsByClassName('chap_title');
     this.chapModif = document.getElementsByClassName('chap_modif');
@@ -17,16 +17,15 @@ function AdminEvents() {
     this.commentAuthor = document.getElementsByClassName('comment_author');
     this.commentContent = document.getElementsByClassName('comment_content');
     this.commentModif = document.getElementsByClassName('com_modif');
-    this.commentSupp = document.getElementsByClassName('com_sup');
+    this.commentSupp = document.getElementsByClassName('com_supp');
 
-    this.paramData = document.getElementById('param_data').getAttribute("data-param").trim();
     this.addChapterDiv = document.getElementById('add_chapter_div');
     this.addChapterForm = document.getElementById("add_chapter_form");
-    this.chapterEditor  = document.getElementById("chapter_editor");
+    this.chapterEditor  = document.getElementById("chap_edit");
     this.commentFormDiv = document.getElementById('com_modif_back');
     this.commentForm = document.getElementById('com_modif_form');
-    this.chaptersTable = document.getElementById('chapters_list_div');
-    this.commentsTable = document.getElementById('comments_list_div');
+    this.chaptersTable = document.getElementById('chap_list_div');
+    this.commentsTable = document.getElementById('com_list_div');
     
     this.chapIdInp = document.getElementById('chap_id_input');
     this.chapNbInp = document.getElementById('chap_nb_input');
@@ -36,66 +35,9 @@ function AdminEvents() {
     this.comAuthInp = document.getElementById('com_auth_inp');
     this.comContArea = document.getElementById('com_cont_area');
 
-    this.confMsg = document.getElementById('conf_msg');
-    this.objInfo = document.getElementById('obj_info');
-    this.actInfo = document.getElementById('act_info');
-
     this.addChapButtChecked = false; 
     this.chapButtChecked = false;
     this.comButtChecked = false;
-
-    this.confirmPanel = function(obj, act) {
-        this.objInfo.textContent = obj;
-        this.actInfo.textContent = act;
-        this.confMsg.classList.remove("hidden");
-
-        setTimeout(function() {
-            self.confMsg.classList.add("hidden");
-        }, 2000)
-    }
-
-    this.setConfirmMsg = function() {
-
-        var obj = "";
-        var act = "";
-
-        switch (this.paramData) {
-            case 'chaAdd':
-                obj = "Chapitre";
-                act = "ajouté";
-            break;
-            case 'chaUpdate':
-                obj = "Chapitre";
-                act = "modifé";
-                this.chaptersButton.classList.add("set_css");
-                this.chaptersTable.classList.remove("hide");
-                this.chapButtChecked = true;
-            break;
-            case 'chaDelete':
-                obj = "Chapitre";
-                act = "Supprimé";
-                this.chaptersButton.classList.add("set_css");
-                this.chaptersTable.classList.remove("hide");
-                this.chapButtChecked = true;
-            break;
-            case 'comUpdate':
-                obj = "Commentaire";
-                act = "Modifié";
-                this.commentsButton.classList.add("set_css");
-                this.commentsTable.classList.remove("hide");
-                this.comButtChecked = true;
-            break;
-            case 'comDelete':
-                obj = "Commentaire";
-                act = "Supprimé";
-                this.commentsButton.classList.add("set_css");
-                this.commentsTable.classList.remove("hide");
-                this.comButtChecked = true;
-            break;
-        }
-        
-        this.confirmPanel(obj, act);
-    }
  
     this.returnEditor = function(response) {
         tinymce.activeEditor.setContent(response);
@@ -107,7 +49,7 @@ function AdminEvents() {
         self.chapTitInp.value = chapTitle;
         self.addChapterButton.setAttribute("disabled", "");
         self.commentsButton.setAttribute("disabled", "");
-        document.getElementById("content_label").textContent = "Modifiez le contenu de votre chapitre";
+        document.getElementById("content_label").textContent = "Modifiez le contenu de votre chapitre :";
         document.getElementById("send_btn").value = "Modification de mon chapitre";
         self.addChapterForm.setAttribute("action", "/admin/chapter/update/" + chapId);
         self.addChapterDiv.classList.remove("hide");
@@ -131,9 +73,7 @@ function AdminEvents() {
     };
 
     this.displayModifEditor = function(chapNumb, chapTitle) {
-        // console.log(chapNumb);
         var chapId = chapNumb.getAttribute("data-id");
-        // console.log(chapId);
         var chapNumb = chapNumb.textContent.trim();
         Utils.ajaxGet('/admin/chapter/select/' + chapId, self.returnEditor);
         self.addFormContent(chapId, chapNumb, chapTitle);
@@ -152,7 +92,7 @@ function AdminEvents() {
         self.comIdInp.value = "";
         self.comAuthInp.value = "";
         self.comContArea.textContent = "";
-        self.commentFormDiv.setAttribute("hidden", "");
+        self.commentFormDiv.classList.add("hide");
     }
 
 
@@ -160,7 +100,7 @@ function AdminEvents() {
         var comId = authorDiv.getAttribute("data-id");
         self.commentForm.setAttribute("action", "/admin/comment/update/" + comId);
         Utils.ajaxGet('/admin/comment/select/' + comId, self.returnComData);
-        self.commentFormDiv.removeAttribute("hidden");
+        self.commentFormDiv.classList.remove("hide");
     };
 
     this.closeAdminDivFn = function() {
@@ -168,25 +108,18 @@ function AdminEvents() {
         if(self.addChapButtChecked == true){
             self.addChapterDiv.classList.add("hide");
             self.addChapButtChecked = false;
-            if (!self.addChapterButton.classList.contains("set_css")) {
-                self.removeFormContent();
-                return;
-            }!
-            self.addChapterButton.classList.remove("set_css");
             return;
         }
         if(self.chapButtChecked == true){
-            self.chaptersButton.classList.remove("set_css");
             self.chaptersTable.classList.add("hide");
             self.chapButtChecked = false;
             return;
         }
         if(self.comButtChecked == true){
-            if (!self.commentFormDiv.hasAttribute("hidden")) {
+            if (!self.commentFormDiv.classList.contains("hide")) {
                 self.removeCommentForm();
                 return;
             }
-            self.commentsButton.classList.remove("set_css");
             self.commentsTable.classList.add("hide");
             self.comButtChecked = false;
             return;
@@ -195,16 +128,7 @@ function AdminEvents() {
 
     this.displayEvents = function() {
 
-        if (this.paramData != "") {
-            // console.log(this.paramData);
-            this.setConfirmMsg();
-        }
-        console.log(this.paramData);
-
         this.addChapterButton.addEventListener('click', function() {
-            self.addChapterButton.classList.add("set_css");
-            self.chaptersButton.classList.remove("set_css");
-            self.commentsButton.classList.remove("set_css");
             self.addChapterDiv.classList.remove("hide");
             self.chaptersTable.classList.add("hide");
             self.commentsTable.classList.add("hide");
@@ -215,9 +139,6 @@ function AdminEvents() {
         });
 
         this.chaptersButton.addEventListener('click', function() {
-            self.addChapterButton.classList.remove("set_css");
-            self.chaptersButton.classList.add("set_css");
-            self.commentsButton.classList.remove("set_css");
             self.addChapterDiv.classList.add("hide");
             self.chaptersTable.classList.remove("hide");
             self.commentsTable.classList.add("hide");
@@ -227,9 +148,6 @@ function AdminEvents() {
         });
 
         this.commentsButton.addEventListener('click', function() {
-            self.addChapterButton.classList.remove("set_css");
-            self.chaptersButton.classList.remove("set_css");
-            self.commentsButton.classList.add("set_css");
             self.addChapterDiv.classList.add("hide");
             self.chaptersTable.classList.add("hide");
             self.commentsTable.classList.remove("hide");
@@ -262,6 +180,6 @@ function AdminEvents() {
     };
 }
 
-var adminJs = new AdminEvents();
+var adminManager = new AdminManager();
 
-adminJs.init();
+adminManager.init();

@@ -1,50 +1,72 @@
-{% extends 'template/htmlBase.html.twig' %}
-
-{% block title %} Le blog de Jean Forteroche {% endblock %}
-
-{% block styleSheet %}
-        <link rel="stylesheet" href="/css/visitorStyle.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
-{% endblock %}
-
-{% block script %}
-    <script src="/js/utils.js"></script>
-    <script src="/js/visitorJs.js"></script>  
-{% endblock %}
-
-{% block content %}
-    <header id="header_banner">
-        <div id="header_banner_image">
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title> Blog de Jean Forteroche </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/vis_base.css">
+        {% block stylesheet %} {% endblock %}
+    </head>
+    <body>
+        {% if connected %}
+        <div id="con_div">
+            <p id="con_info_p"> Vous êtes connecté en tant qu'administrateur </p>
+            <div id="con_opt_div">
+                <button> <a href="/admin"> Revenir à l'espace administrateur </a> </button>
+                <button id="disconnect"> Déconnexion </button>
+            </div>
         </div>
-        <div id="header_banner_title">
-            <h1 > Billet simple pour l'Alaska </h1>
-        </div>
-        <div id="header_banner_author">
-            <em id="author"> Par Jean Forteroche </em>
-        </div>
-    </header>
-    <div id="reading_intro">
-        <hr/>
-        <h2> Lecture </h2>
-    </div>
-    {% block dynamicContent %} {% endblock %}
-    <footer id="footer_banner">
-        <div id="footer_contact">
-            <h3> Me contacter : </h3>
-            <p id="contact_mail"><a href=""> Nom@exemple.org </a></p>
-            <button id="admin_access"> </button>
-        </div>
-    </footer>
-    <div id="pass_form_back" hidden>
-        <div id="pass_form_div">
-            <button id="close_cross"> X </button>
-            <form id="pass_ask_form" method="POST" action="">
-                <h4> Authentification </h4>
-                <label for="pass_inp" id="pass_inp_lab"> Tapez votre mot de passe administrateur : </label>
-                    <input type="password" id="pass_inp" name="password" />
-                <input type="submit" id="pass_sub" value="Confirmer" />
-            </form>
-        <div>
-    </div>
-    
-{% endblock %}
+        {% endif %}
+        <header id="header">
+            <h1 id="title"> Bienvenue sur le blog de Jean Forteroche </h1>
+            <p id="subtitle"> <em> Acteur de temps en temps, écrivain en d'autres temps </em> </p>
+        </header>
+        <nav id="nav_section">
+            <ul id="nav_ul">
+                <li> <button> <a href="/"> L'accueil </a> </button> </li>
+                <li id="chap_li"> 
+                    <button> Mon roman </button>
+                    <ul id="chap_ul">
+                        {% for chapter in chaptersList %}
+                        <li>
+                            <a href="/chapter/{{chapter.id}}">
+                                {{ chapter.chapterNumber }}
+                                {{ chapter.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            <uL>
+        </nav>
+        {% block content %} {% endblock %}
+        <footer>
+            <div id="cont_div">
+                <h2> Me contacter</h2>
+                <div id="cont_logo_div">
+                    <i class="fas fa-envelope"></i>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-tumblr"></i>
+                </div>
+            </div>  
+            <div id="connex_div">
+                <button> Connexion </button>
+            </div>
+            <div id="pass_form_back" class="hide">
+                <div id="pass_form_div">
+                    <button id="close_cross"> X </button>
+                    <form id="pass_ask_form" method="POST" action="">
+                        <h4> Authentification </h4>
+                        <label for="pass_inp" id="pass_inp_lab"> Tapez votre mot de passe administrateur : </label>
+                            <input type="password" id="pass_inp" name="password" />
+                        <input type="submit" id="pass_sub" value="Confirmer" />
+                    </form>
+                <div>
+            </div> 
+        </footer>
+        {% block script %} {% endblock %}
+    </body>
+</html>

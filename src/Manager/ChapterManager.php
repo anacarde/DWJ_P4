@@ -7,22 +7,41 @@ use src\Model\Chapter;
 
 class ChapterManager extends Manager
 {
+    private function classChapObj($req, $fetchType)
+    {
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Chapter');
+        $rep = $req->$fetchType();
+        return $rep;
+    }
 
     public function getChaptersList()
     {
         $req = Manager::dbConnect()->query('SELECT id, chapter_number, title, DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added, DATE_FORMAT(date_modified, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_modified FROM billets_jf ORDER BY chapter_number');
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Chapter');
-        $chapters = $req->fetchAll();
-        return $chapters;
+        return $this->classChapObj($req, 'fetchAll');
     }
 
     public function getChapterContent($id)
     {
-        $req = Manager::dbConnect()->prepare('SELECT id, chapter_number, title, content, date_added FROM billets_jf WHERE id = ?');
-        $req->execute(array($id));
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Chapter');
-        $rep = $req->fetch();
-        return $rep;
+        $req = Manager::dbConnect()->prepare('SELECT id, chapter_number, title, content, date_added FROM billets_jf WHERE id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+        return $this->classChapObj($req, 'fetch');
+    }
+
+    public function getNextChapterId($id)
+    {
+        $req = Manager::dbConnect()->prepare('SELECT id FROM billets_jf WHERE id > :id LIMIT 1');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+        return $this->classChapObj($req, 'fetch');
+    }
+
+    public function getPrevChapterId($id)
+    {
+        $req = Manager::dbConnect()->prepare('SELECT id FROM billets_jf WHERE id < :id  ORDER BY id DESC LIMIT 1');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+        return $this->classChapObj($req, 'fetch');
     }
 
     public function add(Chapter $chapter)

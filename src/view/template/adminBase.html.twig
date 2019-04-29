@@ -1,79 +1,51 @@
-{% extends 'template/htmlBase.html.twig' %}
-
-{% block title %} Le blog de Jean Forteroche - espace administrateur {% endblock %}
-
-{% block styleSheet %}
-    <link rel="stylesheet" href="/css/adminStyle.css" />
-{% endblock %}
-
-{% block script %}
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=wmpba1qv3ow0lxpqb3udwiw8kxn9h8lqarl3tyx33nzo16xb"></script> 
-    <script>
-      tinymce.init({
-        selector: '#chapter_editor',
-        entity_encoding: 'named',
-        height: 800,
-        language: 'fr_FR',
-        language_url: '/js/tinymceLang_fr.js',
-        body_id: 'chapter_editor',
-      });
-    </script>
-    <script src="/js/utils.js"></script>
-    <script src="/js/adminJs.js"></script>
-{% endblock %}
-
-{% block content %}
-    <form action="/" method="POST">
-        <input type="hidden" name="adminStatus">
-        <input type="submit" id="vis_link" value="Revenir à l'espace visiteur" />
-    </form>
-    <h1 id="admin_welcome"> Blog de Jean Forteroche, espace administrateur </h1>
-    <div id="onglets_admin">
-        <button id="add_chapter_button" class="button_admin"> Ajouter un nouveau chapitre </button>
-        <button id="chapters_list_button" class="button_admin"> Gérer mes chapitres </button>
-        <button id="comments_button" class="button_admin"> Gérer mes commentaires </button>
-    </div>
-    <div id="add_chapter_div" class="admin_div hide">
-        <!-- Here is editor -->
-        <button class="close_cross"> X </button>
-        <form id="add_chapter_form" action="/admin/chapter/add" method="post">
-            <div id="chap_nb_div">
-                <input type="text" id="chap_id_input" name="Id" hidden/>
-                <label for="nb_input" class="form_label"> Numéro du chapitre : 
-                    <input type="text" id="chap_nb_input" name="ChapterNumber" />
-                </label> 
-                <label for="title_input" class="form_label"> Titre du chapitre : 
-                    <input type="text" id="chap_title_input" name="Title" />
-                </label> 
-            </div>
-            <label for="chapter_editor" id="content_label" class="form_label"> Entrez le contenu de votre chapitre </label>
-            <textarea id="chapter_editor" name="Content"></textarea>
-            <input type="submit" id="send_btn" value="Envoi de mon chapitre" />
-        </form>
-    </div>
-    {% block dynamicContent %} {% endblock %}
-    <div id="com_modif_back" hidden>
-        <div id="com_modif_div">
-            <button class="close_cross"> X </button>
-            <form id="com_modif_form" method="POST" action="">
-                <div id="top_inp_div">
-                    <div>
-                        <label for="com_sig_inp"> Signalement(s): </label>
-                        <input type="text" id="com_sig_inp" class="ent_data com_input" name="signaled" />
-                    </div>
-                    <div>
-                        <label for="com_auth_inp"> Auteur: </label>
-                        <input type="text" id="com_id_inp" name="id" hidden />
-                        <input type="text" id="com_auth_inp" class="ent_data  com_input " name="author" />
-                    </div>
-                </div>
-                <label for="com_cont_area"> Contenu: </label>
-                    <textarea id="com_cont_area" class="ent_data" name="content"></textarea>
-                <input type="submit" id="com_modif_sub" value="Valider les modifications" />
-            </form>
-        </div>
-    </div>
-    <div id="conf_msg" class="hidden">
-        <p> <span id="obj_info"> </span> bien <span id="act_info"> </span> </p>
-    </div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title> blog de Jean Forteroche - espace administrateur </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/adm_base.css">
+        {% block stylesheet %} {% endblock %}
+    </head>
+    <body>
+        {% if adminAction %}
+            {% block confMsg %} {% endblock %}
+        {% endif %}
+        <header id="header">
+            <h1 id="title"> blog de Jean Forteroche, espace administrateur </h1>
+        </header>
+        <nav id="nav_section">
+            <ul id="nav_ul">
+                <li id="chap_add"> <button> Ajouter un chapitre </button> </li>
+                <li id="chap_modif"> <button> Gérer la liste de mes chapitres </button> </li>
+                <li id="com_modif"> <button> Gérer la liste de mes commentaires </button> </li>
+                <li id="com_modif"> 
+                </li>
+                <li id="vis_back_li">
+                    <form action="/" method="POST" id="vis_back_form">
+                        <input type="hidden" name="dd">
+                        <input type="submit" id="vis_link" value="Revenir à l'espace visiteur" />
+                    </form>
+                </li>
+            <uL>
+        </nav>
+        {% block content %} {% endblock %}
+        {% block comModif %} {% endblock %}
+        <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=wmpba1qv3ow0lxpqb3udwiw8kxn9h8lqarl3tyx33nzo16xb"></script> 
+        <script>
+          tinymce.init({
+            selector: '#chap_edit',
+            entity_encoding: 'named',
+            height: 600,
+            language: 'fr_FR',
+            language_url: '/js/tinymceLang_fr.js',
+            body_id: 'chap_edit',
+          });
+        </script>
+        <script src="/js/utils.js"></script>
+        <script src="/js/adm_blog_man.js"></script>
+        {% if adminAction %}
+            {% block script %} {% endblock %}
+        {% endif %}
+    </body>
+</html>

@@ -1,0 +1,65 @@
+{% extends 'template/visitorBase.html.twig' %}
+
+{% block stylesheet %} 
+    <link rel="stylesheet" href="/css/vis_chapter.css">
+{% endblock %}
+
+{% block script %}
+    <script src="/js/utils.js"></script>
+    <script src="/js/vis_comment.js"></script>  
+    {% if connected %}
+        <script src="/js/vis_disconnect.js"></script>
+    {% else %}
+        <script src="/js/vis_connexion.js"></script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="section_div">
+        <section id="chap_section">
+            <h1 id="chap_tit">
+                <span id="chapter_number"> {{ chapterContent.chapterNumber }} </span>.
+                <span>{{ chapterContent.title }} </span> 
+            </h1>
+            <p id="chap_p"> {{ chapterContent.content|raw }} </p>
+            <div id="nex_prev_chap_div">
+                <div>
+                {% if prevChapter %}
+                    <a href="/chapter/{{prevChapter.id}}" class="cha_a prev"> Revenir au chapitre précédent &lt;&lt; </a>
+                {% endif %}
+                </div>
+                <div>
+                {% if nextChapter %}
+                    <a href="/chapter/{{nextChapter.id}}" class="cha_a next"> &gt;&gt; Passer au chapitre suivant </a>
+                {% endif %}
+                </div>
+            </div>
+        </section>
+        <section id="com_div">
+            <h2> Commentaires du chapitre </h2>
+            <div id="com_lis_div">
+            </div>
+            <div id="com_pages">
+                {% for i in 0..topPagination %}
+                    <button class="com_page_nb"> {{ i + 1 }} </button>
+                {% endfor %}
+            </div>
+            <div id="post_com_div">
+                <h4> Vous voulez laisser un commentaire ?</h4>
+                <form id="post_com_form" action="/post" method="post">
+                    <div id="pseudo_div" class="form_div">
+                        <label for="pseudo" id="pseudo_label"> Pseudo: </label> 
+                        <input type="text" id="pseudo" class="input" name="pseudo" />
+                    </div>
+                    <div id="comment_div" class="form_div">
+                        <label for="comment" id="comment_label"> Message: </label> 
+                        <textarea id="comment" class="input" name="comment" rows="3"></textarea>
+                    </div>
+                    <div id="sub_div" class="form_div">
+                        <input type="submit" id="submit" value="envoyer" />
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock %}
