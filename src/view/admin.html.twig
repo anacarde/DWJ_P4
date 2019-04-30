@@ -46,7 +46,6 @@
 {% block content %}
     <div id="container">
         <div id="add_chapter_div" class="admin_div hide">
-            <!-- Here is editor -->
             <p class="close_p">
                 <button class="close_btn"> X </button>
             </p>
@@ -71,51 +70,55 @@
             <p class="close_p">
                 <button class="close_btn"> X </button>
             </p>
-            <table id="chap_table" class="admin_table">
-                <tr>
-                    <th> Chapitre n° </th>
-                    <th> Titre </th>
-                    <th> Date d'ajout </th>
-                    <th> Dernière modification </th>
-                    <th colspan="2"> Action </th>
-                </tr>
-                {% for chapter in chaptersList %}
-                <tr class="">
-                    <td class="chap_numb" data-id="{{ chapter.id }}"> {{ chapter.chapterNumber }} </td>
-                    <td class="chap_title"> {{ chapter.title }} </td>
-                    <td> {{ chapter.dateAdd }} </td>
-                    <td> {{ chapter.dateModif }} </td>
-                    <td class="action"> <button class="tb_butt modif_butt chap_modif"> Modifier </button> </td>
-                    <td class="action"> <button class="tb_butt supp_butt"> <a href="/admin/chapter/delete/{{ chapter.id }}"> Supprimer </a> </button> </td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="tab_frame">
+                <table id="chap_table" class="admin_table">
+                    <tr>
+                        <th> Chapitre n° </th>
+                        <th> Titre </th>
+                        <th> Date d'ajout </th>
+                        <th> Dernière modification </th>
+                        <th colspan="2"> Action </th>
+                    </tr>
+                    {% for chapter in chaptersList %}
+                    <tr class="">
+                        <td class="chap_numb" data-id="{{ chapter.id }}"> {{ chapter.chapterNumber }} </td>
+                        <td class="chap_title"> {{ chapter.title }} </td>
+                        <td> {{ chapter.dateAdd }} </td>
+                        <td> {{ chapter.dateModif }} </td>
+                        <td class="action"> <button class="tb_butt modif_butt chap_modif"> Modifier </button> </td>
+                        <td class="action"> <button class="tb_butt supp_butt"> <a href="/admin/chapter/delete/{{ chapter.id }}"> Supprimer </a> </button> </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
         <div id="com_list_div" class="admin_div hide">
             <p class="close_p">
                 <button class="close_btn"> X </button>
             </p>
-            <table id="com_table" class="admin_table">
-                <tr>
-                    <th> Chapitre </th>
-                    <th> Date </th>
-                    <th> Auteur </th>
-                    <th> Contenu </th>
-                    <th colspan="2"> Action </th>
-                </tr>
-                {% for comment in commentsList %}
-                <tr>
-                    <td> {{ comment.commentChapter }} </td>
-                    <td> {{ comment.dateAdd }}  </td>
-                    <td class="comment_author" data-id="{{ comment.id }}"> {{ comment.author }}  </td>
-                    <td class="comment_content">
-                        {{ comment.content|length < 100 ? comment.content : comment.content|slice(0,100) ~ ' ...' }} 
-                    </td>
-                    <td class="action"> <button class="tb_butt modif_butt com_modif"> Modifier </button></td>
-                    <td class="action"> <button class="tb_butt supp_butt com_supp"> <a href="/admin/comment/delete/{{ comment.id }}"> Supprimer </a> </button>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="tab_frame">
+                <table id="com_table" class="admin_table">
+                    <tr>
+                        <th> Chapitre </th>
+                        <th> Date </th>
+                        <th> Auteur </th>
+                        <th> Contenu </th>
+                        <th colspan="2"> Action </th>
+                    </tr>
+                    {% for comment in commentsList %}
+                    <tr>
+                        <td> {{ comment.commentChapter }} </td>
+                        <td> {{ comment.dateAdd }}  </td>
+                        <td class="comment_author" data-id="{{ comment.id }}"> {{ comment.author }}  </td>
+                        <td class="comment_content">
+                            {{ comment.content|length < 100 ? comment.content : comment.content|slice(0,100) ~ ' ...' }} 
+                        </td>
+                        <td class="action"> <button class="tb_butt modif_butt com_modif"> Modifier </button></td>
+                        <td class="action"> <button class="tb_butt supp_butt com_supp"> <a href="/admin/comment/delete/{{ comment.id }}"> Supprimer </a> </button>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>    
     </div>
 {% endblock %}

@@ -52,7 +52,6 @@ ul
 .admin_div
 {
     padding: 20px;
-    min-height: 1500px;
 }
 
 .admin_table
@@ -81,14 +80,6 @@ ul
 {
     margin: 0;
     padding: 20px;
-}
-
-#vis_back_form
-{
-}
-
-#vis_back_form input
-{
 }
 
 #nav_section

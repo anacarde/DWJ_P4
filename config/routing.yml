@@ -18,7 +18,6 @@ admin:
 
 adminConnexion:
   path: /adminConnexion
-  # parameters: {id: '?<id>[\d]+'}
   parameters: {}
   controller: \Src\Controller\PageController
   action: connexionAction
@@ -28,12 +27,6 @@ disconnect:
   parameters: {}
   controller: \Src\Controller\PageController
   action: disconnectAction
-
-# indexAsAdmin:
-#   path: /indexAdmin
-#   parameters: {}
-#   controller: \Src\Controller\PageController
-#   action: viewBlogAsAdminAction
 
 formChapterSelect:
   path: /admin/chapter/select/:id

@@ -1,5 +1,6 @@
    /* All page */
 
+
 body, html
 {
     width: 100%;
@@ -42,8 +43,8 @@ ul
 }
 
 
-
     /* Connected Banner */
+
 
 #con_div
 {
@@ -59,25 +60,6 @@ ul
     font-weight: bold;
 }
 
-#con_info_p
-{
-
-}
-
-#con_opt_div
-{
-
-}
-
-#con_opt_div button
-{
-    
-}
-
-#con_opt_div a
-{
-    
-}
 
     /* Header */
 
@@ -155,7 +137,9 @@ ul
     margin-bottom: 5px;
 }
 
+
     /* footer */
+
 
 footer
 {
@@ -172,29 +156,9 @@ footer
     padding: 0px 20px 20px 20px;
 }
 
-#cont_div
-{
-
-}
-
-#cont_div h2
-{
-
-}
-
-#cont_logo_div
-{
-
-}
-
 #cont_logo_div i
 {
     margin-right: 5px;
-}
-
-#connex_div
-{
-
 }
 
 #pass_form_back

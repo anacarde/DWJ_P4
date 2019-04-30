@@ -55,7 +55,6 @@ function AdminManager() {
         self.addChapterDiv.classList.remove("hide");
         self.chaptersTable.classList.add("hide");
         self.addChapButtChecked = true;
-        self.chapButtChecked = false;
     };
 
     this.removeFormContent = function() {
@@ -69,7 +68,7 @@ function AdminManager() {
         self.addChapterButton.removeAttribute("disabled");
         self.commentsButton.removeAttribute("disabled");
         self.chaptersTable.classList.remove("hide");
-        self.chapButtChecked = true; 
+        self.addChapButtChecked = false;
     };
 
     this.displayModifEditor = function(chapNumb, chapTitle) {
