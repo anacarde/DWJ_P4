@@ -35,7 +35,7 @@ class CommentManager extends Manager
 
     public function getCommentsList()
     {
-        $req = Manager::dbConnect()->query('SELECT id, comment_chapter, author, content, DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added FROM comments_jf ORDER BY signaled DESC, date_added DESC');
+        $req = Manager::dbConnect()->query('SELECT id, comment_chapter, author, content, DATE_FORMAT(date_added, \'le %d/%m/%Y à %Hh%imin%ss\') AS date_added, DATE_FORMAT(date_added, \'%Y%m%d%H%i%s\') AS date_class FROM comments_jf ORDER BY signaled DESC, date_class DESC');
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Src\Model\Comment');
         $comments = $req->fetchAll();
         return $comments;

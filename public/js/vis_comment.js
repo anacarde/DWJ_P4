@@ -78,7 +78,7 @@ function GetComments() {
             var url = "/signal/" + String(signButt[i].getAttribute("data-id").trim());
 
             signButt[i].addEventListener("click", Utils.ajaxGet.bind(this, url, self.signCallback.bind(this, signButt[i])));
-        }    
+        }
     }
 
     this.initCommentPageEvents = function() {

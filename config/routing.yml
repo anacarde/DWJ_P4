@@ -61,7 +61,7 @@ commentsPage:
 commentSignal:
   path: /signal/:id
   parameters: {id: '?<id>[\d]+'}
-  controller: \Src\controller\commentController
+  controller: \Src\Controller\CommentController
   action: signalCommentAction
 
 commentPost:

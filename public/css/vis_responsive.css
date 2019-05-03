@@ -16,3 +16,22 @@
         width: 90%;    
     }
 }
+
+@media all and (max-width: 600px) 
+{
+    #post_com_form
+    {
+        width: 100%;
+    }
+
+    #post_com_form label
+    {
+        display: flex;
+        width: auto;
+    }
+
+    #post_com_form .input
+    {
+        width: 90%;
+    }
+}
